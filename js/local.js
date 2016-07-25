@@ -3,6 +3,29 @@ $(function () {
 
 	gNavStickey();
 
+	$('body').each(function () {
+		var $target = $('.sec');
+		var showHeight = 200; // 表示される高さ
+		$target.css({opacity: 0});
+
+		$(window).on('load scroll resize', function () {
+			var $window = $(this);
+			var scrollTop = $window.scrollTop();
+			var windowHeight = $window.innerHeight();
+
+			$target.each(function () {
+				var $thisArea = $(this);
+				var areaOffsetTop = $thisArea.offset().top;
+				if (scrollTop > (areaOffsetTop + showHeight) - windowHeight) {
+					$thisArea.stop().animate({opacity: 1}, 500);
+				} else {
+					$thisArea.stop().animate({opacity: 0}, 500);
+				}
+			});
+		});
+	});
+
+
 	$('.scroll').smoothScroll({
 		positioning: -80,
 		callback: function () {

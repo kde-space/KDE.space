@@ -234,7 +234,7 @@ a:hover { text-decoration: underline; }
 * /////////////////////////////////////////*/
 #wrapper { min-width: 1000px; height: 100%; background-color: #1f1f1f; }
 
-.l-container { position: absolute; z-index: 10; top: 100%; width: 100%; background-color: #ddd; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.l-container { position: absolute; z-index: 10; top: 100%; width: 100%; background-color: #343434; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 
 /*====================================
 * heroArea
