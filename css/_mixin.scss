@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+//コメントアウト用
+@mixin comment1($str) {
+@at-root{
+/*
+* #{$str}
+*/
+}
+}
+
+@mixin comment2($str) {
+@at-root{
+/* #{$str}
+*  ++++++++++++++++++++++++++++++++++++++++++++++*/
+}
+}
+
+@mixin comment3($str) {
+@at-root{
+/*================================================
+* #{$str}
+* ==============================================*/
+}
+}
+
+@mixin comment4($str) {
+@at-root{
+/*================================================
+*
+* #{$str}
+*
+* ==============================================*/
+}
+}
+
+//clearfix
+@mixin clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+//mediaQuery
+@mixin mq-small($value: $width-sp) {
+	@media screen and (max-width:$value) {
+		@content;
+	}
+}
+@mixin mq-large($value: $width-sp + 1) {
+	@media screen and (min-width:$value) {
+		@content;
+	}
+}
+@mixin mq-custom-min($value) {
+	@media screen and (min-width:$value) {
+		@content;
+	}
+}
+@mixin mq-custom-max($value) {
+	@media screen and (max-width:$value) {
+		@content;
+	}
+}
+@mixin mq-custom-min-max($min, $max) {
+	@media screen and (min-width:$min) and (min-width:$max) {
+		@content;
+	}
+}
+
+//font-size
+// - percentage
+@mixin fz($value, $parentValue: $font-size-base) {
+	font-size: percentage($value/$parentValue);
+}
+// - rem
+@mixin fz-rem($value) {
+	font-size: $value + px;
+	font-size: $value / 10 + rem;
+}
+
+//font-family
+@mixin fontM {
+	font-family: "Eurostile LT W01 Medium788251";
+}
+@mixin fontB {
+	font-family: "Eurostile LT W01 Bold788224";
+}
+@mixin fontCB {
+	font-family: "EurostileLTW01-BoldCn";
+}
+
+//link
+@mixin linkColor($color: inherit) {
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		color : $color;
+	}
+}
+
+//margin
+@mixin margin($top, $right, $bottom, $left, $value) {
+	margin: percentage($top/$value) percentage($right/$value) percentage($bottom/$value) percentage($left/$value);
+}
+
+//padding
+@mixin padding($top, $right, $bottom, $left, $value) {
+	padding: percentage($top/$value) percentage($right/$value) percentage($bottom/$value) percentage($left/$value);
+}
+
+//opacity
+@mixin opacity($opacity) {
+	$opacityIE: $opacity * 100;
+	-ms-filter: "alpha( opacity=" + $opacityIE +")"; /* ie8 */
+	filter: alpha( opacity=$opacityIE ); /* ie6,7 */
+	opacity: $opacity;
+}
+
+//box-sizing
+@mixin box-sizing($type:border-box) {
+	-webkit-box-sizing: $type;
+	box-sizing: $type;
+}
+
+//background-size
+@mixin background-size($size) {
+	-webkit-background-size: $size;
+	background-size: $size;
+}
+
+//trainsition
+@mixin transition($value...) {
+	-webkit-transition: $value;
+	transition: $value;
+}
+
+//transform
+@mixin transform($value...) {
+	-webkit-transform: $value;
+	-ms-transform: $value;
+	transform: $value;
+}
+
+//position absolute
+@mixin absoluteT ($top: auto) {
+	position: absolute;
+	top: $top;
+}
+@mixin absoluteR ($right: auto) {
+	position: absolute;
+	right: $right;
+}
+@mixin absoluteB ($bottom: auto) {
+	position: absolute;
+	bottom: $bottom;
+}
+@mixin absoluteL ($left: auto) {
+	position: absolute;
+	left: $left;
+}
+@mixin absoluteTL ($top: auto, $left: auto) {
+	position: absolute;
+	top: $top;
+	left: $left;
+}
+@mixin absoluteTR ($top: auto, $right: auto) {
+	position: absolute;
+	top: $top;
+	right: $right;
+}
+@mixin absoluteTRL ($top: auto, $right: auto, $left: auto) {
+	position: absolute;
+	top: $top;
+	right: $right;
+	left: $left;
+}
+@mixin absoluteTRB ($top: auto, $right: auto, $bottom: auto) {
+	position: absolute;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+}
+@mixin absoluteTBL ($top: auto, $bottom: auto, $left: auto) {
+	position: absolute;
+	top: $top;
+	bottom: $bottom;
+	left: $left;
+}
+@mixin absoluteRBL ($right: auto, $bottom: auto, $left: auto) {
+	position: absolute;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+@mixin absoluteRB ($right: auto, $bottom: auto) {
+	position: absolute;
+	right: $right;
+	bottom: $bottom;
+}
+@mixin absoluteBL ($bottom: auto, $left: auto) {
+	position: absolute;
+	bottom: $bottom;
+	left: $left;
+}
+@mixin absoluteAll ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+	position: absolute;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+
+//keyframes
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes #{$animation-name} {
+		@content;
+	}
+	@-moz-keyframes #{$animation-name} {
+		@content;
+	}
+	@keyframes #{$animation-name} {
+		@content;
+	}
+}
+
+//animation
+@mixin animation($value...) {
+	-webkit-animation: $value;
+	-moz-animation: $value;
+	animation: $value;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	animation-fill-mode: both;
+}

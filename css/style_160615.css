@@ -1,0 +1,465 @@
+@charset "UTF-8";
+@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=69d209c9-672e-47b0-8dac-a98a5ac76bbf");
+@-webkit-keyframes moveNoise { 0% { background-position: 0 0; }
+  20% { background-position: 100% 100%; }
+  40% { background-position: 40% 80%; }
+  60% { background-position: 5% 45%; }
+  80% { background-position: 60% 40%; }
+  100% { background-position: 5% 85%; } }
+@-moz-keyframes moveNoise { 0% { background-position: 0 0; }
+  20% { background-position: 100% 100%; }
+  40% { background-position: 40% 80%; }
+  60% { background-position: 5% 45%; }
+  80% { background-position: 60% 40%; }
+  100% { background-position: 5% 85%; } }
+@keyframes moveNoise { 0% { background-position: 0 0; }
+  20% { background-position: 100% 100%; }
+  40% { background-position: 40% 80%; }
+  60% { background-position: 5% 45%; }
+  80% { background-position: 60% 40%; }
+  100% { background-position: 5% 85%; } }
+@-webkit-keyframes flashBk { 50% { background-color: #fff; } }
+@-moz-keyframes flashBk { 50% { background-color: #fff; } }
+@keyframes flashBk { 50% { background-color: #fff; } }
+@-webkit-keyframes flashBk_re { 50% { color: #000; } }
+@-moz-keyframes flashBk_re { 50% { color: #000; } }
+@keyframes flashBk_re { 50% { color: #000; } }
+@-webkit-keyframes textTypo { 0% { -ms-filter: "alpha( opacity=0)";
+    /* ie8 */
+filter: alpha(opacity=0);
+    /* ie6,7 */
+opacity: 0; }
+  100% { -ms-filter: "alpha( opacity=100)";
+    /* ie8 */
+filter: alpha(opacity=100);
+    /* ie6,7 */
+opacity: 1; } }
+@-moz-keyframes textTypo { 0% { -ms-filter: "alpha( opacity=0)";
+    /* ie8 */
+filter: alpha(opacity=0);
+    /* ie6,7 */
+opacity: 0; }
+  100% { -ms-filter: "alpha( opacity=100)";
+    /* ie8 */
+filter: alpha(opacity=100);
+    /* ie6,7 */
+opacity: 1; } }
+@keyframes textTypo { 0% { -ms-filter: "alpha( opacity=0)";
+    /* ie8 */
+filter: alpha(opacity=0);
+    /* ie6,7 */
+opacity: 0; }
+  100% { -ms-filter: "alpha( opacity=100)";
+    /* ie8 */
+filter: alpha(opacity=100);
+    /* ie6,7 */
+opacity: 1; } }
+/* /////////////////////////////////////////
+* reset
+* /////////////////////////////////////////*/
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+
+body { margin: 0; }
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary { display: block; }
+
+audio, canvas, progress, video { display: inline-block; vertical-align: baseline; }
+
+audio:not([controls]) { display: none; height: 0; }
+
+[hidden], template { display: none; }
+
+a { background-color: transparent; }
+
+a:active, a:hover { outline: 0; }
+
+abbr[title] { border-bottom: none; text-decoration: underline; text-decoration: underline dotted; }
+
+b, strong { font-weight: inherit; }
+
+b, strong { font-weight: bolder; }
+
+dfn { font-style: italic; }
+
+h1 { font-size: 2em; margin: 0.67em 0; }
+
+mark { background-color: #ff0; color: #000; }
+
+small { font-size: 80%; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+img { border: 0; }
+
+svg:not(:root) { overflow: hidden; }
+
+figure { margin: 1em 40px; }
+
+hr { box-sizing: content-box; height: 0; overflow: visible; }
+
+pre { overflow: auto; }
+
+code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+
+button, input, optgroup, select, textarea { font: inherit; margin: 0; }
+
+button { overflow: visible; }
+
+button, select { text-transform: none; }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; }
+
+button[disabled], html input[disabled] { cursor: default; }
+
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+input { line-height: normal; }
+
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; }
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { height: auto; }
+
+input[type="search"] { -webkit-appearance: textfield; }
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
+
+legend { border: 0; padding: 0; }
+
+textarea { overflow: auto; }
+
+optgroup { font-weight: bold; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+td, th { padding: 0; }
+
+/*================================
+* 2016-01-25 add
+* ===============================*/
+object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, small, strong, b, u, i, dl, dt, dd, ol, ul, fieldset, form, label, legend, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, section, summary, time, mark, audio, video { vertical-align: baseline; margin: 0; padding: 0; border: none; outline: none; }
+
+body { background-color: #fff; }
+
+h1, h2, h3, h4, h5, h6 { line-height: 1.1; }
+
+img { vertical-align: top; line-height: 1; }
+
+a { text-decoration: underline; }
+
+a:hover { text-decoration: none; }
+
+em, dfn { font-style: normal; }
+
+ol, ul { list-style-type: none; }
+
+/* html5doctor.com Reset Stylesheetv1.6.1Last Updated: 2010-09-17Author: Richard Clark - http://richclarkdesign.com Twitter: @rich_clark*/
+ins { background-color: #ff9; color: inherit; text-decoration: none; }
+
+mark { background-color: #ff9; color: inherit; font-style: italic; font-weight: bold; }
+
+del { text-decoration: line-through; }
+
+hr { margin: 1em 0; border: 0; border-top: 1px solid #cccccc; }
+
+input, select { vertical-align: middle; }
+
+/* /////////////////////////////////////////
+* base
+* /////////////////////////////////////////*/
+* { -webkit-box-sizing: border-box; box-sizing: border-box; }
+*::before, *::after { -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html { height: 100%; font-size: 62.5%; }
+
+body { height: 100%; line-height: 1; color: #fff; font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif; font-size: 10px; font-size: 1rem; }
+
+a { text-decoration: none; }
+a:link, a:visited, a:hover, a:active { color: inherit; }
+
+a:hover { text-decoration: underline; }
+
+.clearfix:after { content: ""; display: block; clear: both; }
+
+@font-face { font-family: "Eurostile LT W01 Medium788251"; src: url("../fonts/f7799177-ca74-46ea-b025-8f09fd62bbd5.eot?#iefix"); src: url("../fonts/f7799177-ca74-46ea-b025-8f09fd62bbd5.eot?#iefix") format("eot"), url("../fonts/7312baa6-517b-42c1-adb6-684f8205fe74.woff2") format("woff2"), url("../fonts/107efc32-dbde-4122-8cce-09804dbd6b27.woff") format("woff"), url("../fonts/ba131ef8-64e5-4aa7-87b9-8e296c81babf.ttf") format("truetype"), url("../fonts/6c7b1a65-90a2-4c75-836d-fd765979640b.svg#6c7b1a65-90a2-4c75-836d-fd765979640b") format("svg"); }
+@font-face { font-family: "Eurostile LT W01 Bold788224"; src: url("../fonts/2875a4c5-c0c4-4832-a7fb-a5b061b74e36.eot?#iefix"); src: url("../fonts/2875a4c5-c0c4-4832-a7fb-a5b061b74e36.eot?#iefix") format("eot"), url("../fonts/c3619879-a6e0-4738-b021-d1d25eb7ff74.woff2") format("woff2"), url("../fonts/789587e7-8c31-4431-9352-a6d402ed168e.woff") format("woff"), url("../fonts/1d4bb752-c44e-4b94-8f59-337c93a3c296.ttf") format("truetype"), url("../fonts/5c7a99f2-1760-495e-9fb8-23d9b962d378.svg#5c7a99f2-1760-495e-9fb8-23d9b962d378") format("svg"); }
+@font-face { font-family: "EurostileLTW01-BoldCn"; src: url("../fonts/cd00d065-b939-47a9-b826-456eff2915f7.eot?#iefix"); src: url("../fonts/cd00d065-b939-47a9-b826-456eff2915f7.eot?#iefix") format("eot"), url("../fonts/87e860e8-a29d-4cb7-9925-42b6c0b26373.woff2") format("woff2"), url("../fonts/8947ab9b-a38b-4fe4-9a36-1bdd58af997c.woff") format("woff"), url("../fonts/1b9f7584-2b5f-45d5-8e58-141bb3cf9cfd.ttf") format("truetype"), url("../fonts/d7f323cf-6d25-45b4-b2b4-289c6701425b.svg#d7f323cf-6d25-45b4-b2b4-289c6701425b") format("svg"); }
+/* /////////////////////////////////////////
+* module
+* /////////////////////////////////////////*/
+.tableList { display: table; font-size: 12px; font-size: 1.2rem; font-family: "Eurostile LT W01 Medium788251"; letter-spacing: .05em; }
+/*
+* modifier
+*/
+.tableList.tableList--profile { width: 100%; }
+.tableList.tableList--case { color: #aaa; }
+
+.tableList__item { display: table-row; line-height: 2; }
+
+.tableList__head { display: table-cell; }
+/*
+* modifier
+*/
+.tableList--profile .tableList__head { font-family: "Eurostile LT W01 Bold788224"; }
+.tableList__head.tableList__head--area { font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif; }
+
+.tableList__txt { display: table-cell; }
+
+.tableList__txt::before { content: '　-　'; }
+
+/* /////////////////////////////////////////
+* layout
+* /////////////////////////////////////////*/
+#wrapper { min-width: 1000px; height: 100%; background-color: #1f1f1f; }
+
+.container { position: absolute; z-index: 10; top: 100%; width: 100%; background-color: #ddd; }
+
+/*====================================
+* heroArea
+* ====================================*/
+.heroArea { position: fixed; z-index: 1; top: 0; left: 0; min-width: 1000px; width: 100%; height: 100%; }
+
+.heroArea__video { position: fixed; z-index: -1; top: 0; right: 0; min-width: 100%; width: auto; min-height: 100%; height: auto; -ms-filter: "alpha( opacity=30)"; /* ie8 */ filter: alpha(opacity=30); /* ie6,7 */ opacity: 0.3; }
+
+.heroArea::after { content: ''; position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; background-image: url(../img/bg_noise.png); -webkit-animation: moveNoise 0.2s steps(6, start) infinite; -moz-animation: moveNoise 0.2s steps(6, start) infinite; animation: moveNoise 0.2s steps(6, start) infinite; -webkit-animation-fill-mode: both; -moz-animation-fill-mode: both; animation-fill-mode: both; }
+
+/* pageHeader
++++++++++++++++++++++++++++++++++++++*/
+.pageHeader { margin-bottom: 75px; padding: 40px 50px 0; }
+.pageHeader:after { content: ''; display: block; clear: both; }
+
+.pageHeader__logo { float: left; }
+
+.pageHeader__sns { float: right; }
+
+/* shareBtns
++++++++++++++++++++++++++++++++++++++*/
+.shareBtns { font-size: 0; }
+
+.shareBtns__txt { display: inline-block; vertical-align: middle; margin-right: 30px; font-size: 10px; font-size: 1rem; font-family: "Eurostile LT W01 Medium788251"; letter-spacing: .1em; }
+
+.shareBtns__btn { display: inline-block; vertical-align: middle; font-size: 20px; font-size: 2rem; }
+.shareBtns__btn + .shareBtns__btn { margin-left: 30px; }
+.shareBtns__btn a { color: #fff; }
+
+/* mainTxt
++++++++++++++++++++++++++++++++++++++*/
+.mainTxt { position: absolute; top: 50%; left: 9.89583%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); font-family: "EurostileLTW01-BoldCn"; }
+
+.mainTxt__small { margin-bottom: 50px; font-size: 30px; font-size: 3rem; }
+
+.mainTxt__large { margin-bottom: 50px; font-size: 160px; font-size: 16rem; margin-left: -.05em; }
+
+.mainTxt__portfolio { display: inline-block; padding: .2em 80px .2em .5em; color: #000; font-size: 24px; font-size: 2.4rem; background-color: #fed90c; }
+
+/*====================================
+* gNav
+* ===================================*/
+.gNav { position: absolute; z-index: 10; left: 0; bottom: 0; }
+
+.gNav__list { display: table; table-layout: fixed; min-width: 1000px; width: 100%; border-top: 4px solid #ccc; font-family: "EurostileLTW01-BoldCn"; font-size: 38px; font-size: 3.8rem; background-color: #000; }
+
+.gNav__item { display: table-cell; vertical-align: middle; border-right: 1px solid #333; }
+.gNav__item a:link, .gNav__item a:visited, .gNav__item a:hover, .gNav__item a:active { color: inherit; text-decoration: none; }
+/*
+* modifier
+*/
+.gNav__item.gNav__item--blog { border-right: none; -ms-filter: "alpha( opacity=20)"; /* ie8 */ filter: alpha(opacity=20); /* ie6,7 */ opacity: 0.2; }
+.gNav__item.gNav__item--blog sup { vertical-align: super; margin-left: 1em; font-family: "Eurostile LT W01 Medium788251"; font-size: 13px; font-size: 1.3rem; }
+
+.gNav__txt { position: relative; display: block; width: 100%; height: 100%; line-height: 106px; padding-left: 128px; }
+
+/*
+* アイコンの表示
+*/
+.gNav__txt::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50px; width: 60px; height: 60px; margin: auto; background: url(../img/icn_a.svg) no-repeat; }
+/*
+* modifier
+*/
+.gNav__item--works .gNav__txt::before { background: url(../img/icn_w.svg) no-repeat; }
+.gNav__item--mission .gNav__txt::before { background: url(../img/icn_m.svg) no-repeat; }
+.gNav__item--blog .gNav__txt::before { background: url(../img/icn_b.svg) no-repeat; }
+
+/*
+* 矢印の表示
+*/
+.gNav__txt::after { content: ''; position: absolute; top: 0; right: 50px; bottom: 0; width: 40px; height: 43px; margin: auto; background: url(../img/arrow_b.svg) no-repeat; }
+.gNav__item--blog .gNav__txt::after { content: none; }
+
+/*====================================
+* sec
+* ===================================*/
+.sec { min-width: 1000px; padding-bottom: 100px; }
+/*
+* modifier
+*/
+.sec.sec--about { background: #1e1e1e url(../img/bg_about.png) center bottom no-repeat; }
+.sec.sec--works { background-color: #6c6c6c; }
+.sec.sec--contact { background-color: #343434; }
+
+/* sec__head
++++++++++++++++++++++++++++++++++++++*/
+.sec__headWrap { position: relative; z-index: 1; padding-top: 90px; }
+
+.sec__headWrap::before { content: ''; position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 175px; }
+/*
+* modifier
+*/
+.sec--about .sec__headWrap::before { background-color: rgba(0, 93, 171, 0.3); }
+.sec--works .sec__headWrap::before { background-color: rgba(255, 99, 25, 0.3); }
+.sec--contact .sec__headWrap::before { background-color: rgba(0, 147, 60, 0.3); }
+
+.sec__head { position: relative; width: 1000px; line-height: 1; margin: 0 auto; padding-left: 180px; font-family: "EurostileLTW01-BoldCn"; font-size: 160px; font-size: 16rem; letter-spacing: -.02em; }
+
+.sec__head::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 148px; height: 148px; margin: auto; background: url(../img/icn_a.svg) no-repeat; }
+/*
+* modifier
+*/
+.sec--works .sec__head::before { background-image: url(../img/icn_w.svg); }
+.sec--contact .sec__head::before { background-image: url(../img/icn_c.svg); }
+
+/* sec__body
++++++++++++++++++++++++++++++++++++++*/
+.sec__body { width: 960px; margin: 0 auto; padding-top: 60px; }
+
+/* subHead
++++++++++++++++++++++++++++++++++++++*/
+.subHead { display: inline-block; margin-bottom: 50px; padding: .5em 80px .4em .5em; font-weight: bold; font-size: 16px; font-size: 1.6rem; letter-spacing: .05em; background-color: #005dab; }
+/*
+* modifier
+*/
+.subHead.subHead--works { margin-bottom: 0; background-color: #ff6319; }
+.subHead.subHead--contact { background-color: #00933c; }
+.subHead sup { top: 0; margin-left: 1em; vertical-align: super; font-weight: normal; font-family: "Eurostile LT W01 Medium788251"; font-size: 10px; font-size: 1rem; letter-spacing: .05em; }
+
+/* aboutMe
++++++++++++++++++++++++++++++++++++++*/
+.aboutMe { position: relative; }
+
+.aboutMe__desc { width: 550px; line-height: 2; margin-bottom: 60px; color: #ddd; font-size: 13px; font-size: 1.3rem; }
+
+/* profile
++++++++++++++++++++++++++++++++++++++*/
+.profile { display: inline-block; padding: 33px 30px; border-top: 1px solid #005dab; color: #666; background-color: rgba(0, 0, 0, 0.6); }
+
+.profile__header { display: table; width: 100%; margin-bottom: 15px; }
+
+.profile__head { display: table-cell; line-height: 1; font-family: "EurostileLTW01-BoldCn"; font-size: 44px; font-size: 4.4rem; }
+
+.profile__sns { display: table-cell; text-align: right; }
+
+.profile__snsHead { display: inline-block; vertical-align: top; margin-right: 20px; font-family: "Eurostile LT W01 Medium788251"; font-size: 12px; font-size: 1.2rem; letter-spacing: .05em; }
+
+.profile__snsBody { display: inline-block; }
+
+.profileIcns { font-size: 0; }
+.profileIcns a:link, .profileIcns a:visited, .profileIcns a:hover, .profileIcns a:active { color: inherit; text-decoration: none; }
+
+.profileIcns__item { display: inline-block; margin-right: 20px; color: #ddd; font-size: 24px; font-size: 2.4rem; }
+/*
+* modifier
+*/
+.profileIcns__item.profileIcns__item--pt { margin-right: 0; }
+
+/*====================================
+* works
+* ===================================*/
+/* case
++++++++++++++++++++++++++++++++++++++*/
+.case { width: 800px; }
+
+.case__pic { margin-bottom: 40px; -webkit-transition: 0.3s ease-out; transition: 0.3s ease-out; -webkit-transform: scale(0.96); -ms-transform: scale(0.96); transform: scale(0.96); }
+.is-active .case__pic { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); box-shadow: 0 10px 10px -3px rgba(0, 0, 0, 0.3); }
+
+.case__txt { -ms-filter: "alpha( opacity=0)"; /* ie8 */ filter: alpha(opacity=0); /* ie6,7 */ opacity: 0; -webkit-transform: translateY(-10%); -ms-transform: translateY(-10%); transform: translateY(-10%); -webkit-transition: 0.3s 0.3s ease-out; transition: 0.3s 0.3s ease-out; }
+.case__txt:after { content: ''; display: block; clear: both; }
+.is-active .case__txt { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); -ms-filter: "alpha( opacity=100)"; /* ie8 */ filter: alpha(opacity=100); /* ie6,7 */ opacity: 1; }
+
+.case__caption { float: left; width: 260px; border-top: 1px solid #ff6319; }
+
+.case__head { margin: 1.2em 0; color: #ddd; font-size: 16px; font-size: 1.6rem; }
+
+.case__link { font-size: 12px; font-size: 1.2rem; font-family: "Eurostile LT W01 Medium788251"; letter-spacing: .05em; }
+.case__link:link, .case__link:visited, .case__link:hover, .case__link:active { color: #ff6319; }
+.case__link > .fa { margin-left: .5em; }
+
+.case__detail { padding-left: 40px; overflow: hidden; }
+
+.case__desc { line-height: 1.7; margin-bottom: 20px; color: #ddd; font-size: 13px; font-size: 1.3rem; }
+
+/* slider
++++++++++++++++++++++++++++++++++++++*/
+.slider { position: relative; width: 100%; height: 655px; padding-top: 50px; overflow: hidden; }
+
+.slider__listWrap { position: relative; width: 800px; margin: 0 auto; }
+
+.slider__list { position: absolute; top: 0; left: 0; }
+
+.slider__item { position: absolute; top: 0; -ms-filter: "alpha( opacity=20)"; /* ie8 */ filter: alpha(opacity=20); /* ie6,7 */ opacity: 0.2; -webkit-transition: 0.3s; transition: 0.3s; }
+.slider__item.is-active { -ms-filter: "alpha( opacity=100)"; /* ie8 */ filter: alpha(opacity=100); /* ie6,7 */ opacity: 1; }
+
+/*
+* 矢印
+*/
+.slider__parts { position: relative; width: 800px; margin: 0 auto; }
+
+.slider__arrowItem { position: absolute; top: 0; width: 100%; height: 450px; }
+/*
+* modifier
+*/
+.slider__arrowItem.slider__arrowItem--prev { left: -100%; margin-left: -20px; }
+.slider__arrowItem.slider__arrowItem--next { left: 100%; margin-left: 20px; }
+
+.slider__arrowItem > a { position: relative; display: block; height: 100%; }
+
+.slider__arrowItem img { position: absolute; top: 50%; margin-top: -30px; }
+
+.slider__arrowItem.slider__arrowItem--prev img { right: 0; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); }
+
+.slider__arrowItem.slider__arrowItem--next img { left: 0; -webkit-transform: rotate(-90deg); -ms-transform: rotate(-90deg); transform: rotate(-90deg); }
+
+/*
+* インジケーター
+*/
+.slider__indicator { position: absolute; top: -30px; right: 0; left: 0; width: 800px; margin: auto; font-size: 0; text-align: right; }
+
+.slider__indicatorItem { display: inline-block; font-size: 12px; font-size: 1.2rem; }
+.slider__indicatorItem:not(:last-child) { margin-right: 1.5em; }
+.slider__indicatorItem a { text-decoration: none; }
+.slider__indicatorItem a:link, .slider__indicatorItem a:visited, .slider__indicatorItem a:hover, .slider__indicatorItem a:active { color: #3e3e3e; }
+.slider__indicatorItem a.is-active:link, .slider__indicatorItem a.is-active:visited, .slider__indicatorItem a.is-active:hover, .slider__indicatorItem a.is-active:active { color: #ff6319; }
+
+/*====================================
+* mission
+* ===================================*/
+.form input[type="text"], .form textarea { width: 100%; padding: .75em 1em; border: none; color: #fff; font-size: 16px; font-size: 1.6rem; background-color: #474747; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
+.form input[type="text"]:focus, .form textarea:focus { box-shadow: inset 0 2px 7px rgba(0, 0, 0, 0.2); outline: none; background-color: #212121; }
+.form textarea { line-height: 1.7; height: 7em; resize: vertical; }
+.form input[type="submit"] { line-height: 1; padding: 1em 5em; border: 1px solid; color: #00933c; font-weight: bold; font-size: 16px; font-size: 1.6rem; text-align: center; text-indent: .5em; letter-spacing: .5em; background-color: transparent; -webkit-transition: 0.3s; transition: 0.3s; }
+.form input[type="submit"]:hover { color: #fff; border-color: #00933c; box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.2); background-color: #00933c; }
+.form input[type="submit"]:disabled { font-weight: normal; color: #666; }
+
+.formItem { margin-bottom: 50px; }
+.formItem:after { content: ''; display: block; clear: both; }
+
+.formItem__head { float: left; width: 240px; padding-top: 2em; border-top: 1px solid #00933c; color: #ddd; font-size: 12px; font-size: 1.2rem; letter-spacing: .05em; }
+
+.formItem__headEn { margin-right: 1.5em; font-size: 16px; font-size: 1.6rem; font-family: "Eurostile LT W01 Medium788251"; }
+
+.formItem__body { float: right; width: 675px; }
+
+.form__submitArea:after { content: ''; display: block; clear: both; }
+
+.form__submitBtn { float: right; }
+
+.form__notesList { float: left; line-height: 1.7; margin-left: 285px; color: #aaa; font-size: 12px; font-size: 1.2rem; }
+
+.pageFooter { background-color: #e00; }
+
+/*# sourceMappingURL=style_160615.css.map */

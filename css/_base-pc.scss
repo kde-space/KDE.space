@@ -1,0 +1,41 @@
+@charset 'utf-8';
+// base-pc
+//////////////////////////////////////
+* {
+	@include box-sizing;
+
+	&::before,
+	&::after {
+		@include box-sizing;
+	}
+}
+
+html {
+	height: 100%;
+	font-size: 62.5%;
+}
+
+body {
+	height: 100%;
+	line-height: 1;
+	color: $color-base;
+	font-family: $font-family;
+	@include fz-rem(10);
+}
+
+a {
+	@include linkColor(inherit);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.clearfix {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
