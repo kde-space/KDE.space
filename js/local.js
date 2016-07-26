@@ -46,8 +46,8 @@ $(function () {
 			var htm = '';
 			var durationTime = 0; // 最後の文字のアニメーション開始までの時間を取得用
 			for (var i = 0; i < ary.length; i++) {
-				htm += '<span style="animation-delay:' + (i*50 + 500) + 'ms;">' + ary[i] + '</span>';
-				durationTime = i*50 + 500;
+				htm += '<span style="animation-delay:' + (i*60 + 500) + 'ms;">' + ary[i] + '</span>';
+				durationTime = i*60 + 500;
 			}
 			// アニメーション終了時間を加算し
 			// 配列に格納

@@ -97,10 +97,19 @@
 /* textTypo jsと併用
 +++++++++++++++++++++++++++++++++++++*/
 .js-textTypo-item span {
-	@include animation(textTypo 0s ease 0s 1);
+	outline: 1px solid #fff;
+	@include animation(textTypo_white .1s linear 0s 1);
 	-webkit-animation-play-state: paused;
 	-moz-animation-play-state: paused;
 	animation-play-state: paused;
+}
+/*
+* modifer IE用にアニメーションを分ける
+*/
+.mainTxt__portfolio.js-textTypo-item span {
+	-webkit-animation-name: textTypo_black;
+	-o-animation-name: textTypo_black;
+	animation-name: textTypo_black;
 }
 
 .js-textTypo-item.is-start span {
@@ -250,6 +259,7 @@
 	&::before {
 		content: '';
 		position: absolute;
+		z-index: -1;
 		top: 0;
 		left: 0;
 		width: 0;
@@ -366,19 +376,17 @@
 		content: '';
 		position: absolute;
 		top: 0;
-		bottom: 0;
-		right: 0;
-		width: 0;
-		height: 100%;
+		left: 0;
+		width: 100%;
+		height: 0;
 		@include transition(.3s);
-		background-color: #111;
+		background-color: #0e0e0e;
 	}
 	&:hover,
 	&:focus {
 		text-decoration: none;
 
 		&::before {
-			left: 0;
 			width: 100%;
 			height: 100%;
 		}
@@ -478,6 +486,12 @@
 	background: url(../img/arrow_b.svg) no-repeat;
 	@include transition(.2s linear);
 
+	.gNav__item a:hover & {
+		//@include animation(arrowDown2 .5s steps(6) 0s infinite);
+		@include animation(arrowDown1 1.5s ease-out 0s infinite);
+	}
+
+
 	// mediaQuery
 	@include mq-custom-max(1300px) {
 		right: 20px;
@@ -498,7 +512,6 @@
 		height: 33px;
 	}
 }
-
 
 /*====================================
 * sec
