@@ -6,7 +6,9 @@ $(function () {
 	$('body').each(function () {
 		var $target = $('.sec');
 		var showHeight = 200; // 表示される高さ
-		$target.css({opacity: 0});
+		var CLASS_ACTIVE = 'is-sec-active';
+
+		//$target.css({opacity: 0});
 
 		$(window).on('load scroll resize', function () {
 			var $window = $(this);
@@ -17,9 +19,11 @@ $(function () {
 				var $thisArea = $(this);
 				var areaOffsetTop = $thisArea.offset().top;
 				if (scrollTop > (areaOffsetTop + showHeight) - windowHeight) {
-					$thisArea.stop().animate({opacity: 1}, 500);
+					//$thisArea.stop().animate({opacity: 1}, 500);
+					$thisArea.addClass(CLASS_ACTIVE);
 				} else {
-					$thisArea.stop().animate({opacity: 0}, 500);
+					//$thisArea.stop().animate({opacity: 0}, 500);
+					$thisArea.removeClass(CLASS_ACTIVE);
 				}
 			});
 		});

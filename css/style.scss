@@ -548,11 +548,11 @@
 	content: '';
 	@include absoluteTL(0,0);
 	z-index: -1;
-	width: 100%;
+	width: 0;
 	height: 175px;
+	@include transition(.5s ease-out);
 
-	@include comment1(modifier);
-	//modifier
+	//modifier セクション別
 	$hoge :darken($color-blue, 20%);
 	$fuga :darken($color-orange, 25%);
 	$piyo :darken($color-green,.10%);
@@ -566,7 +566,14 @@
 	.sec--mission & {
 		background-color: rgba($piyo,.3);
 	}
+
+	//modifier アクティブ時
+	.sec.is-sec-active & {
+		width: 100%;
+	}
+
 }
+
 
 .sec__head {
 	position: relative;
