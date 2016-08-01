@@ -14,17 +14,18 @@
 	<div class="heroArea">
 		<header class="pageHeader">
 			<h1 class="pageHeader__logo"><img src="img/logo_kde.svg" width="135" height="90" alt="KDE - Kobayashi Design Engineering"></h1>
-			<dl class="pageHeader__sns shareBtns">
-				<dt class="shareBtns__txt">Share</dt>
-				<dd class="shareBtns__btn"><a href="#"><i class="fa fa-facebook"></i></a></dd>
-				<dd class="shareBtns__btn shareBtns__btn--tw"><a href="#"><i class="fa fa-twitter"></i></a></dd>
-			</dl>
+			<ul class="pageHeader__sns shareBtns">
+				<li class="shareBtns__btn"><a href="https://twitter.com/KDE_SPACE" target="_blank">twitter</a></li>
+				<li class="shareBtns__btn"><a href="#">facebook</a></li>
+				<li class="shareBtns__btn"><a href="#">instagram</a></li>
+				<li class="shareBtns__btn"><a href="#">pintarest</a></li>
+			</ul>
 		</header><!-- /.pageHeader -->
 
-		<div class="mainTxt js-textTypo">
-			<div class="mainTxt__small js-textTypo-item">Welcome to</div>
-			<div class="mainTxt__large"><span class=" js-textTypo-item">Kobayashi</span><br><span class=" js-textTypo-item">Design Engineering.</span></div>
-			<div class="mainTxt__portfolio js-textTypo-item">This is my portforio site since 2016.</div>
+		<div class="mainTxt js-textTypoMulti">
+			<div class="mainTxt__small js-typeWriter">Welcome to</div>
+			<div class="mainTxt__large"><span class="js-typeWriter">Kobayashi</span><br><span class="js-typeWriter">Design Engineering.</span></div>
+			<div class="mainTxt__portfolio js-typeWriter">This is my portforio site since 2016.</div>
 		</div><!-- /.mainTxt -->
 
 		<video  class="heroArea__video" autoplay loop poster="img/pic_poster_mv.jpg">
@@ -34,7 +35,7 @@
 	</div><!-- /.heroArea -->
 
 	<nav class="gNav" id="js-gNav">
-		<a href="#wrapper" class="gNav__toTop scroll"><span class="gNav__toTopTxt">To top</span></a>
+		<a href="#wrapper" class="gNav__toTop scroll"><span class="gNav__toTopTxt">Back to top</span></a>
 		<ul class="gNav__list">
 			<li class="gNav__item gNav__item--about">
 				<a href="#about" class="scroll"><span class="gNav__txt">About</span></a>
@@ -53,25 +54,25 @@
 
 	<div class="l-container">
 
-		<section class="sec sec--about" id="about">
+		<section class="sec sec--about js-addclassScroll" id="about">
 			<div class="sec__headWrap">
-				<h2 class="sec__head">About</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter">About</h2>
 			</div>
 			<div class="sec__body">
 				<section class="aboutMe">
-					<h3 class="subHead subHead--about">自分について<sup>About me</sup></h3>
+					<h3 class="subHead subHead--about js-addclassScroll">自分について<sup>About me</sup></h3>
 					<div class="aboutMe__inner">
-						<section class="profile">
+						<section class="profile js-addclassScroll">
 							<h4 class="profile__head">Koji Kobayashi</h4>
 							<div class="profileItemWrap">
 								<dl class="profileItem profileItem--sns">
-									<dt class="profileItem__head">SNS<br>(Follow me!!)</dt>
+									<dt class="profileItem__head">SNS<br><small>(Follow me!!)</small></dt>
 									<dd class="profileItem__body">
 										<ul class="profileIcns">
-											<li class="profileIcns__item profileIcns__item--fb"><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-											<li class="profileIcns__item profileIcns__item--tw"><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-											<li class="profileIcns__item profileIcns__item--ig"><a href="#"><i class="fa fa-instagram"></i></a></li>
-											<li class="profileIcns__item profileIcns__item--pt"><a href=""><i class="fa fa-pinterest-square"></i></a></li>
+											<li class="profileIcns__item profileIcns__item--tw"><a href="https://twitter.com/KDE_SPACE" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+											<li class="profileIcns__item profileIcns__item--fb"><a href="https://www.facebook.com/kde.space" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+											<li class="profileIcns__item profileIcns__item--ig"><a href="https://www.instagram.com/kde.space/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+											<li class="profileIcns__item profileIcns__item--pt"><a href="https://jp.pinterest.com/KDE_SPACE/" target="_blank"><i class="fa fa-pinterest-square"></i></a></li>
 										</ul><!-- /.profileIcns -->
 									</dd>
 								</dl>
@@ -81,16 +82,35 @@
 								</dl>
 								<dl class="profileItem">
 									<dt class="profileItem__head">Favorite</dt>
-									<dd class="profileItem__body">Movie (especially SF), Motion Graphics, Underground Hip Hop, Skate, Reading (nonfiction), Chinese Classics.</dd>
-								</dl>
+									<dd class="profileItem__body">
+										<ul class="inlineList">
+											<li>Movie (especially SF)</li>
+											<li>Motion Graphics</li>
+											<li>Underground Hip Hop</li>
+											<li>Skate</li>
+											<li>Reading (nonfiction)</li>
+											<li>Chinese Classics</li>
+										</ul>
+									</dd>
+								</dl><!-- /.profileItem -->
 								<dl class="profileItem">
 									<dt class="profileItem__head">Skills</dt>
-									<dd class="profileItem__body">Photoshop, Illustlator, Flash, HTML5, CSS3, JavaScript (jQuery).</dd>
-								</dl>
+									<dd class="profileItem__body">
+										<ul class="inlineList">
+											<li>Photoshop</li>
+											<li>Illustlator</li>
+											<li>Flash</li>
+											<li>HTML5</li>
+											<li>CSS3</li>
+											<li>JavaScript</li>
+											<li>jQuery</li>
+										</ul>
+									</dd>
+								</dl><!-- /.profileItem -->
 							</div><!-- /.profileItemWrap -->
 						</section><!-- /.profile -->
 
-						<div class="aboutMe__desc">
+						<div class="aboutMe__desc js-addclassScroll">
 							<p>1984年長野県生まれ東京都在住。<br>高校卒業後、東京都内のファッション専門学校へ進学を機に上京。<br>アパレル業界でECサイトの運営に携わり、初めてWEBの面白さ、可能性に魅力を感じる。</p>
 							<p>退職後、基金訓練でWeb制作の基本を学び、2012年からWebデザイナーとして都内Web制作会社に勤務。</p>
 							<p>バナー、ランディングページ、コーポレートサイト、iOS/Andoroidアプリのデザイン、Flashオーサリング(アニメーション)等を経験し、2015年からエンジニアに転向し現在は主にフロントエンドの実装を担当。</p>
@@ -102,12 +122,12 @@
 			</div><!-- /.sec__body -->
 		</section><!-- /.sec -->
 
-		<section class="sec sec--works" id="works">
+		<section class="sec sec--works js-addclassScroll" id="works">
 			<div class="sec__headWrap">
-				<h2 class="sec__head">Works</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter">Works</h2>
 			</div>
 			<div class="sec__body">
-				<div class="subHead subHead--works">制作実績<sup>Portfolio</sup></div>
+				<div class="subHead subHead--works js-addclassScroll">制作実績<sup>Portfolio</sup></div>
 			</div>
 
 			<div class="slider" id="js-slider">
@@ -200,17 +220,23 @@
 			</div><!-- /.slider -->
 		</section><!-- /.sec -->
 
-		<section class="sec sec--mission" id="mission">
+		<section class="sec sec--mission js-addclassScroll" id="mission">
 			<div class="sec__headWrap">
-				<h2 class="sec__head">Mission</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter">Mission</h2>
 			</div>
 			<div class="sec__body">
-				<div class="subHead subHead--contact">自分のミッション<sup>My mission</sup></div>
+				<div class="subHead subHead--contact js-addclassScroll">自分のミッション<sup>My mission</sup></div>
 				<dl class="missionTxt">
-					<dt class="missionTxt__head">本当に良いと<br>思えるものを<br>世に広げる<br>一助となりたい。<br>想像を<br>カタチにしたい。</dt>
+					<dt class="missionTxt__head">本当に良いと思えるものを世に広げる一助となりたい。<br>想像をカタチにしたい。</dt>
 					<dd class="missionTxt__body">
-						<p>自分がwebに興味を持ったのは、アパレル業界で働いている時にECサイトの運営に携わった経験からです。<br>そこのお店は実店舗も運営していましたが、ECサイトでの売上が6割以上を占めており、お客様から喜ぶ内容のメールが届いたり、メールマガジンを配信すると売上が上がったりと、「webの効果はすごい、webっておもしろい！」と実感する日々を過ごしました。また、3年ほど前には海外でこんな話がありました。<br>とあるホームレスに、困っていたところを助けられた女性が、感激し何かお礼をしたいとwebデザイナーの夫に相談し、web上でこのホームレスへの募金を呼びかけたところ、大きな反響を呼び、募金が殺到しました。<br>それを元手にホームレスは生活を立て直すことができたそうです。(<a href="http://www.cnn.co.jp/fringe/35028663.html" target="_blank">この話の詳細はこちら<i class="fa fa-external-link"></i></a>)</p>
-						<p>この話はwebがなくてはおそらく実現しなかったことでしょう。自分にとっては、ますますwebへ引き込まれるきっかけとなりました。<br>webは簡単に情報を世界に発信できますが、必ずしも誰もが扱えるものではありません。<br>幸い自分はこのwebを扱える立場にあります。<br>こういった正しいこと、本当に良い物を発信したいと考える人、また必要とする人の声を世の中に広げ、その人達の人生において少しでも役に立つことができたならば、自分も幸せを感じられるかなと思っています。<br>また、自分は妄想・想像する癖があるのでそれを少しでも多くカタチにして発信していきたいと思っています。</p>
+						<div class="missionTxt__box">
+							<p>自分がwebに興味を持ったのは、アパレル業界で働いている時にECサイトの運営に携わった経験からです。<br>そこのお店は実店舗も運営していましたが、ECサイトでの売上が6割以上を占めており、お客様から喜ぶ内容のメールが届いたり、メールマガジンを配信すると売上が上がったりと、「webの効果はすごい、webっておもしろい！」と実感する日々を過ごしました。</p>
+							<p>3年ほど前には海外でこんな話がありました。<br>とあるホームレスに、困っていたところを助けられた女性が、感激し何かお礼をしたいとwebデザイナーの夫に相談し、web上でこのホームレスへの募金を呼びかけたところ、大きな反響を呼び、募金が殺到しました。それを元手にホームレスは生活を立て直すことができたそうです。(<a href="http://www.cnn.co.jp/fringe/35028663.html" target="_blank">この話の詳細へ<i class="fa fa-external-link"></i></a>)</p>
+						</div>
+						<div class="missionTxt__box">
+							<p>この話はwebがなくてはおそらく実現しなかったことでしょう。<br>自分にとっては、ますますwebへ引き込まれるきっかけとなりました。<br>webは簡単に情報を世界に発信できますが、必ずしも誰もが扱えるものではありません。<br>幸い自分はこのwebを扱える立場にあります。<br>こういった正しいこと、本当に良い物を発信したいと考える人、また必要とする人の声を世の中に広げ、その人達の人生において少しでも役に立つことができたならば、自分も幸せを感じられるかなと思っています。</p>
+							<p>また、自分は何かと妄想や想像することが好きなのでそれを少しでもカタチにして発信していきたいと思っています。</p>
+						</div>
 					</dd>
 				</dl><!-- /.missionTxt -->
 			</div><!-- /.sec__body -->
@@ -220,7 +246,6 @@
 			<p class="copyright">© 2016 KDE.space</p>
 		</footer><!-- /.pageFooter -->
 	</div><!-- /.l-container -->
-
 
 </div><!-- /#wrapper -->
 <script src="js/vender/modernizr-custom.js"></script>

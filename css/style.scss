@@ -94,10 +94,23 @@
 	content: '　-　';
 }
 
+/* inlineList
++++++++++++++++++++++++++++++++++++++*/
+.inlineList {
+	> li {
+		display: inline-block;
+	}
+	> li:not(:last-child)::after {
+		content: ',';
+	}
+	> li:last-child::after {
+		content: '.';
+	}
+}
+
 /* textTypo jsと併用
 +++++++++++++++++++++++++++++++++++++*/
-.js-textTypo-item span {
-	outline: 1px solid #fff;
+.js-textTypo span {
 	@include animation(textTypo_white .1s linear 0s 1);
 	-webkit-animation-play-state: paused;
 	-moz-animation-play-state: paused;
@@ -106,13 +119,14 @@
 /*
 * modifer IE用にアニメーションを分ける
 */
-.mainTxt__portfolio.js-textTypo-item span {
-	-webkit-animation-name: textTypo_black;
-	-o-animation-name: textTypo_black;
-	animation-name: textTypo_black;
+.mainTxt__portfolio.js-textTypo span {
+	@include animation(textTypo_black .1s steps(1) 0s 1);
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	animation-play-state: paused;
 }
 
-.js-textTypo-item.is-start span {
+.js-textTypo.is-start span {
 	-webkit-animation-play-state: running;
 	-moz-animation-play-state: running;
 	animation-play-state: running;
@@ -197,28 +211,42 @@
 +++++++++++++++++++++++++++++++++++++*/
 .shareBtns {
 	font-size: 0;
-}
-
-.shareBtns__txt {
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 30px;
-	@include fz-rem($font-size-xsmall);
 	@include fontM;
-	letter-spacing: .1em;
 }
 
 .shareBtns__btn {
 	display: inline-block;
 	vertical-align: middle;
-	@include fz-rem(20);
+	@include fz-rem($font-size-small);
 
-	& + & {
-		margin-left: 30px;
+	&:not(:last-child) {
+		&::after {
+			content: '　/　';
+		}
 	}
-
 	a {
-		color: #fff;
+		display: inline-block;
+		position: relative;
+		padding-bottom: 5px;
+		color: #ddd;
+		letter-spacing: .1em;
+	}
+	a::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 1px;
+		border-bottom: 1px solid;
+		@include transition(.2s);
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	a:hover::after,
+	a:focus::after {
+		width: 100%;
 	}
 }
 
@@ -264,7 +292,7 @@
 		left: 0;
 		width: 0;
 		height: 2px;
-		background-color: #fed90c;
+		background-color: $color-gold;
 		@include transition(width .2s linear, height .2s linear .3s);
 	}
 	&.is-start::before {
@@ -392,21 +420,6 @@
 		}
 	}
 }
-//modifier
-//a::before {
-//	.gNav__item--about &{
-//		background-color: darken($color-blue, 25%);
-//	}
-//	.gNav__item--works &{
-//		background-color: darken($color-orange, 50%);
-//	}
-//	.gNav__item--mission &{
-//		background-color: darken($color-green, 26%);
-//	}
-//}
-
-
-
 
 .gNav__txt {
 	position: relative;
@@ -487,8 +500,7 @@
 	@include transition(.2s linear);
 
 	.gNav__item a:hover & {
-		//@include animation(arrowDown2 .5s steps(6) 0s infinite);
-		@include animation(arrowDown1 1.5s ease-out 0s infinite);
+		@include animation(arrowDown 1.2s ease-out 0s infinite);
 	}
 
 
@@ -548,7 +560,7 @@
 	content: '';
 	@include absoluteTL(0,0);
 	z-index: -1;
-	width: 0;
+	width: 0; // 非アクティブ時は非表示
 	height: 175px;
 	@include transition(.5s ease-out);
 
@@ -568,12 +580,10 @@
 	}
 
 	//modifier アクティブ時
-	.sec.is-sec-active & {
+	.sec.is-start & {
 		width: 100%;
 	}
-
 }
-
 
 .sec__head {
 	position: relative;
@@ -586,6 +596,7 @@
 	letter-spacing: -.02em;
 }
 
+// アイコン
 .sec__head::before {
 	content: '';
 	@include absoluteTBL(0,0,0);
@@ -593,8 +604,10 @@
 	height: 148px;
 	margin: auto;
 	background: url(../img/icn_a.svg) no-repeat;
+	@include opacity(0);
+	@include transition(.3s ease-out .2s);
+	@include transform(translateY(25px));
 
-	@include comment1(modifier);
 	//modifier
 	.sec--works & {
 		background-image: url(../img/icn_w.svg);
@@ -602,6 +615,12 @@
 	.sec--mission & {
 		background-image: url(../img/icn_m.svg);
 	}
+}
+
+.sec__head.is-start::before {
+	@include opacity(1);
+	@include transform(translateY(0));
+
 }
 
 /* sec__body
@@ -616,14 +635,28 @@
 +++++++++++++++++++++++++++++++++++++*/
 .subHead {
 	display: inline-block;
+	position: relative;
+	z-index: 10;
 	margin-bottom: 50px;
 	padding: .5em 80px .4em .5em;
 	font-weight: bold;
 	@include fz-rem($font-size-large);
 	letter-spacing: .05em;
-	background-color: $color-blue;
+	color: transparent;
+	@include transition(color .2s ease-out .3s);
 
-	@include comment1(modifier);
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		width: 0;
+		height: 2px;
+		background-color: $color-blue;
+		@include transition(width .2s linear 0s, height .2s linear .3s);
+	}
+
 	//modifier
 	&#{&}--works {
 		margin-bottom: 0;
@@ -643,7 +676,13 @@
 		letter-spacing: .05em;
 	}
 }
-
+.subHead.is-start {
+	color: #fff;
+}
+.subHead.is-start::before {
+	width: 100%;
+	height: 100%;
+}
 
 /* aboutMe
 +++++++++++++++++++++++++++++++++++++*/
@@ -657,12 +696,24 @@
 
 .aboutMe__desc {
 	float: left;
-	width: 300px;
+	width: 320px;
 	line-height: 2;
 	margin-bottom: 60px;
 	color: #999;
 	@include fz-rem($font-size-base);
 	text-align: justify;
+	@include opacity(0);
+	@include transform(translateY(25px));
+	@include transition(.3s linear);
+
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
+
+	> p + p {
+		margin-top: 1.2em;
+	}
 }
 
 
@@ -670,12 +721,19 @@
 +++++++++++++++++++++++++++++++++++++*/
 .profile {
 	float: left;
-	margin-right: 60px;
+	margin-right: 40px;
 	padding: 30px;
-	width: 300px;
-	//border-top: 1px solid $color-blue;
+	width: 320px;
 	color: #666;
 	background-color: rgba(#000, .4);
+	@include opacity(0);
+	@include transform(translateY(25px));
+	@include transition(.3s linear);
+
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
 }
 
 .profile__head {
@@ -707,6 +765,10 @@
 	@include fz-rem($font-size-small);
 	letter-spacing: .05em;
 	white-space: nowrap;
+
+	small {
+		@include fz-rem($font-size-xsmall);
+	}
 }
 
 .profileItem__body {
@@ -929,52 +991,56 @@
 }
 
 .missionTxt__head {
-	float: left;
+//	float: left;
 	line-height: 2;
 	margin-top: -12px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	color: #ccc;
 	font-weight: 500;
-	@include fz-rem(36);
+	@include fz-rem(30);
 	letter-spacing: .05em;
 }
 
 .missionTxt__body {
-	float: right;
+	//float: right;
 	line-height: 2;
 	color: #999;
 	@include fz-rem($font-size-base);
 	@include clearfix;
+}
 
-	> p {
-		float: left;
-		width: 260px;
-		text-align: justify;
+.missionTxt__box {
+	float: left;
+	width: 460px;
+	text-align: justify;
 
-		+ p {
-			//margin-top: 1.5em;
-			margin-left: 30px;
-		}
-		a {
-			@include linkColor($color-green);
-		}
+	& + & {
+		margin-left: 40px;
+	}
+	> p + p {
+		margin-top: 1.5em;
+	}
+	a {
+		@include linkColor($color-green);
 	}
 }
+
 
 
 /*====================================
 * pageFooter
 * ===================================*/
 .pageFooter {
+	min-width: $width-main;
 	height: 303px;
 	margin-top: -100px;
-	padding-top: 225px;
+	padding: 225px 50px 0;
 	background: #343434 url(../img/bg_footer.png) center bottom repeat-x;
 }
 
 .copyright {
-	width: $width-main;
-	margin: 0 auto;
+//	width: $width-main;
+//	margin: 0 auto;
 	color: #999;
 	@include fz-rem($font-size-xsmall);
 	@include fontM;

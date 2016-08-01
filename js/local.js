@@ -3,10 +3,18 @@ $(function () {
 
 	gNavStickey();
 
+	$('.scroll').smoothScroll({
+		positioning: -80,
+		callback: function () {
+			//全要素からフォーカスを外す
+			document.activeElement.blur();
+		}
+	});
+
 	$('body').each(function () {
-		var $target = $('.sec');
-		var showHeight = 200; // 表示される高さ
-		var CLASS_ACTIVE = 'is-sec-active';
+		var $target = $('.js-addclassScroll');
+		var showHeight = 250; // 表示される高さ
+		var CLASS_ACTIVE = 'is-start';
 
 		//$target.css({opacity: 0});
 
@@ -29,48 +37,50 @@ $(function () {
 		});
 	});
 
+	typewriter();
 
-	$('.scroll').smoothScroll({
-		positioning: -80,
-		callback: function () {
-			//全要素からフォーカスを外す
-			document.activeElement.blur();
-		}
-	});
-
-	$('.js-textTypo').each(function () {
-		var $targetParent = $(this);
-		var $targetItem = $targetParent.find('.js-textTypo-item');
-		var durationTotalTime = 0; // アニメーション終了までの各ブロック毎の合計時間用
-		var durationTotalTimeAry = [0]; // 上記を配列に格納用
-
-		$targetItem.each(function (e) {
-			var $this = $(this);
-			var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
-			var htm = '';
-			var durationTime = 0; // 最後の文字のアニメーション開始までの時間を取得用
-			for (var i = 0; i < ary.length; i++) {
-				htm += '<span style="animation-delay:' + (i*60 + 500) + 'ms;">' + ary[i] + '</span>';
-				durationTime = i*60 + 500;
-			}
-			// アニメーション終了時間を加算し
-			// 配列に格納
-			durationTotalTime += durationTime;
-			durationTotalTimeAry.push(durationTotalTime);
-			// html書き換え
-			$this.html(htm);
-
-			$(window).on('load', function () {
-				// アニメーションが完了したら次のブロックのアニメーションを開始する
-				setTimeout(function () {
-					$this.addClass('is-start');
-				}, durationTotalTimeAry[e]);
-			});
-		});
-	});
+	setClassTimer()
 });
 
 
+function setClassTimer() {
+	$('.js-textTypoMulti').each(function () {
+		var $item = $(this).find('.js-textTypo');
+		var totalTextLength = 0;
+		var CLASS_ACTIVE = 'is-start';
+
+		$item.each(function (i) {
+			var $this = $(this);
+			totalTextLength += $(this).text().length; // 合計の文字数を加算
+			var time = totalTextLength * 60;
+			// 最初だけ待ち時間なし
+			if (i === 0) {time = 0;}
+			setTimeout(function () {
+				$this.addClass(CLASS_ACTIVE);
+			}, time);
+		});
+	});
+}
+
+function typewriter() {
+	var $target = $('.js-typeWriter');
+	$target.each(function () {
+		var $this = $(this);
+		var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
+		var htm = '';
+		var aryLength = ary.length;
+		var durationTime = parseInt(aryLength * 60 + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
+		for (var i = 0; i < aryLength; i++) {
+			htm += '<span style="animation-delay:' + (i*60 + 500) + 'ms;">' + ary[i] + '</span>';
+		}
+		// html書き換え
+		$this.html(htm).addClass('js-textTypo');
+	});
+}
+
+/**
+* スムーススクロール
+*/
 $.fn.smoothScroll = function (options) {
 	var hrefData = '',
 		targetPos = 0,

@@ -33,20 +33,74 @@
 	}
 }
 
+/*@include keyframes(textTypo_white) {
+	0% {
+		@include opacity(0);
+	}
+	10% {
+		@include opacity(1);
+		color:transparent;
+		background-color: #fff;
+	}
+	50% {
+		outline: 1px solid #fff;
+		background-color: transparent;
+	}
+	100% {
+		background-color: transparent;
+		color:#fff
+	}
+}*/
 @include keyframes(textTypo_white) {
 	0% {
 		@include opacity(0);
-		outline: 1px solid #fff;
+		background-color: #fff;
 	}
-//	50% {
-//		outline: 1px solid #fff;
-//	}
+	50% {
+		@include opacity(1);
+		background-color: #fff;
+	}
 	100% {
 		@include opacity(1);
-		outline: 1px solid transparent;
+		background-color: transparent;
+		color: #fff;
+	}
+}
+/*@include keyframes(textTypo_black) {
+	0% {
+		@include opacity(0);
+	}
+	10% {
+		@include opacity(1);
+		color:transparent;
+		background-color: #000;
+	}
+	50% {
+		outline: 1px solid #000;
+		background-color: transparent;
+	}
+	100% {
+		background-color: transparent;
+		color:#000
+	}
+}*/
+@include keyframes(textTypo_black) {
+	0% {
+		@include opacity(0);
+		background-color: #000;
+	}
+	50% {
+		@include opacity(1);
+		background-color: #000;
+	}
+	100% {
+		@include opacity(1);
+		background-color: transparent;
+		color: #000;
 	}
 }
 //IE用にアニメーションを分ける
+/*
 @include keyframes(textTypo_black) {
 	0% {
 		@include opacity(0);
@@ -60,31 +114,9 @@
 		outline: 1px solid transparent;
 	}
 }
+*/
 
 @include keyframes(arrowDown) {
-	0% {
-		@include opacity(1);
-		@include transform(translateY(0));
-	}
-	20% {
-		@include opacity(0);
-		@include transform(translateY(40%));
-	}
-//	51% {
-//		@include opacity(0);
-//		@include transform(translateY(-20%));
-//	}
-	21% {
-		@include opacity(0);
-		@include transform(translateY(-10%));
-	}
-	40% {
-		@include opacity(1);
-		@include transform(translateY(0));
-	}
-}
-
-@include keyframes(arrowDown1) {
 	0% {
 		@include opacity(1);
 		@include transform(translateY(0));
@@ -93,41 +125,8 @@
 		@include opacity(0);
 		@include transform(translateY(40%));
 	}
-	90% {
-		@include opacity(0);
-		@include transform(translateY(0%));
-	}
-	100% {
-		@include opacity(1);
-		@include transform(translateY(0));
-	}
-}
-
-@include keyframes(arrowDown2) {
-	0% {
-		@include opacity(1);
-		@include transform(translateY(0));
-	}
-/*
-	20% {
-		@include opacity(.8);
-		@include transform(translateY(5%));
-	}
-	40% {
-		@include opacity(.6);
-		@include transform(translateY(10%));
-	}
-	60% {
-		@include opacity(.4);
-		@include transform(translateY(15%));
-	}
-	80% {
-		@include opacity(.2);
-		@include transform(translateY(20%));
-	}
-*/
 	100% {
 		@include opacity(0);
-		@include transform(translateY(25%));
+		@include transform(translateY(0));
 	}
 }
