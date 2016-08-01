@@ -66,24 +66,7 @@
 		color: #fff;
 	}
 }
-/*@include keyframes(textTypo_black) {
-	0% {
-		@include opacity(0);
-	}
-	10% {
-		@include opacity(1);
-		color:transparent;
-		background-color: #000;
-	}
-	50% {
-		outline: 1px solid #000;
-		background-color: transparent;
-	}
-	100% {
-		background-color: transparent;
-		color:#000
-	}
-}*/
+
 @include keyframes(textTypo_black) {
 	0% {
 		@include opacity(0);
@@ -128,5 +111,35 @@
 	100% {
 		@include opacity(0);
 		@include transform(translateY(0));
+	}
+}
+
+@include keyframes(arrowRight) {
+	0% {
+		@include opacity(1);
+		@include transform(translateY(0) rotate(-90deg));
+	}
+	50% {
+		@include opacity(0);
+		@include transform(translateX(40%) rotate(-90deg));
+	}
+	100% {
+		@include opacity(0);
+		@include transform(translateY(0) rotate(-90deg));
+	}
+}
+
+@include keyframes(arrowLeft) {
+	0% {
+		@include opacity(1);
+		@include transform(translateY(0) rotate(90deg));
+	}
+	50% {
+		@include opacity(0);
+		@include transform(translateX(-40%) rotate(90deg));
+	}
+	100% {
+		@include opacity(0);
+		@include transform(translateY(0) rotate(90deg));
 	}
 }

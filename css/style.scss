@@ -165,6 +165,7 @@
 	left: 0;
 	min-width: $width-main;
 	width: 100%;
+	min-height: 750px;
 	height: 100%;
 }
 
@@ -191,19 +192,19 @@
 	@include animation(moveNoise .2s steps(6, start) infinite);
 }
 
-/* pageHeader
+/* header
 +++++++++++++++++++++++++++++++++++++*/
-.pageHeader {
+.header {
 	margin-bottom: 75px;
 	padding: 40px 50px 0;
 	@include clearfix;
 }
 
-.pageHeader__logo {
+.header__logo {
 	float: left;
 }
 
-.pageHeader__sns {
+.header__sns {
 	float: right;
 }
 
@@ -216,8 +217,9 @@
 
 .shareBtns__btn {
 	display: inline-block;
+	text-align: right;
 	vertical-align: middle;
-	@include fz-rem($font-size-small);
+	@include fz-rem($font-size-xsmall);
 
 	&:not(:last-child) {
 		&::after {
@@ -244,8 +246,7 @@
 	a:hover {
 		text-decoration: none;
 	}
-	a:hover::after,
-	a:focus::after {
+	a:hover::after {
 		width: 100%;
 	}
 }
@@ -260,7 +261,7 @@
 }
 
 .mainTxt__small {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	padding-left: percentage(190px/1920px);
 	@include fz-rem(30);
 }
@@ -329,11 +330,14 @@
 	@include linkColor(#000);
 	text-align: center;
 	background-color: #ccc;
-	@include transition(.1s linear .2s);
+	@include transition(.2s ease-out);
+
+	&:hover {
+		background-color: #dfdfdf;
+	}
 
 	// module
 	.is-fixed & {
-		//position: static;
 		height: 30px;
 		top: 0;
 	}
@@ -399,25 +403,12 @@
 .gNav__item a {
 	display: block;
 	position: relative;
+	@include transition(background-color .1s);
 
-	&::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 0;
-		@include transition(.3s);
-		background-color: #0e0e0e;
-	}
 	&:hover,
 	&:focus {
 		text-decoration: none;
-
-		&::before {
-			width: 100%;
-			height: 100%;
-		}
+		background-color: #0e0e0e;
 	}
 }
 
@@ -426,9 +417,9 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	line-height: 106px;
-	padding-left: 128px;
-	@include transition(.2s linear);
+	line-height: 90px;
+	padding-left: 105px;
+	@include transition(.2s ease-out);
 
 	// mediaQuery
 	@include mq-custom-max(1300px) {
@@ -441,8 +432,8 @@
 
 	// modifier
 	.is-fixed & {
-		line-height: 80px;
-		padding-left: 80px;
+		line-height: 60px;
+		padding-left: 70px;
 	}
 }
 
@@ -451,12 +442,12 @@
 */
 .gNav__txt::before {
 	content: '';
-	@include absoluteTBL(0,0,50px);
-	width: 60px;
-	height: 60px;
+	@include absoluteTBL(0,0,40px);
+	width: 50px;
+	height: 50px;
 	margin: auto;
 	background: url(../img/icn_a.svg) no-repeat;
-	@include transition(.2s linear);
+	@include transition(.2s ease-out);
 
 	// mediaQuery
 	@include mq-custom-max(1300px) {
@@ -481,8 +472,8 @@
 	}
 	// modifier
 	.is-fixed & {
-		width: 50px;
-		height: 50px;
+		width: 35px;
+		height: 35px;
 		left: 20px;
 	}
 }
@@ -497,12 +488,11 @@
 	height: 43px;
 	margin: auto;
 	background: url(../img/arrow_b.svg) no-repeat;
-	@include transition(.2s linear);
+	@include transition(.2s ease-out);
 
 	.gNav__item a:hover & {
-		@include animation(arrowDown 1.2s ease-out 0s infinite);
+		@include animation(arrowDown 1.2s ease 0s infinite);
 	}
-
 
 	// mediaQuery
 	@include mq-custom-max(1300px) {
@@ -620,7 +610,6 @@
 .sec__head.is-start::before {
 	@include opacity(1);
 	@include transform(translateY(0));
-
 }
 
 /* sec__body
@@ -643,27 +632,10 @@
 	@include fz-rem($font-size-large);
 	letter-spacing: .05em;
 	color: transparent;
-	@include transition(color .2s ease-out .3s);
+	@include transition(color .3s ease-out .3s);
 
-	&::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-		width: 0;
-		height: 2px;
-		background-color: $color-blue;
-		@include transition(width .2s linear 0s, height .2s linear .3s);
-	}
-
-	//modifier
 	&#{&}--works {
 		margin-bottom: 0;
-		background-color: $color-orange;
-	}
-	&#{&}--contact {
-		background-color: $color-green;
 	}
 
 	sup {
@@ -676,6 +648,30 @@
 		letter-spacing: .05em;
 	}
 }
+
+.subHead::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 0;
+	height: 2px;
+	background-color: $color-blue;
+	@include transition(width .3s ease 0s, height .3s ease .3s);
+}
+// modifier
+.subHead.subHead--about::before {
+	background-color: $color-blue;
+}
+.subHead.subHead--works::before {
+	background-color: $color-orange;
+}
+.subHead.subHead--contact::before {
+	background-color: $color-green;
+}
+
+// js時
 .subHead.is-start {
 	color: #fff;
 }
@@ -703,8 +699,8 @@
 	@include fz-rem($font-size-base);
 	text-align: justify;
 	@include opacity(0);
-	@include transform(translateY(25px));
-	@include transition(.3s linear);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
 
 	&.is-start {
 		@include opacity(1);
@@ -727,8 +723,8 @@
 	color: #666;
 	background-color: rgba(#000, .4);
 	@include opacity(0);
-	@include transform(translateY(25px));
-	@include transition(.3s linear);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
 
 	&.is-start {
 		@include opacity(1);
@@ -827,7 +823,7 @@
 .case__txt {
 	@include opacity(0);
 	@include transform(translateY(-10%));
-	@include transition(.3s .3s ease-out);
+	@include transition(.3s ease-out .3s);
 	@include clearfix;
 
 	.is-active & {
@@ -879,6 +875,14 @@
 	height: 655px;
 	padding-top: 50px;
 	overflow: hidden;
+	@include opacity(0);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
+
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
 }
 
 .slider__listWrap {
@@ -949,6 +953,14 @@
 	@include transform(rotate(-90deg));
 }
 
+.slider__arrowItem.slider__arrowItem--prev > a:hover img {
+	@include animation(arrowLeft 1.2s ease 0s infinite);
+}
+.slider__arrowItem.slider__arrowItem--next > a:hover img {
+	@include animation(arrowRight 1.2s ease 0s infinite);
+}
+
+
 
 /*
 * インジケーター
@@ -991,7 +1003,6 @@
 }
 
 .missionTxt__head {
-//	float: left;
 	line-height: 2;
 	margin-top: -12px;
 	margin-bottom: 20px;
@@ -999,14 +1010,29 @@
 	font-weight: 500;
 	@include fz-rem(30);
 	letter-spacing: .05em;
+	@include opacity(0);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
+
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
 }
 
 .missionTxt__body {
-	//float: right;
 	line-height: 2;
 	color: #999;
 	@include fz-rem($font-size-base);
 	@include clearfix;
+	@include opacity(0);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
+
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
 }
 
 .missionTxt__box {
@@ -1028,23 +1054,26 @@
 
 
 /*====================================
-* pageFooter
+* footer
 * ===================================*/
-.pageFooter {
+.footer {
 	min-width: $width-main;
 	height: 303px;
 	margin-top: -100px;
 	padding: 225px 50px 0;
-	background: #343434 url(../img/bg_footer.png) center bottom repeat-x;
-}
-
-.copyright {
-//	width: $width-main;
-//	margin: 0 auto;
 	color: #999;
 	@include fz-rem($font-size-xsmall);
 	@include fontM;
-	text-align: right;
 	letter-spacing: .05em;
+	background: #343434 url(../img/bg_footer.png) center bottom repeat-x;
+	@include clearfix;
+}
+
+.footer__version {
+	float: left;
+}
+
+.footer__copyright {
+	float: right;
 }
 

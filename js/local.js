@@ -13,7 +13,7 @@ $(function () {
 
 	$('body').each(function () {
 		var $target = $('.js-addclassScroll');
-		var showHeight = 250; // 表示される高さ
+		var SHOW_HEIGHT = 150; // 表示される高さ
 		var CLASS_ACTIVE = 'is-start';
 
 		//$target.css({opacity: 0});
@@ -26,7 +26,7 @@ $(function () {
 			$target.each(function () {
 				var $thisArea = $(this);
 				var areaOffsetTop = $thisArea.offset().top;
-				if (scrollTop > (areaOffsetTop + showHeight) - windowHeight) {
+				if (scrollTop > (areaOffsetTop + SHOW_HEIGHT) - windowHeight) {
 					//$thisArea.stop().animate({opacity: 1}, 500);
 					$thisArea.addClass(CLASS_ACTIVE);
 				} else {
@@ -51,8 +51,9 @@ function setClassTimer() {
 
 		$item.each(function (i) {
 			var $this = $(this);
+			var duration = $(this).data('duration');
 			totalTextLength += $(this).text().length; // 合計の文字数を加算
-			var time = totalTextLength * 60;
+			var time = totalTextLength * duration;
 			// 最初だけ待ち時間なし
 			if (i === 0) {time = 0;}
 			setTimeout(function () {
@@ -69,9 +70,10 @@ function typewriter() {
 		var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
 		var htm = '';
 		var aryLength = ary.length;
-		var durationTime = parseInt(aryLength * 60 + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
+		var duration = $(this).data('duration');
+		var durationTime = parseInt(aryLength * duration + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
 		for (var i = 0; i < aryLength; i++) {
-			htm += '<span style="animation-delay:' + (i*60 + 500) + 'ms;">' + ary[i] + '</span>';
+			htm += '<span style="animation-delay:' + (i * duration + 500) + 'ms;">' + ary[i] + '</span>';
 		}
 		// html書き換え
 		$this.html(htm).addClass('js-textTypo');
@@ -282,19 +284,26 @@ function gNavStickey() {
 	$('#js-gNav').each(function () {
 		var $window = $(window);
 		var $gNav = $(this);
-		var gNavOffsetTop = $gNav.offset().top; // gNavのデフォルトの位置
+		var gNavHeight = $gNav.innerHeight(); // gNavの高さ
+		var fixPos = $window.height() - gNavHeight; // stickeyになる位置
 		var CLASS_FIX = 'is-fixed';
-		var flag = true;
+		var is_flag = true;
 
-		$window.on('scroll', function () {
-			// スクロール量がgNavのデフォルトの位置より大きくなったら
-			if ($window.scrollTop() >= gNavOffsetTop && flag === true) {
-				$gNav.addClass(CLASS_FIX);
-				flag = false;
-			} else if ($window.scrollTop() < gNavOffsetTop && flag === false) {
-				$gNav.removeClass(CLASS_FIX);
-				flag = true;
-			}
-		}).trigger('scroll'); // スクロールイベントを発生させる
+		$window
+			.on('scroll', function () {
+				// スクロール量がgNavのデフォルトの位置より大きくなったら
+				if ($window.scrollTop() >= fixPos && is_flag === true) {
+					$gNav.addClass(CLASS_FIX);
+					is_flag = false;
+				} else if ($window.scrollTop() < fixPos && is_flag === false) {
+					$gNav.removeClass(CLASS_FIX);
+					is_flag = true;
+				}
+			})
+			// リサイズが発生したらstickyになる位置を再取得
+			.on('resize', function () {
+				fixPos = $window.height() - gNavHeight;
+			})
+			.trigger('scroll');
 	});
 }
