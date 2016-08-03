@@ -16,8 +16,6 @@ $(function () {
 		var SHOW_HEIGHT = 150; // 表示される高さ
 		var CLASS_ACTIVE = 'is-start';
 
-		//$target.css({opacity: 0});
-
 		$(window).on('load scroll resize', function () {
 			var $window = $(this);
 			var scrollTop = $window.scrollTop();
@@ -29,10 +27,11 @@ $(function () {
 				if (scrollTop > (areaOffsetTop + SHOW_HEIGHT) - windowHeight) {
 					//$thisArea.stop().animate({opacity: 1}, 500);
 					$thisArea.addClass(CLASS_ACTIVE);
-				} else {
-					//$thisArea.stop().animate({opacity: 0}, 500);
-					$thisArea.removeClass(CLASS_ACTIVE);
 				}
+//				else {
+//					//$thisArea.stop().animate({opacity: 0}, 500);
+//					$thisArea.removeClass(CLASS_ACTIVE);
+//				}
 			});
 		});
 	});

@@ -15,10 +15,10 @@
 		<header class="header">
 			<h1 class="header__logo"><img src="img/logo_kde.svg" width="135" height="90" alt="KDE - Kobayashi Design Engineering"></h1>
 			<ul class="header__sns shareBtns">
-				<li class="shareBtns__btn"><a href="https://twitter.com/KDE_SPACE" target="_blank">twitter</a></li>
-				<li class="shareBtns__btn"><a href="https://www.facebook.com/kde.space" target="_blank">facebook</a></li>
-				<li class="shareBtns__btn"><a href="https://www.instagram.com/kde.space/" target="_blank">instagram</a></li>
-				<li class="shareBtns__btn"><a href="https://jp.pinterest.com/KDE_SPACE/" target="_blank">pintarest</a></li>
+				<li class="shareBtns__btn"><a href="https://twitter.com/KDE_SPACE" target="_blank" class="hoverLineAnchor">twitter</a></li>
+				<li class="shareBtns__btn"><a href="https://www.facebook.com/kde.space" target="_blank" class="hoverLineAnchor">facebook</a></li>
+				<li class="shareBtns__btn"><a href="https://www.instagram.com/kde.space/" target="_blank" class="hoverLineAnchor">instagram</a></li>
+				<li class="shareBtns__btn"><a href="https://jp.pinterest.com/KDE_SPACE/" target="_blank" class="hoverLineAnchor">pintarest</a></li>
 			</ul>
 		</header><!-- /.header -->
 
@@ -56,7 +56,7 @@
 
 		<section class="sec sec--about js-addclassScroll" id="about">
 			<div class="sec__headWrap">
-				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="200">About</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="150">About</h2>
 			</div>
 			<div class="sec__body">
 				<section class="aboutMe">
@@ -78,7 +78,7 @@
 								</dl>
 								<dl class="profileItem profileItem--contact">
 									<dt class="profileItem__head">contact</dt>
-									<dd class="profileItem__body"><a href="mailto:info@kde.space">info@kde.space</a></dd>
+									<dd class="profileItem__body"><a href="mailto:info@kde.space" class="hoverLineAnchor">info@kde.space</a></dd>
 								</dl>
 								<dl class="profileItem">
 									<dt class="profileItem__head">Favorite</dt>
@@ -115,7 +115,7 @@
 							<p>退職後、基金訓練でWeb制作の基本を学び、2012年からWebデザイナーとして都内Web制作会社に勤務。</p>
 							<p>バナー、ランディングページ、コーポレートサイト、iOS/Andoroidアプリのデザイン、Flashオーサリング(アニメーション)等を経験し、2015年からエンジニアに転向し現在は主にフロントエンドの実装を担当。</p>
 							<p>デザインも好きだが、コードを書いている方が夢中になれるから極力エンジニア寄りの仕事をしていたい。</p>
-							<p>「webは世界を変えられる」<br>そんな初心を忘れず、webの力で人の役に立ちたいと思っている。</p>
+							<p>「Webは世界を変えられる」<br>そんな初心を忘れず、Webの力で人の役に立ちたいと思っている。</p>
 						</div>
 					</div><!-- /.aboutMe__inner -->
 				</section><!-- /.aboutMe -->
@@ -124,7 +124,7 @@
 
 		<section class="sec sec--works js-addclassScroll" id="works">
 			<div class="sec__headWrap">
-				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="200">Works</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="150">Works</h2>
 			</div>
 			<div class="sec__body">
 				<div class="subHead subHead--works js-addclassScroll">制作実績<sup>Portfolio</sup></div>
@@ -135,14 +135,48 @@
 					<ul class="slider__list">
 						<li class="slider__item">
 							<div class="case">
-								<figure class="case__pic"><a href="http://cafe-en.info/" target="_blank" class="case__picAnchor"><img src="img/pic_capture_cafeen.jpg" alt="SOBA×CAFE ENのサイトキャプチャー画像です" width="800" height="450"></a></figure>
+								<figure class="case__pic">
+									<a href="http://suai.tokyo/" target="_blank" class="case__picAnchor">
+										<img src="img/pic_capture_suai.jpg" alt="加圧パーソナルトレーニングサロン SuAiのサイトキャプチャー画像です" width="800" height="450">
+										<span class="case__picDetail">Look</span>
+									</a></figure>
+								<div class="case__txt">
+									<div class="case__caption">
+										<h3 class="case__head">加圧パーソナルトレーニングサロン SuAi （スアイ）</h3>
+										<a href="http://cafe-en.info/" class="case__link hoverLineAnchor" target="_blank" >http://suai.tokyo/<i class="fa fa-external-link"></i></a>
+									</div>
+									<div class="case__detail">
+										<p class="case__desc">東京都調布市にある、友人の加圧トレーニングサロンの既存Webサイトをフルリニューアルしました。WordPressの一部改修、スマホに最適化させるためレスポンシブデザインにしました。</p>
+										<div class="tableList tableList--case">
+											<dl class="tableList__item">
+												<dt class="tableList__head">launch</dt>
+												<dd class="tableList__txt">2016.06</dd>
+											</dl>
+											<dl class="tableList__item">
+												<dt class="tableList__head tableList__head--area">担当領域</dt>
+												<dd class="tableList__txt">Direction, Design, Coding</dd>
+											</dl>
+										</div><!-- /.caseCredit -->
+									</div><!-- /.case__detail -->
+								</div><!-- /.case__txt -->
+							</div><!-- /.case -->
+						</li><!-- /.slider__item -->
+
+						<li class="slider__item">
+							<div class="case">
+								<figure class="case__pic">
+									<a href="http://cafe-en.info/" target="_blank" class="case__picAnchor">
+										<img src="img/pic_capture_cafeen.jpg" alt="SOBA×CAFE ENのサイトキャプチャー画像です" width="800" height="450">
+										<span class="case__picDetail">Look</span>
+									</a>
+								</figure>
 								<div class="case__txt">
 									<div class="case__caption">
 										<h3 class="case__head">SOBA×CAFE EN 長野市篠ノ井</h3>
-										<a href="http://cafe-en.info/" class="case__link" target="_blank" >http://cafe-en.info/<i class="fa fa-external-link"></i></a>
+										<a href="http://cafe-en.info/" class="case__link hoverLineAnchor" target="_blank" >http://cafe-en.info/<i class="fa fa-external-link"></i></a>
 									</div>
 									<div class="case__detail">
-										<p class="case__desc">高校時代の友人が、地元の長野県でオープンした蕎麦屋×カフェの店舗サイトを制作しました。個人で初めてのレスポンシブデザインです。</p>
+										<p class="case__desc">高校時代の友人が、地元の長野県でオープンした蕎麦屋×カフェのWebサイトを制作しました。個人で初めてのレスポンシブデザインです。</p>
 										<div class="tableList tableList--case">
 											<dl class="tableList__item">
 												<dt class="tableList__head">launch</dt>
@@ -160,47 +194,26 @@
 
 						<li class="slider__item">
 							<div class="case">
-								<figure class="case__pic"><a href="http://cafe-en.info/" target="_blank" class="case__picAnchor"><img src="img/pic_capture_cafeen.jpg" alt="SOBA×CAFE ENのサイトキャプチャー画像です" width="800" height="450"></a></figure>
+								<figure class="case__pic">
+									<div class="case__picAnchor">
+										<img src="img/pic_capture_gobigblue12.jpg" alt="GO BIG BLUEのサイトキャプチャー画像です" width="800" height="450">
+										<span class="case__picDetail">Sorry, this site was closed.</span>
+									</div>
+								</figure>
 								<div class="case__txt">
 									<div class="case__caption">
-										<h3 class="case__head">スライド22222</h3>
-										<a href="http://cafe-en.info/" class="case__link" target="_blank" >http://cafe-en.info/<i class="fa fa-external-link"></i></a>
+										<h3 class="case__head">GO BIG BLUE 12</h3>
 									</div>
 									<div class="case__detail">
-										<p class="case__desc">高校時代の友人が、地元の長野県でオープンした蕎麦屋×カフェの店舗サイトを制作しました。個人で初めてのレスポンシブデザインです。</p>
+										<p class="case__desc">Webデザイナーを目指し基金訓練で作成した自身初のWebサイトです。NFLのNew York Giantsのファンだったのでその情報サイトを作成しました。<br>※現在はクローズしています。</p>
 										<div class="tableList tableList--case">
 											<dl class="tableList__item">
 												<dt class="tableList__head">launch</dt>
-												<dd class="tableList__txt">2015.04</dd>
+												<dd class="tableList__txt">2012.02</dd>
 											</dl>
 											<dl class="tableList__item">
 												<dt class="tableList__head tableList__head--area">担当領域</dt>
-												<dd class="tableList__txt">Planning, Direction, Design, Coding</dd>
-											</dl>
-										</div><!-- /.caseCredit -->
-									</div><!-- /.case__detail -->
-								</div><!-- /.case__txt -->
-							</div><!-- /.case -->
-						</li><!-- /.slider__item -->
-
-						<li class="slider__item">
-							<div class="case">
-								<figure class="case__pic"><a href="http://cafe-en.info/" target="_blank" class="case__picAnchor"><img src="img/pic_capture_cafeen.jpg" alt="SOBA×CAFE ENのサイトキャプチャー画像です" width="800" height="450"></a></figure>
-								<div class="case__txt">
-									<div class="case__caption">
-										<h3 class="case__head">スライド33333</h3>
-										<a href="http://cafe-en.info/" class="case__link" target="_blank" >http://cafe-en.info/<i class="fa fa-external-link"></i></a>
-									</div>
-									<div class="case__detail">
-										<p class="case__desc">高校時代の友人が、地元の長野県でオープンした蕎麦屋×カフェの店舗サイトを制作しました。個人で初めてのレスポンシブデザインです。</p>
-										<div class="tableList tableList--case">
-											<dl class="tableList__item">
-												<dt class="tableList__head">launch</dt>
-												<dd class="tableList__txt">2015.04</dd>
-											</dl>
-											<dl class="tableList__item">
-												<dt class="tableList__head tableList__head--area">担当領域</dt>
-												<dd class="tableList__txt">Planning, Direction, Design, Coding</dd>
+												<dd class="tableList__txt">Planning, Design, Coding</dd>
 											</dl>
 										</div><!-- /.caseCredit -->
 									</div><!-- /.case__detail -->
@@ -222,7 +235,7 @@
 
 		<section class="sec sec--mission js-addclassScroll" id="mission">
 			<div class="sec__headWrap">
-				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="200">Mission</h2>
+				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="150">Mission</h2>
 			</div>
 			<div class="sec__body">
 				<div class="subHead subHead--contact js-addclassScroll">自分のミッション<sup>My mission</sup></div>
@@ -230,11 +243,11 @@
 					<dt class="missionTxt__head js-addclassScroll">本当に良いと思えるものを世に広げる一助となりたい。<br>想像をカタチにしたい。</dt>
 					<dd class="missionTxt__body js-addclassScroll">
 						<div class="missionTxt__box">
-							<p>自分がwebに興味を持ったのは、アパレル業界で働いている時にECサイトの運営に携わった経験からです。<br>そこのお店は実店舗も運営していましたが、ECサイトでの売上が6割以上を占めており、お客様から喜ぶ内容のメールが届いたり、メールマガジンを配信すると売上が上がったりと、「webの効果はすごい、webっておもしろい！」と実感する日々を過ごしました。</p>
-							<p>3年ほど前には海外でこんな話がありました。<br>とあるホームレスに、困っていたところを助けられた女性が、感激し何かお礼をしたいとwebデザイナーの夫に相談し、web上でこのホームレスへの募金を呼びかけたところ、大きな反響を呼び、募金が殺到しました。それを元手にホームレスは生活を立て直すことができたそうです。(<a href="http://www.cnn.co.jp/fringe/35028663.html" target="_blank">この話の詳細へ<i class="fa fa-external-link"></i></a>)</p>
+							<p>自分がWebに興味を持ったのは、アパレル業界で働いている時にECサイトの運営に携わった経験からです。<br>そこのお店は実店舗も運営していましたが、ECサイトでの売上が6割以上を占めており、お客様から喜ぶ内容のメールが届いたり、メールマガジンを配信すると売上が上がったりと、「Webの効果はすごい、Webっておもしろい！」と実感する日々を過ごしました。</p>
+							<p>3年ほど前には海外でこんな話がありました。<br>とあるホームレスに、困っていたところを助けられた女性が、感激し何かお礼をしたいとWebデザイナーの夫に相談し、Web上でこのホームレスへの募金を呼びかけたところ、大きな反響を呼び、募金が殺到しました。それを元手にホームレスは生活を立て直すことができたそうです。(<a href="http://www.cnn.co.jp/fringe/35028663.html" target="_blank" class="hoverLineAnchor hoverLineAnchor--bottom0">この話の詳細へ<i class="fa fa-external-link"></i></a>)</p>
 						</div>
 						<div class="missionTxt__box">
-							<p>この話はwebがなくてはおそらく実現しなかったことでしょう。<br>自分にとっては、ますますwebへ引き込まれるきっかけとなりました。<br>webは簡単に情報を世界に発信できますが、必ずしも誰もが扱えるものではありません。<br>幸い自分はこのwebを扱える立場にあります。<br>こういった正しいこと、本当に良い物を発信したいと考える人、また必要とする人の声を世の中に広げ、その人達の人生において少しでも役に立つことができたならば、自分も幸せを感じられるかなと思っています。</p>
+							<p>この話はWebがなくてはおそらく実現しなかったことでしょう。<br>自分にとっては、ますますWebへ引き込まれるきっかけとなりました。<br>Webは簡単に情報を世界に発信できますが、必ずしも誰もが扱えるものではありません。<br>幸い自分はこのWebを扱える立場にあります。<br>こういった正しいこと、本当に良い物を発信したいと考える人、また必要とする人の声を世の中に広げ、その人達の人生において少しでも役に立つことができたならば、自分も幸せを感じられるかなと思っています。</p>
 							<p>また、自分は何かと妄想や想像することが好きなのでそれを少しでもカタチにして発信していきたいと思っています。</p>
 						</div>
 					</dd>
