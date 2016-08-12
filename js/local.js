@@ -1,4 +1,10 @@
 $(function () {
+	splash();
+
+	addClassScroll();
+
+	typewriter();
+
 	slider();
 
 	gNavStickey();
@@ -10,7 +16,67 @@ $(function () {
 			document.activeElement.blur();
 		}
 	});
+});
 
+
+/**
+* スプラッシュ画面
+*/
+function splash() {
+		$('#js-splash').each(function () {
+		var $window = $(window);
+		var windowHeight = $window.height();
+		var windowWidth = $window.width();
+		var $container = $(this);
+		var $logo = $container.find('.splash__txt');
+		var $cover1 = $container.find('#js-spash__cover1');
+		var $cover2 = $container.find('#js-spash__cover2');
+		var DURATION = 600;
+		var CLASS_START = 'is-start';
+
+		// ロゴを中央に配置
+		$logo.css({
+			top: windowHeight / 2,
+			left: windowWidth / 2
+		});
+
+		$cover1.delay(500).velocity({
+			width: '100%'
+		}, {
+			duration: DURATION,
+			easing: [.96,0,.19,.97],
+			complete: function () { // コールバック
+				$cover2.velocity({
+					width: '100%'
+				}, {
+					duration: DURATION,
+					easing: [.96,0,.19,.97],
+					complete: function () { // コールバック
+						$('body').addClass(CLASS_START);
+						$window.scrollTop(0);
+						$container.delay(800).velocity({
+							opacity: 0
+						}, (DURATION * .5), function() { // コールバック
+							$(this).hide();
+							$('.header').addClass(CLASS_START);
+							setTimeout(function () {
+								$('.mainTxt').addClass(CLASS_START);
+								// タイプライターをタイマー実行
+								setClassTimer();
+							}, 500);
+						});
+					}
+				});
+			}
+		});
+	});
+}
+
+
+/**
+* スクロール後、特定の高さになったらクラス追加
+*/
+function addClassScroll() {
 	$('body').each(function () {
 		var $target = $('.js-addclassScroll');
 		var SHOW_HEIGHT = 150; // 表示される高さ
@@ -25,23 +91,38 @@ $(function () {
 				var $thisArea = $(this);
 				var areaOffsetTop = $thisArea.offset().top;
 				if (scrollTop > (areaOffsetTop + SHOW_HEIGHT) - windowHeight) {
-					//$thisArea.stop().animate({opacity: 1}, 500);
 					$thisArea.addClass(CLASS_ACTIVE);
 				}
-//				else {
-//					//$thisArea.stop().animate({opacity: 0}, 500);
-//					$thisArea.removeClass(CLASS_ACTIVE);
-//				}
 			});
 		});
 	});
-
-	typewriter();
-
-	setClassTimer()
-});
+}
 
 
+/**
+* タイプライター風アニメーション
+*/
+function typewriter() {
+	var $target = $('.js-typeWriter');
+	$target.each(function () {
+		var $this = $(this);
+		var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
+		var htm = '';
+		var aryLength = ary.length;
+		var duration = $(this).data('duration');
+		var durationTime = parseInt(aryLength * duration + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
+		for (var i = 0; i < aryLength; i++) {
+			htm += '<span style="animation-delay:' + (i * duration + 500) + 'ms;">' + ary[i] + '</span>';
+		}
+		// html書き換え
+		$this.html(htm).addClass('js-textTypo');
+	});
+}
+
+
+/**
+* MV用にアニメーション時間をずらす
+*/
 function setClassTimer() {
 	$('.js-textTypoMulti').each(function () {
 		var $item = $(this).find('.js-textTypo');
@@ -61,55 +142,6 @@ function setClassTimer() {
 		});
 	});
 }
-
-function typewriter() {
-	var $target = $('.js-typeWriter');
-	$target.each(function () {
-		var $this = $(this);
-		var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
-		var htm = '';
-		var aryLength = ary.length;
-		var duration = $(this).data('duration');
-		var durationTime = parseInt(aryLength * duration + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
-		for (var i = 0; i < aryLength; i++) {
-			htm += '<span style="animation-delay:' + (i * duration + 500) + 'ms;">' + ary[i] + '</span>';
-		}
-		// html書き換え
-		$this.html(htm).addClass('js-textTypo');
-	});
-}
-
-/**
-* スムーススクロール
-*/
-$.fn.smoothScroll = function (options) {
-	var hrefData = '',
-		targetPos = 0,
-		targetObj = '';
-
-	var defaults = {
-		easing : 'swing',
-		duration : 400,
-		positioning : 0,
-		callback : function () {}
-	};
-	var setting = $.extend(defaults, options);
-
-	if (navigator.userAgent.match(/webkit/i)) {
-		targetObj = 'body';
-	} else {
-		targetObj = 'html';
-	}
-	$(this).on('click', function (event) {
-		hrefData = $(this).attr('href');
-		if (hrefData.indexOf('#') !== 0 || $(hrefData).length === 0) { return; }
-		event.preventDefault();
-		targetPos = $(hrefData).offset().top + setting.positioning;
-		$(targetObj).animate({
-			scrollTop : targetPos
-		}, setting.duration, setting.easing, setting.callback);
-	});
-};
 
 
 /**
@@ -136,7 +168,7 @@ function slider() {
 		var CLASS_ACTIVE = 'is-active'; // アクティブ時に付与するクラス名
 		var DURATION = 500; // アニメーション時間
 		var POSITION_LEFT_NUM = 850; // 各スライドのleft位置
-		var EASING = 'easeOutQuad'; // イージング
+		var EASING = [.28,.61,.49,.98]; // イージング
 
 		/*================================
 		* 関数の定義
@@ -202,7 +234,7 @@ function slider() {
 				leftNum = parseInt($slide.eq(index).css('left')) * -1;
 			}
 			//スライドグループをアニメーションで移動
-			$slideGroupWrap.stop().animate({
+			$slideGroupWrap.velocity('stop').velocity({
 				left: leftNum
 			}, DURATION, EASING, function () {
 				if (index >= slideCount){
@@ -306,3 +338,36 @@ function gNavStickey() {
 			.trigger('scroll');
 	});
 }
+
+
+/**
+* スムーススクロール
+*/
+$.fn.smoothScroll = function (options) {
+	var hrefData = '',
+		targetPos = 0,
+		targetObj = '';
+
+	var defaults = {
+		easing : 'swing',
+		duration : 400,
+		positioning : 0,
+		callback : function () {}
+	};
+	var setting = $.extend(defaults, options);
+
+	if (navigator.userAgent.match(/webkit/i)) {
+		targetObj = 'body';
+	} else {
+		targetObj = 'html';
+	}
+	$(this).on('click', function (event) {
+		hrefData = $(this).attr('href');
+		if (hrefData.indexOf('#') !== 0 || $(hrefData).length === 0) { return; }
+		event.preventDefault();
+		targetPos = $(hrefData).offset().top + setting.positioning;
+		$(targetObj).animate({
+			scrollTop : targetPos
+		}, setting.duration, setting.easing, setting.callback);
+	});
+};

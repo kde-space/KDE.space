@@ -33,24 +33,6 @@
 	}
 }
 
-/*@include keyframes(textTypo_white) {
-	0% {
-		@include opacity(0);
-	}
-	10% {
-		@include opacity(1);
-		color:transparent;
-		background-color: #fff;
-	}
-	50% {
-		outline: 1px solid #fff;
-		background-color: transparent;
-	}
-	100% {
-		background-color: transparent;
-		color:#fff
-	}
-}*/
 @include keyframes(textTypo_white) {
 	0% {
 		@include opacity(0);
@@ -82,22 +64,6 @@
 		color: #000;
 	}
 }
-//IE用にアニメーションを分ける
-/*
-@include keyframes(textTypo_black) {
-	0% {
-		@include opacity(0);
-		outline: 1px solid #000;
-	}
-//	50% {
-//		outline: 1px solid #000;
-//	}
-	100% {
-		@include opacity(1);
-		outline: 1px solid transparent;
-	}
-}
-*/
 
 @include keyframes(arrowDown) {
 	0% {
@@ -107,6 +73,21 @@
 	50% {
 		@include opacity(0);
 		@include transform(translateY(40%));
+	}
+	100% {
+		@include opacity(0);
+		@include transform(translateY(0));
+	}
+}
+
+@include keyframes(arrowUp) {
+	0% {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
+	50% {
+		@include opacity(0);
+		@include transform(translateY(-30%));
 	}
 	100% {
 		@include opacity(0);
@@ -143,3 +124,13 @@
 		@include transform(translateY(0) rotate(90deg));
 	}
 }
+
+@include keyframes(splash1) {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+

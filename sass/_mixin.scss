@@ -82,6 +82,7 @@
 }
 
 //font-family
+/*
 @mixin fontM {
 	font-family: "Eurostile LT W01 Medium788251";
 }
@@ -90,6 +91,22 @@
 }
 @mixin fontCB {
 	font-family: "EurostileLTW01-BoldCn";
+}
+
+*/
+//font-family
+@mixin fontM {
+	font-family: "eurostile",sans-serif;
+	font-weight: 400;
+}
+@mixin fontB {
+	font-family: "eurostile",sans-serif;
+	font-weight: 700;
+}
+@mixin fontCB {
+	font-family: "eurostile-condensed",sans-serif;
+	font-style: normal;
+	font-weight: 800;
 }
 
 //link
