@@ -7,18 +7,126 @@
 <meta name="keywords" content="★★★★★">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- typekit -->
+<script src="https://use.typekit.net/aho2ocg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<!-- End typekit -->
+
 </head>
 <body>
 <div id="wrapper">
-<header class="header">
+	<div class="heroArea">
+		<div class="heroArea__inner">
+			<header class="header">
+				<h1 class="header__logo"><img src="img/logo_kde.svg" width="135" height="90" alt="KDE - Kobayashi Design Engineering"></h1>
+				<ul class="header__sns shareBtns">
+					<li class="shareBtns__btn"><a href="https://twitter.com/KDE_SPACE" target="_blank" class="hoverLineAnchor">twitter</a></li>
+					<li class="shareBtns__btn"><a href="https://www.facebook.com/kde.space" target="_blank" class="hoverLineAnchor">facebook</a></li>
+					<li class="shareBtns__btn"><a href="https://www.instagram.com/kde.space/" target="_blank" class="hoverLineAnchor">instagram</a></li>
+					<li class="shareBtns__btn"><a href="https://jp.pinterest.com/KDE_SPACE/" target="_blank" class="hoverLineAnchor">pintarest</a></li>
+				</ul>
+			</header><!-- /.header -->
 
-</header><!-- /.header -->
+			<div class="mainTxt js-textTypoMulti">
+				<div class="mainTxt__small js-typeWriter" data-duration="80">Welcome to</div>
+				<div class="mainTxt__large"><span class="js-typeWriter" data-duration="80">Kobayashi</span><br><span class="js-typeWriter" data-duration="80">Design Engineering.</span></div>
+				<div class="mainTxt__portfolio js-typeWriter" data-duration="80">This is my portforio site since 2016.</div>
+			</div><!-- /.mainTxt -->
+		</div>
+	</div><!-- /.heroArea -->
 
-<main>
+	<nav class="gNav" id="js-gNav">
+		<a href="#wrapper" class="gNav__toTop scroll"><span class="gNav__toTopTxt"><img src="img/arrow_black.svg" alt="Back to top"></span></a>
+		<ul class="gNav__list">
+			<li class="gNav__item gNav__item--about">
+				<a href="#about" class="scroll"><span class="gNav__txt">About</span></a>
+			</li>
+			<li class="gNav__item gNav__item--works">
+				<a href="#works" class="scroll"><span class="gNav__txt">Works</span></a>
+			</li>
+			<li class="gNav__item gNav__item--mission">
+				<a href="#mission" class="scroll"><span class="gNav__txt">Mission</span></a>
+			</li>
+			<li class="gNav__item gNav__item--blog">
+				<span class="gNav__txt">Blog</span>
+			</li>
+		</ul>
+	</nav><!-- /.gNav -->
 
-</main>
+	<div class="l-container">
+		<section class="sec sec--about js-addclassScroll" id="about">
+			<div class="sec__headWrap">
+				<h2 class="sec__head js-addclassScroll js-typeWriter" data-duration="150">About</h2>
+			</div>
+			<div class="sec__body">
+				<section class="aboutMe">
+					<h3 class="subHead subHead--about js-addclassScroll">自分について<sup>About me</sup></h3>
+					<div class="aboutMe__inner">
+						<section class="profile js-addclassScroll">
+							<h4 class="profile__head">Koji Kobayashi</h4>
+							<div class="profileItemWrap">
+								<dl class="profileItem profileItem--sns">
+									<dt class="profileItem__head">SNS<br><small>(Follow me!!)</small></dt>
+									<dd class="profileItem__body">
+										<ul class="profileIcns">
+											<li class="profileIcns__item"><a href="https://twitter.com/KDE_SPACE" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+											<li class="profileIcns__item"><a href="https://www.facebook.com/kde.space" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+											<li class="profileIcns__item"><a href="https://www.instagram.com/kde.space/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+											<li class="profileIcns__item"><a href="https://jp.pinterest.com/KDE_SPACE/" target="_blank"><i class="fa fa-pinterest-square"></i></a></li>
+										</ul><!-- /.profileIcns -->
+									</dd>
+								</dl>
+								<dl class="profileItem profileItem--contact">
+									<dt class="profileItem__head">contact</dt>
+									<dd class="profileItem__body"><a href="mailto:info@kde.space" class="hoverLineAnchor">info@kde.space</a></dd>
+								</dl>
+								<dl class="profileItem">
+									<dt class="profileItem__head">Favorite</dt>
+									<dd class="profileItem__body">
+										<ul class="inlineList">
+											<li>Movie (especially SF)</li>
+											<li>Motion Graphics</li>
+											<li>Underground Hip Hop</li>
+											<li>Skate</li>
+											<li>Reading (nonfiction)</li>
+											<li>Chinese Classics</li>
+										</ul>
+									</dd>
+								</dl><!-- /.profileItem -->
+								<dl class="profileItem">
+									<dt class="profileItem__head">Skills</dt>
+									<dd class="profileItem__body">
+										<ul class="inlineList">
+											<li>Photoshop</li>
+											<li>Illustlator</li>
+											<li>Flash</li>
+											<li>HTML5</li>
+											<li>CSS3</li>
+											<li>JavaScript</li>
+											<li>jQuery</li>
+										</ul>
+									</dd>
+								</dl><!-- /.profileItem -->
+							</div><!-- /.profileItemWrap -->
+						</section><!-- /.profile -->
+
+						<div class="aboutMe__desc js-addclassScroll">
+							<p>1984年長野県生まれ東京都在住。<br>高校卒業後、東京都内のファッション専門学校へ進学を機に上京。<br>アパレル業界でECサイトの運営に携わり、初めてWEBの面白さ、可能性に魅力を感じる。</p>
+							<p>退職後、基金訓練でWeb制作の基本を学び、2012年からWebデザイナーとして都内Web制作会社に勤務。</p>
+							<p>バナー、ランディングページ、コーポレートサイト、iOS/Andoroidアプリのデザイン、Flashオーサリング(アニメーション)等を経験し、2015年からマークアップエンジニアに転向。</p>
+							<p>デザインも好きだが、コードを書いている方が夢中になれるから極力エンジニア寄りの仕事をしていたい。</p>
+							<p>「Webはその人の世界を変えられる」<br>そんな初心を忘れず、Webの力で人の役に立ちたいと思っている。</p>
+						</div>
+					</div><!-- /.aboutMe__inner -->
+				</section><!-- /.aboutMe -->
+			</div><!-- /.sec__body -->
+		</section><!-- /.sec -->
+	</div><!-- /.l-container -->
+
+
+
 <footer class="footer">
 
 </footer><!-- /.footer -->

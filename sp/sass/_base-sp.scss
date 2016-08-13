@@ -27,10 +27,13 @@ a {
 }
 
 #wrapper {
-	max-width: $width-base;
+	position: relative;
+	max-width: $width-sp;
 	min-width: 320px;
+	height: 100%;
 	margin: 0 auto;
-	overflow: hidden;
+	//overflow: hidden;
+	background-color: #1f1f1f;
 }
 
 #wrapper img {
@@ -44,3 +47,4 @@ a {
 	display: block;
 	clear: both;
 }
+
