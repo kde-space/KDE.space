@@ -40,6 +40,21 @@
 * module
 *
 * /////////////////////////////////////////*/
+/*====================================
+* inlineList
+* ===================================*/
+.inlineList {
+	> li {
+		display: inline-block;
+	}
+	> li:not(:last-child)::after {
+		content: ',';
+	}
+	> li:last-child::after {
+		content: '.';
+	}
+}
+
 
 /*====================================
 * heroArea
@@ -200,6 +215,7 @@
 	position: relative;
 	padding: 45px 0 10px;
 	text-align: center;
+	letter-spacing: .02em;
 }
 
 // アイコン
@@ -234,10 +250,16 @@
 * sec
 * ===================================*/
 .sec {
+	padding-bottom: percentage(100px/$width-sp);
 
 	// modifier
 	&#{&}--about {
-		background-color: #1e1e1e;
+		background: #1e1e1e url(../img/bg_about.png) left bottom no-repeat;
+		background-size: 100%;
+	}
+	&#{&}--mission {
+		padding-bottom: 0;
+		background-color: #343434;
 	}
 }
 
@@ -261,7 +283,6 @@
 	$hoge :darken($color-blue, 20%);
 	$fuga :darken($color-orange, 25%);
 	$piyo :darken($color-green,.10%);
-
 	.sec--about & {
 		background-color: rgba($hoge, .8);
 	}
@@ -276,10 +297,11 @@
 .sec__head {
 	position: relative;
 	line-height: 1;
-	margin: 0 0 percentage(80px/$width-sp) percentage(40px/$width-sp);
+	margin: 0 0 percentage(50px/$width-sp) percentage(40px/$width-sp);
 	padding-left: 70px;
 	@include fz-rem(65);
 	@include fontCB;
+	letter-spacing: -.02em;
 }
 
 .sec__head::before {
@@ -289,13 +311,186 @@
 	left: 0;
 	width: 60px;
 	height: 60px;
-	background: url(../img/icn_a.svg) no-repeat;
+	background-repeat: no-repeat;
 	background-size: 100%;
+
+	// modifier
+	.sec--about & {
+		background-image: url(../img/icn_a.svg);
+	}
+	.sec--mission & {
+		background-image: url(../img/icn_m.svg);
+	}
 }
 
 /*====================================
 * subHead
 * ===================================*/
 .subHead {
+	display: inline-block;
+	line-height: 1;
+	margin: 0 0 percentage(60px/$width-sp) percentage(40px/$width-sp);
+	padding: .3em 40px .3em .5em;
+	@include fz-rem($font-size-base);
+	font-weight: bold;
+	background-color: #ddd;
+	letter-spacing: .05em;
 
+	// modifier
+	&#{&}--about {
+		background-color: $color-blue;
+	}
+	&#{&}--mission {
+		background-color: $color-green;
+	}
+
+	sup {
+		@include fz-rem($font-size-xsmall);
+		@include fontM;
+		margin-left: 1em;
+	}
 }
+
+/*====================================
+* aboutMe
+* ===================================*/
+.aboutMe__desc {
+	line-height: 2;
+	margin-bottom: percentage(80px/$width-sp);
+	padding: 0 percentage(40px/$width-sp);
+	color: #999;
+	@include fz-rem($font-size-small);
+	text-align: justify;
+}
+
+/*====================================
+* profile
+* ===================================*/
+.profile {
+	width: 50%;
+	margin-left: percentage(40px/$width-sp);
+	padding: percentage(40px/$width-sp) percentage(30px/$width-sp);
+	color: #666;
+	background-color: rgba(#000, .4);
+}
+
+.profile__head {
+	margin-bottom: percentage(50px/320px);
+	@include fz-rem(30);
+	@include fontCB;
+	letter-spacing: .01em;
+}
+
+.profileItemWrap {
+	position: relative;
+	padding-top: percentage(50px/320px);
+
+	&::before {
+		content: '';
+		@include absoluteTL(0,0);
+		width: 30%;
+		height: 1px;
+		border-top: 1px solid;
+	}
+}
+
+.profileItem {
+	letter-spacing: .05em;
+
+	&:not(:last-child) {
+		margin-bottom: percentage(20px/(320px - 40*2));
+	}
+}
+
+.profileItem__head {
+	line-height: 1;
+	margin-bottom: .2em;
+	@include fz-rem($font-size-small);
+	@include fontB;
+	white-space: nowrap;
+
+	small {
+		margin-left: .5em;
+	}
+
+	// modifier
+	.profileItem--sns & {
+		margin-bottom: .5em;
+	}
+}
+
+.profileItem__body {
+	@include fontM;
+
+	a {
+		@include linkColor($color-blue);
+	}
+}
+
+.profileIcns {
+	display: flex;
+	justify-content: flex-start;
+	line-height: 1;
+	@include fz-rem(20);
+}
+
+.profileIcns__item {
+	&:not(:last-child) {
+		margin-right: .8em;
+	}
+	a {
+		@include linkColor(#999);
+		text-decoration: none;
+	}
+}
+
+/*====================================
+* missionTxt
+* ===================================*/
+.missionTxt {
+	line-height: 2;
+	padding: 0 percentage(40px/$width-sp);
+	text-align: justify;
+}
+
+.missionTxt__head {
+	color: #ccc;
+	@include fz-rem($font-size-xlarge);
+	margin-bottom: 1em;
+}
+
+.missionTxt__body {
+	color: #999;
+	@include fz-rem($font-size-small);
+
+	> p:not(:last-child) {
+		margin-bottom: 1.5em;
+	}
+	a {
+		@include linkColor($color-green);
+	}
+}
+
+
+/*====================================
+* footer
+* ===================================*/
+.footer {
+	margin-top: percentage(-100px/$width-sp);
+	padding: percentage(200px/$width-sp) percentage(40px/$width-sp) percentage(40px/$width-sp);
+	color: #999;
+	text-align: center;
+	background: url(../img/bg_footer.png) no-repeat;
+	background-size: 100%;
+}
+
+.footer__version {
+	display: inline-block;
+}
+
+.footer__copyright {
+	@extend .footer__version;
+	margin-left: 1em;
+}
+
+
