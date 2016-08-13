@@ -269,6 +269,7 @@ body {
 * heroArea
 * ====================================*/
 .heroArea {
+	display: none;
 	position: fixed;
 	z-index: 1;
 	top: 0;
@@ -277,6 +278,12 @@ body {
 	width: 100%;
 	min-height: 750px;
 	height: 100%;
+
+	// modifier
+	.no-js &,
+	&.is-start {
+		display: block;
+	}
 }
 
 .heroArea__video {

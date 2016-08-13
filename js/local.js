@@ -23,7 +23,7 @@ $(function () {
 * スプラッシュ画面
 */
 function splash() {
-		$('#js-splash').each(function () {
+	$('#js-splash').each(function () {
 		var $window = $(window);
 		var windowHeight = $window.height();
 		var windowWidth = $window.width();
@@ -52,7 +52,10 @@ function splash() {
 					duration: DURATION,
 					easing: [.96,0,.19,.97],
 					complete: function () { // コールバック
+						// 縦スクロール解除
 						$('body').addClass(CLASS_START);
+						// FV表示
+						$('.heroArea').addClass(CLASS_START);
 						$window.scrollTop(0);
 						$container.delay(800).velocity({
 							opacity: 0
