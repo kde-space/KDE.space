@@ -6,7 +6,7 @@ var browserSync = require('browser-sync');
 var cache = require('gulp-cached');
 
 gulp.task('sass', function () {
-	sass('sp/sass/**/*.scss', {
+	sass('./sass/**/*.scss', {
 		style: 'compressed',
 		sourcemap: true,
 		cacheLocation: '/.sass-cache'
@@ -15,7 +15,7 @@ gulp.task('sass', function () {
 	.pipe(cache('sass'))
 	.pipe(autoprefixer(['last 3 version', 'ie >= 9', 'Android 4.0']))
 	.pipe(sourcemaps.write('/maps'))
-	.pipe(gulp.dest('sp/css'))
+	.pipe(gulp.dest('./css'))
 	.pipe(browserSync.stream());
 });
 
@@ -29,7 +29,7 @@ gulp.task('watch', function(){
 			baseDir: "./"
 		}
 	});
-	gulp.watch('sp/sass/**/*.scss', ['sass']);
+	gulp.watch('./sass/**/*.scss', ['sass']);
 	gulp.watch(['./*.html', 'js/**/*.js'], ['reload']);
 });
 
