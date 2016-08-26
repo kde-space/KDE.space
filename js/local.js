@@ -80,24 +80,28 @@ function splash() {
 * スクロール後、特定の高さになったらクラス追加
 */
 function addClassScroll() {
-	$('body').each(function () {
-		var $target = $('.js-addclassScroll');
-		var SHOW_HEIGHT = 150; // 表示される高さ
-		var CLASS_ACTIVE = 'is-start';
+	var $target = $('.js-addclassScroll');
+	var $window = $(window);
+	var windowHeight = $window.innerHeight();
+	var SHOW_HEIGHT = 150; // 表示される高さ
+	var offsetTopArray = []; // 各要素のTOP値格納用の配列
+	var CLASS_ACTIVE = 'is-start';
+	var scrollTop = 0; // スクロールの値格納用
 
-		$(window).on('load scroll resize', function () {
-			var $window = $(this);
-			var scrollTop = $window.scrollTop();
-			var windowHeight = $window.innerHeight();
+	$window.on('load', function() {
+		$target.each(function() {
+			offsetTopArray.push($(this).offset().top);
+		});
 
-			$target.each(function () {
-				var $thisArea = $(this);
-				var areaOffsetTop = $thisArea.offset().top;
-				if (scrollTop > (areaOffsetTop + SHOW_HEIGHT) - windowHeight) {
-					$thisArea.addClass(CLASS_ACTIVE);
+		function setClass() {
+			scrollTop = $window.scrollTop();
+			$target.each(function (i) {
+				if (scrollTop > (offsetTopArray[i] + SHOW_HEIGHT) - windowHeight) {
+					$(this).addClass(CLASS_ACTIVE);
 				}
 			});
-		});
+		}
+		$window.on('load scroll resize', _.throttle(setClass, 100));
 	});
 }
 
@@ -323,17 +327,19 @@ function gNavStickey() {
 		var CLASS_FIX = 'is-fixed';
 		var is_flag = true;
 
+		function setStickey() {
+			// スクロール量がgNavのデフォルトの位置より大きくなったら
+			if ($window.scrollTop() >= fixPos && is_flag === true) {
+				$gNav.addClass(CLASS_FIX);
+				is_flag = false;
+			} else if ($window.scrollTop() < fixPos && is_flag === false) {
+				$gNav.removeClass(CLASS_FIX);
+				is_flag = true;
+			}
+		}
+
 		$window
-			.on('scroll', function () {
-				// スクロール量がgNavのデフォルトの位置より大きくなったら
-				if ($window.scrollTop() >= fixPos && is_flag === true) {
-					$gNav.addClass(CLASS_FIX);
-					is_flag = false;
-				} else if ($window.scrollTop() < fixPos && is_flag === false) {
-					$gNav.removeClass(CLASS_FIX);
-					is_flag = true;
-				}
-			})
+			.on('scroll', _.throttle(setStickey,100))
 			// リサイズが発生したらstickyになる位置を再取得
 			.on('resize', function () {
 				fixPos = $window.height() - gNavHeight;

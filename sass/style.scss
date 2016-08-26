@@ -300,12 +300,12 @@ body {
 //背景ノイズ
 .heroArea::after {
 	content: '';
-	@include absoluteTL(0,0);
+	@include absoluteTL(-20%,-20%);
 	z-index: -1;
-	width: 100%;
-	height: 100%;
+	width: 120%;
+	height: 120%;
 	background-image: url(../img/bg_noise.png);
-	@include animation(moveNoise .2s steps(6, start) infinite);
+	@include animation(moveNoise2 .2s steps(6, start) infinite);
 }
 
 /*====================================
@@ -990,6 +990,7 @@ body {
 
 .case__picAnchor {
 	display: block;
+	overflow: hidden;
 	position: relative;
 	text-align: center;
 
@@ -997,14 +998,15 @@ body {
 		content: '';
 		@include absoluteAll(20px,20px,20px,20px);
 		margin: auto;
-		@include opacity(.7);
-		transition: .3s cubic-bezier(.28,.61,.49,.98);
+		@include opacity(0);
+		transition: .3s;
 	}
 	&:hover::before {
-		@include absoluteAll(0,0,0,0);
+		@include absoluteAll(-50px,-50px,-50px,-50px);
+		@include opacity(.7);
 		background-color: rgba(#000, .4);
 		background-image: url(../img/bg_noise.png);
-		@include animation(moveNoise .2s steps(6, start) infinite);
+		@include animation(moveNoise2 .2s steps(6, start) infinite);
 
 		// modifier
 		.no-js &,
@@ -1151,7 +1153,6 @@ body {
 			margin-bottom: 50px;
 		}
 	}
-
 }
 
 /*

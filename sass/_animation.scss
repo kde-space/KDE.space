@@ -21,6 +21,27 @@
 	}
 }
 
+@include keyframes(moveNoise2) {
+	0% {
+		transform: translate(0,0);
+	}
+	20% {
+		transform: translate(-20px,18px);
+	}
+	40% {
+		transform: translate(31px,45px);
+	}
+	60% {
+		transform: translate(-5px,-10px);
+	}
+	80% {
+		transform: translate(30px,30px);
+	}
+	100% {
+		transform: translate(-15px,-15px);
+	}
+}
+
 @include keyframes(flashBk) {
 	50% {
 		background-color: #fff;
