@@ -6,7 +6,7 @@ var browserSync = require('browser-sync');
 var cache = require('gulp-cached');
 
 gulp.task('sass', function () {
-	sass('./sass/**/*.scss', {
+	sass('./sp/sass/**/*.scss', {
 		style: 'compressed',
 		sourcemap: true,
 		cacheLocation: '/.sass-cache'
@@ -29,8 +29,8 @@ gulp.task('watch', function(){
 			baseDir: "./"
 		}
 	});
-	gulp.watch('./sass/**/*.scss', ['sass']);
-	gulp.watch(['./*.html', 'js/**/*.js'], ['reload']);
+	gulp.watch('./sp/sass/**/*.scss', ['sass']);
+	gulp.watch(['./sp/*.html', './sp/js/**/*.js'], ['reload']);
 });
 
 gulp.task('default', ['watch']);

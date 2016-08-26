@@ -24,6 +24,61 @@
 // - choice project type.
 @import "base-sp";
 
+body {
+	overflow: hidden;
+
+	&.is-start {
+		overflow: visible;
+	}
+}
+
+/* /////////////////////////////////////////
+*
+* アニメーション制御
+*
+* /////////////////////////////////////////*/
+
+/* textTypo jsと併用
++++++++++++++++++++++++++++++++++++++*/
+.js-textTypo span {
+	@include animation(textTypo_white .1s linear 0s 1);
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.mainTxt__portfolio.js-textTypo span {
+	@include animation(textTypo_black .1s steps(1) 0s 1);
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.js-textTypo.is-start span {
+	-webkit-animation-play-state: running;
+	-moz-animation-play-state: running;
+	animation-play-state: running;
+}
+
+/* スクロール表示
++++++++++++++++++++++++++++++++++++++*/
+.showAnime {
+	@include opacity(0);
+	@include transform(translateY(20px));
+	@include transition(.5s ease-out .3s);
+
+	// modifier
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
+}
+
+/* /////////////////////////////////////////
+*
+* layout
+*
+* /////////////////////////////////////////*/
 .l-container {
 	position: absolute;
 	z-index: 10;
@@ -33,6 +88,43 @@
 	background-color: #343434;
 	-webkit-backface-visibility: hidden; //チラつき防止
 	backface-visibility: hidden;
+}
+
+.deviceMode {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	background-color: #222;
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: -50%;
+		left: -50%;
+		width: 150%;
+		height: 150%;
+		background: url(../img/bg_noise.png);
+		@include animation(moveNoise2 .2s steps(6, start) infinite);
+	}
+
+	// modifier
+	&.is-active {
+		display: flex;
+	}
+}
+
+.deviceMode__ja {
+	margin-bottom: .5em;
+	@include fz-rem($font-size-base);
 }
 
 /* /////////////////////////////////////////
@@ -55,6 +147,98 @@
 	}
 }
 
+/*====================================
+* tableList
+* ===================================*/
+.tableList {
+	display: table;
+	@include fz-rem($font-size-small);
+	@include fontM;
+	letter-spacing: .05em;
+
+	//modifier
+	&.tableList--case {
+		color: #999;
+	}
+}
+
+.tableList__item {
+	display: table-row;
+	line-height: 1.5;
+}
+
+.tableList__head {
+	display: table-cell;
+
+	&#{&}--area {
+		font-family: $font-family;
+	}
+}
+
+.tableList__txt {
+	display: table-cell;
+}
+
+.tableList__txt::before {
+	content: '　-　';
+}
+
+/*====================================
+* splash
+* ===================================*/
+.splash {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.splash__cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+.splash__bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	// modifier
+	&#{&}--1 {
+		background-color: #000;
+	}
+	&#{&}--2 {
+		background-color: #fff;
+	}
+}
+
+.splash__txt {
+	position: absolute;
+	width: 200px;
+	transform: translate(-50%, -50%);
+
+	// modifier
+	&#{&}--1 {
+		svg {
+			fill: #fff;
+		}
+	}
+	&#{&}--2 {
+		svg {
+			fill: #000;
+		}
+	}
+}
+
 
 /*====================================
 * heroArea
@@ -73,6 +257,7 @@
 	max-width: $width-sp;
 	height: 100%;
 	margin: 0 auto;
+	overflow: hidden;
 	background: url(../img/bg_mv.jpg) no-repeat;
 	background-size: cover;
 
@@ -80,12 +265,12 @@
 		content: '';
 		position: absolute;
 		z-index: -1;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		top: -50%;
+		left: -50%;
+		width: 150%;
+		height: 150%;
 		background: url(../img/bg_noise.png);
-		@include animation(moveNoise .2s steps(6, start) infinite);
+		@include animation(moveNoise2 .2s steps(6, start) infinite);
 	}
 }
 
@@ -93,6 +278,15 @@
 	display: flex;
 	justify-content: space-between;
 	padding-top: percentage(40px/$width-sp);
+	@include opacity(0);
+	transform: translateY(-20px);
+	transition: .5s cubic-bezier(0,0,.14,.98);
+
+	// modifier
+	&.is-start {
+		@include opacity(1);
+		transform: translateY(0);
+	}
 }
 
 .header__logo {
@@ -154,9 +348,15 @@
 		z-index: -1;
 		top: 0;
 		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: $color-gold;
+		@include transition(width .2s  cubic-bezier(.28,.61,.49,.98), height .2s  cubic-bezier(.28,.61,.49,.98) .3s);
+	}
+	// modifier
+	&.is-start::before {
 		width: 100%;
 		height: 100%;
-		background-color: $color-gold;
 	}
 }
 
@@ -169,6 +369,13 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
+
+	// modifier
+	&.is-fixed {
+		position: fixed;
+		top: 0;
+		bottom: auto;
+	}
 }
 
 .gNav__toTop {
@@ -180,11 +387,17 @@
 	text-align: center;
 	text-decoration: none;
 	background-color: #ccc;
+	transition: .2s ease-out;
+
+	// modifier
+	.is-fixed & {
+		height: 22px;
+	}
 }
 
 .gNav__toTopTxt {
 	display: block;
-	width: percentage(30px/$width-sp);
+	width: 15px;
 	margin: 0 auto;
 	padding: 3px 0;
 }
@@ -199,6 +412,7 @@
 }
 
 .gNav__item {
+	position: relative;
 	width: 25%;
 	&:not(:last-child) {
 		border-right: 1px solid #333;
@@ -216,6 +430,15 @@
 	padding: 45px 0 10px;
 	text-align: center;
 	letter-spacing: .02em;
+	transition: .2s ease-out;
+
+	// modifier
+	.gNav__item--blog & {
+		@include opacity(.2);
+	}
+	.is-fixed & {
+		padding: 35px 0 5px;
+	}
 }
 
 // アイコン
@@ -230,6 +453,7 @@
 	margin: auto;
 	background-repeat: no-repeat;
 	background-size: 100%;
+	transition: .2s ease-out;
 
 	// modifier
 	.gNav__item--about & {
@@ -244,6 +468,24 @@
 	.gNav__item--blog & {
 		background-image: url(../img/icn_b.svg);
 	}
+	.is-fixed & {
+		top: 8px;
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.gNav__comingSoon {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	transform: translateY(-50%);
+	color: #999;
+	@include fz-rem($font-size-small - 1);
+	@include fontM;
+	text-align: center;
+	letter-spacing: .02em;
 }
 
 /*====================================
@@ -256,6 +498,9 @@
 	&#{&}--about {
 		background: #1e1e1e url(../img/bg_about.png) left bottom no-repeat;
 		background-size: 100%;
+	}
+	&#{&}--works {
+		background-color: #6c6c6c;
 	}
 	&#{&}--mission {
 		padding-bottom: 0;
@@ -275,9 +520,10 @@
 	z-index: -1;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 0; // 非アクティブ時は非表示
 	height: 0;
 	padding-top: percentage(180px/$width-sp);
+	transition: .5s cubic-bezier(.17,.61,.53,.88);
 
 	//modifier セクション別
 	$hoge :darken($color-blue, 20%);
@@ -292,6 +538,10 @@
 	.sec--mission & {
 		background-color: rgba($piyo,.3);
 	}
+	//modifier アクティブ時
+	.sec.is-start & {
+		width: 100%;
+	}
 }
 
 .sec__head {
@@ -304,6 +554,7 @@
 	letter-spacing: -.02em;
 }
 
+// アイコン
 .sec__head::before {
 	content: '';
 	position: absolute;
@@ -311,6 +562,9 @@
 	left: 0;
 	width: 60px;
 	height: 60px;
+	@include opacity(0);
+	@include transition(.3s ease-out .2s);
+	@include transform(translateY(25px));
 	background-repeat: no-repeat;
 	background-size: 100%;
 
@@ -318,9 +572,17 @@
 	.sec--about & {
 		background-image: url(../img/icn_a.svg);
 	}
+	.sec--works & {
+		background-image: url(../img/icn_w.svg);
+	}
 	.sec--mission & {
 		background-image: url(../img/icn_m.svg);
 	}
+}
+// modifier
+.sec__head.is-start::before {
+	@include opacity(1);
+	@include transform(translateY(0));
 }
 
 /*====================================
@@ -328,21 +590,16 @@
 * ===================================*/
 .subHead {
 	display: inline-block;
+	position: relative;
+	z-index: 10;
 	line-height: 1;
 	margin: 0 0 percentage(60px/$width-sp) percentage(40px/$width-sp);
 	padding: .3em 40px .3em .5em;
 	@include fz-rem($font-size-base);
 	font-weight: bold;
-	background-color: #ddd;
 	letter-spacing: .05em;
-
-	// modifier
-	&#{&}--about {
-		background-color: $color-blue;
-	}
-	&#{&}--mission {
-		background-color: $color-green;
-	}
+	color: transparent;
+	@include transition(color .3s  cubic-bezier(.28,.61,.49,.98) .3s);
 
 	sup {
 		@include fz-rem($font-size-xsmall);
@@ -350,6 +607,37 @@
 		margin-left: 1em;
 	}
 }
+
+.subHead::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 0;
+	height: 1px;
+	background-color: $color-blue;
+	@include transition(width .2s  cubic-bezier(.28,.61,.49,.98) 0s, height .2s  cubic-bezier(.28,.61,.49,.98) .2s);
+}
+// modifier
+.subHead.subHead--about::before {
+	background-color: $color-blue;
+}
+.subHead.subHead--works::before {
+	background-color: $color-orange;
+}
+.subHead.subHead--mission::before {
+	background-color: $color-green;
+}
+
+.subHead.is-start {
+	color: #fff;
+}
+.subHead.is-start::before {
+	width: 100%;
+	height: 100%;
+}
+
 
 /*====================================
 * aboutMe
@@ -445,6 +733,176 @@
 }
 
 /*====================================
+* slider
+* ===================================*/
+.slider {
+	position: relative;
+	width: 100%;
+}
+
+.slider__picBlock {
+	position: relative;
+	width: 100%;
+	margin-bottom: percentage(46px/$width-sp);
+	overflow: hidden;
+}
+
+.slider__picBlockInner {
+	position: relative;
+	width: 100%;
+	//heightはJSで設定
+}
+
+.slider__picList {
+	position: relative;
+	width: 100%;
+}
+
+.slider__picAnchor {
+	pointer-events: none;
+}
+
+.slider__picItem {
+	position: absolute;
+	top: 0;
+	// leftはJSで設定
+	right: 0;
+	margin: auto;
+	@include opacity(.2);
+	transition: .2s;
+
+	// modifier
+	&.is-active {
+		@include opacity(1);
+	}
+}
+
+.slider__pic {
+	width: (520/2) + px;
+}
+
+/*
+* 矢印
+*/
+.slider__arrowItem a {
+	position: absolute;
+	top: (146/2) - 15 + px; // jsで変更
+	width: 25px;
+	height: auto;
+}
+// modifier
+.slider__arrowItem.slider__arrowItem--prev a {
+	left: percentage(2px/$width-sp);
+	transform: rotate(90deg);
+}
+.slider__arrowItem.slider__arrowItem--next a {
+	right: percentage(2px/$width-sp);
+	transform: rotate(-90deg);
+}
+
+/*
+* インジケーター
+*/
+.slider__indicator {
+	position: absolute;
+	top: -20px;
+	right: 30px;
+
+	> li {
+		display: inline-block;
+	}
+	> li:not(:last-child) {
+		margin-right: .5em;
+	}
+	> li a {
+		@include linkColor(#3e3e3e);
+		text-decoration: none;
+	}
+	> li a.is-active {
+		@include linkColor($color-orange);
+	}
+}
+
+/*
+* テキスト
+*/
+.slider__txtList {
+	position: relative;
+	width: percentage(520px/$width-sp);
+	//heightはjsで設定
+	margin: 0 auto;
+}
+
+.slider__txtItem {
+	position: absolute;
+	top: 0;
+	left: 0;
+	@include opacity(0);
+	transform: translateY(-10px);
+	transition: .2s ease-out;
+
+	// modifier
+	&.is-active {
+		z-index: 10;
+		@include opacity(1);
+		transform: translateY(0);
+	}
+}
+
+
+/*====================================
+* case
+* ===================================*/
+.case {
+	width: 100%;
+}
+
+.case__pic {
+	margin-bottom: percentage(50px/520px);
+}
+
+.case__caption {
+	position: relative;
+	margin-bottom: percentage(30px/520px);
+	padding-top: percentage(36px/$width-sp);
+
+	&::before {
+		content: '';
+		@include absoluteTL(0,0);
+		width: percentage(80px/520px);
+		height: 1px;
+		border-top: 1px solid $color-orange;
+	}
+}
+
+.case__head {
+	line-height: 1.5;
+	margin-bottom: .5em;
+	@include fz-rem($font-size-base);
+	color: #ccc;
+	font-weight: bold;
+}
+
+.case__link {
+	@include linkColor($color-orange);
+	@include fontM;
+	letter-spacing: .05em;
+
+	> .fa {
+		margin-left: .5em;
+	}
+}
+
+.case__desc {
+	line-height: 1.82;
+	margin-bottom: 1em;
+	color: #ccc;
+	@include fz-rem($font-size-small);
+	text-align: justify;
+}
+
+
+/*====================================
 * missionTxt
 * ===================================*/
 .missionTxt {
@@ -492,5 +950,3 @@
 	@extend .footer__version;
 	margin-left: 1em;
 }
-
-
