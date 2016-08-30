@@ -15,7 +15,7 @@ gulp.task('sass', function () {
 	.pipe(cache('sass'))
 	.pipe(autoprefixer(['last 3 version', 'ie >= 9', 'Android 4.0']))
 	.pipe(sourcemaps.write('/maps'))
-	.pipe(gulp.dest('./css'))
+	.pipe(gulp.dest('./sp/css'))
 	.pipe(browserSync.stream());
 });
 

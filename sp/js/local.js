@@ -3,8 +3,6 @@ $(function () {
 
 	showMsgLandscape();
 
-	addClassScroll();
-
 	typewriter();
 
 	slider();
@@ -47,7 +45,10 @@ function splash() {
 			duration: DURATION,
 			easing: [.96,0,.19,.97],
 			complete: function () { // コールバック
-				$window.scrollTop(0);
+				// 非同期処理させるため
+				setTimeout(function () {
+					addClassScroll();
+				}, 100);
 				$cover2.velocity({
 					width: '100%'
 				}, {
@@ -58,6 +59,7 @@ function splash() {
 						$('body').addClass(CLASS_START);
 						// FV表示
 						$('.heroArea').addClass(CLASS_START);
+						window.scrollTo(0,0);
 						$container.delay(800).velocity({
 							opacity: 0
 						}, (DURATION * .5), function() { // コールバック
@@ -75,6 +77,63 @@ function splash() {
 		});
 	});
 }
+
+
+/**
+* スクロール後、特定の高さになったらクラス追加
+*/
+function addClassScroll() {
+	var $target = $('.js-addclassScroll');
+	var $window = $(window);
+	var windowHeight = $window.innerHeight();
+	var SHOW_HEIGHT = 80; // 表示される高さ
+	var offsetTopArray = []; // 各要素のTOP値格納用の配列
+	var CLASS_ACTIVE = 'is-start';
+	var scrollTop = 0; // スクロールの値格納用
+
+	// 各要素のTOP値を取得
+	$target.each(function() {
+		offsetTopArray.push(parseInt($(this).offset().top, 10));
+	});
+
+	/**
+	* 現在のスクロール量と各要素のTOP地の比較してクラスを付与する関数
+	*/
+	function setClass() {
+		scrollTop = $window.scrollTop();
+		$target.each(function (i) {
+			if (scrollTop > (offsetTopArray[i] + SHOW_HEIGHT) - windowHeight) {
+				$(this).addClass(CLASS_ACTIVE);
+			}
+		});
+	}
+	$window.on('scroll resize', _.throttle(setClass, 100));
+}
+
+
+/**
+* MV用にアニメーション時間をずらす
+*/
+function setClassTimer() {
+	$('.js-textTypoMulti').each(function () {
+		var $item = $(this).find('.js-textTypo');
+		var totalTextLength = 0;
+		var CLASS_ACTIVE = 'is-start';
+
+		$item.each(function (i) {
+			var $this = $(this);
+			var duration = $this.data('duration');
+			totalTextLength += $this.text().length; // 合計の文字数を加算
+			var time = totalTextLength * duration;
+			// 最初だけ待ち時間なし
+			if (i === 0) {time = 0;}
+			setTimeout(function () {
+				$this.addClass(CLASS_ACTIVE);
+			}, time);
+		});
+	});
+}
+
 
 /**
 * landscape（横向き）時にメッセージ表示
@@ -103,34 +162,6 @@ function showMsgLandscape() {
 	});
 }
 
-/**
-* スクロール後、特定の高さになったらクラス追加
-*/
-function addClassScroll() {
-	var $target = $('.js-addclassScroll');
-	var $window = $(this);
-	var windowHeight = $window.innerHeight();
-	var SHOW_HEIGHT = 100; // 表示される高さ
-	var offsetTopArray = []; // 各要素のTOP値格納用の配列
-	var CLASS_ACTIVE = 'is-start';
-	var scrollTop = 0; // スクロールの値格納用
-
-	$window.on('load', function() {
-		$target.each(function() {
-			offsetTopArray.push($(this).offset().top);
-		});
-
-		function setClass() {
-			scrollTop = $window.scrollTop();
-			$target.each(function (i) {
-				if (scrollTop > (offsetTopArray[i] + SHOW_HEIGHT) - windowHeight) {
-					$(this).addClass(CLASS_ACTIVE);
-				}
-			});
-		}
-		$window.on('load scroll resize', _.throttle(setClass, 100));
-	});
-}
 
 /**
 * タイプライター風アニメーション
@@ -153,28 +184,6 @@ function typewriter() {
 	});
 }
 
-/**
-* MV用にアニメーション時間をずらす
-*/
-function setClassTimer() {
-	$('.js-textTypoMulti').each(function () {
-		var $item = $(this).find('.js-textTypo');
-		var totalTextLength = 0;
-		var CLASS_ACTIVE = 'is-start';
-
-		$item.each(function (i) {
-			var $this = $(this);
-			var duration = $(this).data('duration');
-			totalTextLength += $(this).text().length; // 合計の文字数を加算
-			var time = totalTextLength * duration;
-			// 最初だけ待ち時間なし
-			if (i === 0) {time = 0;}
-			setTimeout(function () {
-				$this.addClass(CLASS_ACTIVE);
-			}, time);
-		});
-	});
-}
 
 /**
 * worksスライダー
@@ -194,9 +203,9 @@ function slider() {
 		var $indicator = $container.find('.slider__indicator');
 		var $txtGroup = $container.find('.slider__txtList');
 		var $txt = $txtGroup.find('.slider__txtItem');
+
 		var slideWidth = $slide.find('img').width(); // 画像の横幅
 		var MARGIN_BETWEEN_SLIDE = 15; // スライド同士の間隔
-
 		var slideCount = $slide.length; // スライドの数
 		var currentIndex = 0; // 現在のスライドのインデックス
 		var nextIndex; // 次のスライドのインデックス
@@ -205,6 +214,11 @@ function slider() {
 		var CLASS_ACTIVE = 'is-active'; // アクティブ時に付与するクラス名
 		var DURATION = 500; // アニメーション時間
 		var EASING = [.28,.61,.49,.98]; // イージング
+
+		var threshold = 30; // スワイプ発生とみなす距離
+		var startX, currentX; // 座標を保存するための変数
+		var swipeFlag = false; // スワイプ検知休止状態か否かのフラグ
+		var touchFlag = false; // タッチ中か否かのフラグ
 
 		/*================================
 		* 関数の定義
@@ -340,6 +354,29 @@ function slider() {
 		}
 
 		/**
+		* スワイプのチェック関数
+		*/
+		function evalSwipe() {
+			// 右スワイプ時
+			if((startX + threshold) < currentX) {
+				swipeFlag = true;
+				nextIndex = currentIndex - 1;
+				// もし最初のスライドより前の、さらに前のインデックスだったら最後のインデックスに戻る
+				if (nextIndex < -1) {
+					nextIndex = slideCount - 1;
+				}
+				goToSlide(nextIndex);
+			}
+			// 左スワイプ時
+			if((startX - threshold) > currentX) {
+				swipeFlag = true;
+				// もし最後のスライドより後の、さらに後のインデックスだったら最初のインデックスに戻る
+				nextIndex = (currentIndex + 1) % (slideCount + 1);
+				goToSlide(nextIndex);
+			}
+		}
+
+		/**
 		* アクティブの要素にクラスを付与、非アクティブの要素はクラス削除する関数
 		*/
 		function upDateClass(ary, index) {
@@ -354,35 +391,9 @@ function slider() {
 		// 初期化実行
 		initSlider();
 
-		var threshold = 20; // スワイプ発生とみなす距離
-		var doc = $(document);
-		var startX, currentX; // 座標を保存するための変数
-		var swipeFlag = false; // スワイプ検知休止状態か否かのフラグ
-		var touchFlag = false; // タッチ中か否かのフラグ
-
-		/**
-		* スワイプのチェック関数
-		*/
-		function evalSwipe() {
-			if((startX + threshold) < currentX) {
-				swipeFlag = true;
-				nextIndex = currentIndex - 1;
-				// もし最初のスライドより前の、さらに前のインデックスだったら最後のインデックスに戻る
-				if (nextIndex < -1) {
-					nextIndex = slideCount - 1;
-				}
-				goToSlide(nextIndex);
-			}
-			if((startX - threshold) > currentX) {
-				swipeFlag = true;
-				// もし最後のスライドより後の、さらに後のインデックスだったら最初のインデックスに戻る
-				nextIndex = (currentIndex + 1) % (slideCount + 1);
-				goToSlide(nextIndex);
-			}
-		}
-
-		$slideGroupBlock.on({
-			'touchstart': function(e) {
+		// スライドをスワイプ時
+		$slideGroupBlock
+			.on('touchstart', function(e) {
 				// オリジナルイベントのタッチ情報の配列を取得
 				var touches = e.originalEvent.touches;
 				// 2本指以上でのタッチだったら以降の処理キャンセル
@@ -395,77 +406,29 @@ function slider() {
 				startX = touchInfo.pageX;
 				// タッチ中のフラグをオン
 				touchFlag = true;
-			},
-			'touchmove': function(e) {
-				// オリジナルイベントのタッチ情報の配列を取得
-				var touches = e.originalEvent.touches;
-				// 2本指以上でのタッチだったら以降の処理キャンセル
-				if(touches.length > 1) {
-					return;
-				}
-				// タッチ情報の詳細
-				var touchInfo = touches[0];
-				// タッチしたX座標を取得
-				startX = touchInfo.pageX;
-				// タッチ中のフラグをオン
-				touchFlag = true;
-			},
-			'touchend': function() {
+			})
+			.on('touchmove', function(e) {
+				// ページスクロール、パンの挙動を止める
+				e.preventDefault();
+				// タッチ開始後かつスワイプ中でなければ以降の処理実行
+				if(!touchFlag) return;
+				if(swipeFlag) return;
+				var touchInfo = e.originalEvent.touches[0];
+				currentX = touchInfo.pageX;
+				evalSwipe();
+			})
+			.on('touchend touchcancel', function(e) {
 				if(!touchFlag) {
 					return;
 				}
 				swipeFlag = false;
 				touchFlag = false;
-			},
-			'touchcancel': function() {
-				if(!touchFlag) {
-					return;
-				}
-				swipeFlag = false;
-				touchFlag = false;
-			}
-		});
+				//window.open().location.href = 'http://www.yahoo.co.jp/';
+			});
 
-/*
-		$slideGroupBlock.on('touchstart', function(e) {
-			// オリジナルイベントのタッチ情報の配列を取得
-			var touches = e.originalEvent.touches;
-			// 2本指以上でのタッチだったら以降の処理キャンセル
-			if(touches.length > 1) {
-				return;
-			}
-			// タッチ情報の詳細
-			var touchInfo = touches[0];
-			// タッチしたX座標を取得
-			startX = touchInfo.pageX;
-			// タッチ中のフラグをオン
-			touchFlag = true;
-		});
-
-		$slideGroupBlock.on('touchmove', function(e) {
-			if(!touchFlag) {
-				return;
-			}
-			if(swipeFlag) {
-				return;
-			}
-			// ページスクロール、パンの挙動を止める
-			e.preventDefault();
-			var touchInfo = e.originalEvent.touches[0];
-			currentX = touchInfo.pageX;
-			evalSwipe();
-		});
-
-		$slideGroupBlock.on('touchend touchcancel', function(e) {
-			if(!touchFlag) {
-				return;
-			}
-			swipeFlag = false;
-			touchFlag = false;
-		});
-*/
-
-		$slideAnchor.on('click', function(e) {
+		// スライドをクリック時
+		$('.slider__picAnchor').on('click', function (e) {
+			// アクティブ状態のスライドでなければクリックキャンセル
 			if(!$(this).parent().parent().hasClass(CLASS_ACTIVE)) {
 				e.preventDefault();
 			}
@@ -516,16 +479,16 @@ function gNavStickey() {
 		var gNavHeight = $gNav.innerHeight(); // gNavの高さ
 		var fixPos = $window.height() - gNavHeight; // stickeyになる位置
 		var CLASS_FIX = 'is-fixed';
-		var is_flag = true;
+		var stickyFlag = true;
 
 		function setStickey() {
 			// スクロール量がgNavのデフォルトの位置より大きくなったら
-			if ($window.scrollTop() >= fixPos && is_flag === true) {
+			if ($window.scrollTop() >= fixPos && stickyFlag === true) {
 				$gNav.addClass(CLASS_FIX);
-				is_flag = false;
-			} else if ($window.scrollTop() < fixPos && is_flag === false) {
+				stickyFlag = false;
+			} else if ($window.scrollTop() < fixPos && stickyFlag === false) {
 				$gNav.removeClass(CLASS_FIX);
-				is_flag = true;
+				stickyFlag = true;
 			}
 		}
 
@@ -539,6 +502,7 @@ function gNavStickey() {
 			.trigger('scroll');
 	});
 }
+
 
 /**
 * スムーススクロール
