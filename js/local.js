@@ -56,7 +56,7 @@ function splash() {
 						$('body').addClass(CLASS_START);
 						// FV表示
 						$('.heroArea').addClass(CLASS_START);
-						$window.scrollTop(0);
+						window.scrollTo(0,0);
 						$container.delay(800).velocity({
 							opacity: 0
 						}, (DURATION * .5), function() { // コールバック
@@ -138,8 +138,8 @@ function setClassTimer() {
 
 		$item.each(function (i) {
 			var $this = $(this);
-			var duration = $(this).data('duration');
-			totalTextLength += $(this).text().length; // 合計の文字数を加算
+			var duration = $this.data('duration');
+			totalTextLength += $this.text().length; // 合計の文字数を加算
 			var time = totalTextLength * duration;
 			// 最初だけ待ち時間なし
 			if (i === 0) {time = 0;}
@@ -169,7 +169,7 @@ function slider() {
 
 		var slideCount = $slide.length; // スライドの数
 		var currentIndex = 0; // 現在のスライドのインデックス
-		var nextIndex; // 現在のスライドのインデックス
+		var nextIndex; // 次のスライドのインデックス
 		var indicatorHTML = ''; // インジケーター用のHTML
 
 		var CLASS_ACTIVE = 'is-active'; // アクティブ時に付与するクラス名
