@@ -432,10 +432,11 @@ body {
 	letter-spacing: .02em;
 	transition: .2s ease-out;
 
-	// modifier
-	.gNav__item--blog & {
-		@include opacity(.2);
+	i {
+		margin-left: .3em;
 	}
+
+	// modifier
 	.is-fixed & {
 		padding: 35px 0 5px;
 	}
