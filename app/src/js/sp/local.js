@@ -1,14 +1,20 @@
 $(function () {
+	// スプラッシュ画面
 	splash();
 
+	// 横向けにしたときに文言表示
 	showMsgLandscape();
 
+	// タイプライターアニメーション
 	typewriter();
 
+	// スライダー
 	slider();
 
+	// gNavスティッキー化
 	gNavStickey();
 
+	// スムーススクロール
 	$('.scroll').smoothScroll({
 		positioning: -60,
 		callback: function () {
