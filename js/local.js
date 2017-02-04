@@ -1,14 +1,20 @@
 $(function () {
+	// スプラッシュ画面
 	splash();
 
+	// スクロール後、特定の高さになったらクラス追加
 	addClassScroll();
 
+	// タイプライター風アニメーション
 	typewriter();
 
+	// スライダー
 	slider();
 
+	// gNav スティッキー化
 	gNavStickey();
 
+	// スムーススクロール
 	$('.scroll').smoothScroll({
 		positioning: -80,
 		callback: function () {

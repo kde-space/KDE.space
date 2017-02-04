@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 // --------------------
-@import "setting";
+@import "_include/setting";
 // --------------------
-@import "mixin";
+@import "_include/mixin";
 // --------------------
-@import "animation";
+@import "_include/animation";
 // --------------------
 
 /* /////////////////////////////////////////
@@ -13,16 +13,14 @@
 * reset
 *
 * /////////////////////////////////////////*/
-@import "reset";
+@import "_include/reset";
 
 /* /////////////////////////////////////////
 *
 * base
 *
 * /////////////////////////////////////////*/
-
-// - choice project type.
-@import "base-pc";
+@import "_include/base-pc";
 
 body {
 	overflow: hidden;
@@ -126,7 +124,7 @@ body {
 	}
 	//modifier
 	&.tableList--case {
-		color: #999;
+		color: $color-lgrey;
 	}
 }
 
@@ -472,7 +470,7 @@ body {
 	@include fontB;
 	@include linkColor(#000);
 	text-align: center;
-	background-color: #ccc;
+	background-color: $color-lgrey;
 	@include transition(.2s ease-out);
 
 	&:hover {
@@ -512,7 +510,7 @@ body {
 	table-layout: fixed;
 	min-width: $width-main;
 	width: 100%;
-	border-top: 2px solid #ccc;
+	border-top: 2px solid $color-lgrey;
 	@include fontCB;
 	@include fz-rem(38);
 	background-color: #000;
@@ -852,7 +850,7 @@ body {
 	width: 320px;
 	line-height: 2;
 	margin-bottom: 60px;
-	color: #999;
+	color: $color-lgrey;
 	@include fz-rem($font-size-base);
 	text-align: justify;
 	@include opacity(0);
@@ -879,7 +877,7 @@ body {
 	margin-right: 40px;
 	padding: 30px;
 	width: 320px;
-	color: #666;
+	color: $color-grey;
 	background-color: rgba(#000, .4);
 	@include opacity(0);
 	@include transform(translateY(30px));
@@ -957,7 +955,7 @@ body {
 }
 
 .profileIcns__item 	a {
-	@include linkColor(#999);
+	@include linkColor($color-lgrey);
 	text-decoration: none;
 	transition: .2s ease;
 
@@ -1065,7 +1063,7 @@ body {
 .case__head {
 	line-height: 1.5;
 	margin: 1.2em 0;
-	color: #ccc;
+	color: $color-lgrey;
 	@include fz-rem($font-size-large);
 }
 
@@ -1088,7 +1086,7 @@ body {
 .case__desc {
 	line-height: 1.7;
 	margin-bottom: 20px;
-	color: #ccc;
+	color: $color-lgrey;
 	@include fz-rem($font-size-base);
 }
 
@@ -1261,7 +1259,7 @@ body {
 	line-height: 2;
 	margin-top: -12px;
 	margin-bottom: 20px;
-	color: #ccc;
+	color: $color-lgrey;
 	font-weight: 500;
 	@include fz-rem(30);
 	letter-spacing: .05em;
@@ -1277,7 +1275,7 @@ body {
 
 .missionTxt__body {
 	line-height: 2;
-	color: #999;
+	color: $color-lgrey;
 	@include fz-rem($font-size-base);
 	@include clearfix;
 	@include opacity(0);
@@ -1314,7 +1312,7 @@ body {
 	height: 303px;
 	margin-top: -100px;
 	padding: 225px 50px 0;
-	color: #999;
+	color: $color-lgrey;
 	@include fz-rem($font-size-xsmall);
 	@include fontM;
 	letter-spacing: .05em;
