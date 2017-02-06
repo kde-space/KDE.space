@@ -5,8 +5,8 @@ $(function () {
 	// 横向けにしたときに文言表示
 	showMsgLandscape();
 
-	// タイプライターアニメーション
-	typewriter();
+	// タイプライター初期化
+	typeInit();
 
 	// スライダー
 	slider();
@@ -29,15 +29,15 @@ $(function () {
 */
 function splash() {
 	$('#js-splash').each(function () {
-		var $window = $(window);
+		var $window      = $(window);
 		var windowHeight = $window.height();
-		var windowWidth = $window.width();
-		var $container = $(this);
-		var $logo = $container.find('.splash__txt');
-		var $cover1 = $container.find('#js-spash__cover1');
-		var $cover2 = $container.find('#js-spash__cover2');
-		var DURATION = 600;
-		var CLASS_START = 'is-start';
+		var windowWidth  = $window.width();
+		var $container   = $(this);
+		var $logo        = $container.find('.splash__txt');
+		var $cover1      = $container.find('#js-spash__cover1');
+		var $cover2      = $container.find('#js-spash__cover2');
+		var DURATION     = 600;
+		var CLASS_START  = 'is-start';
 
 		// ロゴを中央に配置
 		$logo.css({
@@ -73,8 +73,8 @@ function splash() {
 							$('.header').addClass(CLASS_START);
 							setTimeout(function () {
 								$('.mainTxt').addClass(CLASS_START);
-								// タイプライターをタイマー実行
-								setClassTimer();
+								// タイプライターを実行
+								typingText();
 							}, 500);
 						});
 					}
@@ -84,18 +84,17 @@ function splash() {
 	});
 }
 
-
 /**
 * スクロール後、特定の高さになったらクラス追加
 */
 function addClassScroll() {
-	var $target = $('.js-addclassScroll');
-	var $window = $(window);
-	var windowHeight = $window.innerHeight();
-	var SHOW_HEIGHT = 80; // 表示される高さ
+	var $target        = $('.js-addclassScroll');
+	var $window        = $(window);
+	var windowHeight   = $window.innerHeight();
+	var SHOW_HEIGHT    = 80; // 表示される高さ
 	var offsetTopArray = []; // 各要素のTOP値格納用の配列
-	var CLASS_ACTIVE = 'is-start';
-	var scrollTop = 0; // スクロールの値格納用
+	var CLASS_ACTIVE   = 'is-start';
+	var scrollTop      = 0; // スクロールの値格納用
 
 	// 各要素のTOP値を取得
 	$target.each(function() {
@@ -115,31 +114,6 @@ function addClassScroll() {
 	}
 	$window.on('scroll resize', _.throttle(setClass, 100));
 }
-
-
-/**
-* MV用にアニメーション時間をずらす
-*/
-function setClassTimer() {
-	$('.js-textTypoMulti').each(function () {
-		var $item = $(this).find('.js-textTypo');
-		var totalTextLength = 0;
-		var CLASS_ACTIVE = 'is-start';
-
-		$item.each(function (i) {
-			var $this = $(this);
-			var duration = $this.data('duration');
-			totalTextLength += $this.text().length; // 合計の文字数を加算
-			var time = totalTextLength * duration;
-			// 最初だけ待ち時間なし
-			if (i === 0) {time = 0;}
-			setTimeout(function () {
-				$this.addClass(CLASS_ACTIVE);
-			}, time);
-		});
-	});
-}
-
 
 /**
 * landscape（横向き）時にメッセージ表示
@@ -168,28 +142,95 @@ function showMsgLandscape() {
 	});
 }
 
-
 /**
-* タイプライター風アニメーション
-*/
-function typewriter() {
-	var $target = $('.js-typeWriter');
-
-	$target.each(function () {
-		var $this = $(this);
-		var ary = $this.text().split(''); // テキストを1文字ずつ配列に格納
-		var htm = '';
-		var aryLength = ary.length;
-		var duration = $(this).data('duration');
-		var durationTime = parseInt(aryLength * duration + 500, 10); // 最後の文字のアニメーション開始までの時間を取得用
-		for (var i = 0; i < aryLength; i++) {
-			htm += '<span style="animation-delay:' + (i * duration + 500) + 'ms;">' + ary[i] + '</span>';
-		}
-		// html書き換え
-		$this.html(htm).addClass('js-textTypo');
-	});
+ * タイピングテキスト初期化。タイピングする要素を非表示にする。
+ */
+function typeInit() {
+	var $container = $('.js-typewriter');
+	var $item      = $container.find('.js-typewriter__item');
+	$item.hide();
 }
 
+/**
+ * タイピングテキスト
+ */
+function typingText() {
+	var $container = $('.js-typewriter');
+	var $item      = $container.find('.js-typewriter__item');
+	var itemTxt    = [];
+	var nowCount   = 0;
+	var DURATION   = 50;
+
+	// 初期化
+	$container.each(function() {
+		init();
+		allocationFunc($item);
+	});
+
+	/**
+	 * 初期化
+	 * 各テキストを配列に挿入後、HTMLから削除
+	 */
+	function init() {
+		$item.each(function() {
+			itemTxt.push($(this).text());
+			$(this).text('').show();
+		});
+	}
+
+	/**
+	 * 関数の割り当て。
+	 * 引数に与えた配列の要素に、順に関数を実行。終了後も関数を実行できる。
+	 * @param {array} ary 関数を実行する要素。
+	 */
+	function allocationFunc(ary) {
+		if (nowCount === 4) {
+			$('.mainTxt__portfolio').addClass('is-start');
+			typingAnim(ary[nowCount], itemTxt[nowCount]);
+			nowCount++;
+		} else if (nowCount < ary.length) {
+			typingAnim(ary[nowCount], itemTxt[nowCount]);
+			nowCount++;
+		} else {
+			//コールバック必要あればここに記入
+		}
+	}
+
+	/**
+	 * タイピングアニメーションを実行。
+	 * @param {object} target 関数を実行する要素。
+	 * @param {string} txt 挿入するテキスト。
+	 */
+	function typingAnim(target, txt) {
+		var txtArray = txt.split('');
+		var txtCount = 0;
+		var TYPO_BAR = '<span class="bar">_</span>';
+		var htm = '';
+
+		target.innerHTML = TYPO_BAR;
+		// 指定秒数後にタイピング開始
+		setTimeout(loop, DURATION * 10);
+
+		/**
+		 * テキストを一文字ずつ挿入。
+		 * 挿入が完了後はコールバック関数を実行
+		 */
+		function loop() {
+			htm += txtArray[txtCount];
+			target.innerHTML = htm + TYPO_BAR;
+			txtCount++;
+			if (txtCount < txtArray.length) {
+				setTimeout(loop, DURATION);
+			} else {
+				setTimeout(callback, DURATION * 10);
+			}
+		}
+		function callback() {
+			target.textContent = txt;
+			allocationFunc($item);
+		}
+	}
+}
 
 /**
 * worksスライダー
@@ -199,32 +240,32 @@ function slider() {
 		/*================================
 		* 変数の定義
 		================================*/
-		var $container = $('#js-slider');
-		var $slideGroupBlock = $container.find('.slider__picBlock');
+		var $container            = $('#js-slider');
+		var $slideGroupBlock      = $container.find('.slider__picBlock');
 		var $slideGroupBlockInner = $slideGroupBlock.find('.slider__picBlockInner');
-		var $slideGroup = $slideGroupBlockInner.find('.slider__picList');
-		var $slide = $slideGroup.find('.slider__picItem');
-		var $slideAnchor = $slide.find('.slider__picAnchor');
-		var $navBtns = $container.find('.slider__arrow');
-		var $indicator = $container.find('.slider__indicator');
-		var $txtGroup = $container.find('.slider__txtList');
-		var $txt = $txtGroup.find('.slider__txtItem');
+		var $slideGroup           = $slideGroupBlockInner.find('.slider__picList');
+		var $slide                = $slideGroup.find('.slider__picItem');
+		var $slideAnchor          = $slide.find('.slider__picAnchor');
+		var $navBtns              = $container.find('.slider__arrow');
+		var $indicator            = $container.find('.slider__indicator');
+		var $txtGroup             = $container.find('.slider__txtList');
+		var $txt                  = $txtGroup.find('.slider__txtItem');
 
-		var slideWidth = $slide.find('img').width(); // 画像の横幅
-		var MARGIN_BETWEEN_SLIDE = 15; // スライド同士の間隔
-		var slideCount = $slide.length; // スライドの数
-		var currentIndex = 0; // 現在のスライドのインデックス
+		var slideWidth            = $slide.find('img').width(); // 画像の横幅
+		var MARGIN_BETWEEN_SLIDE  = 15; // スライド同士の間隔
+		var slideCount            = $slide.length; // スライドの数
+		var currentIndex          = 0; // 現在のスライドのインデックス
 		var nextIndex; // 次のスライドのインデックス
-		var indicatorHTML = ''; // インジケーター用のHTML
+		var indicatorHTML         = ''; // インジケーター用のHTML
 
-		var CLASS_ACTIVE = 'is-active'; // アクティブ時に付与するクラス名
-		var DURATION = 500; // アニメーション時間
-		var EASING = [.28,.61,.49,.98]; // イージング
+		var CLASS_ACTIVE          = 'is-active'; // アクティブ時に付与するクラス名
+		var DURATION              = 500; // アニメーション時間
+		var EASING                = [.28,.61,.49,.98]; // イージング
 
-		var threshold = 30; // スワイプ発生とみなす距離
+		var threshold             = 30; // スワイプ発生とみなす距離
 		var startX, currentX; // 座標を保存するための変数
-		var swipeFlag = false; // スワイプ検知休止状態か否かのフラグ
-		var touchFlag = false; // タッチ中か否かのフラグ
+		var swipeFlag             = false; // スワイプ検知休止状態か否かのフラグ
+		var touchFlag             = false; // タッチ中か否かのフラグ
 
 		/*================================
 		* 関数の定義
@@ -285,8 +326,8 @@ function slider() {
 		*/
 		function setNavSlidePosition() {
 			var windowWidth = $(window).width();
-			var prevBtn = $navBtns.find('.slider__arrowItem--prev a');
-			var nextBtn = $navBtns.find('.slider__arrowItem--next a');
+			var prevBtn     = $navBtns.find('.slider__arrowItem--prev a');
+			var nextBtn     = $navBtns.find('.slider__arrowItem--next a');
 
 			// ウィンドウと画像の余白幅（片側）
 			var marginWindow = parseInt((windowWidth - slideWidth) / 2, 10);
@@ -310,9 +351,9 @@ function slider() {
 		*/
 		function makeClone() {
 			var $slidesCloneWrap = $('<ul class="slider__picList slider__picList--clone"></ul>'); //クローンを包む要素
-			var $slidesClone = $slideGroup.contents().clone();
-			var $clone_1 =  $slidesCloneWrap.append($slidesClone);
-			var $clone_2 = $clone_1.clone();
+			var $slidesClone     = $slideGroup.contents().clone();
+			var $clone_1         =  $slidesCloneWrap.append($slidesClone);
+			var $clone_2         = $clone_1.clone();
 
 			//クローンをそれぞれ前後に挿入、ポジション設定
 			$clone_1
@@ -480,11 +521,11 @@ function slider() {
 */
 function gNavStickey() {
 	$('#js-gNav').each(function () {
-		var $window = $(window);
-		var $gNav = $(this);
+		var $window    = $(window);
+		var $gNav      = $(this);
 		var gNavHeight = $gNav.innerHeight(); // gNavの高さ
-		var fixPos = $window.height() - gNavHeight; // stickeyになる位置
-		var CLASS_FIX = 'is-fixed';
+		var fixPos     = $window.height() - gNavHeight; // stickeyになる位置
+		var CLASS_FIX  = 'is-fixed';
 		var stickyFlag = true;
 
 		function setStickey() {
@@ -499,7 +540,6 @@ function gNavStickey() {
 		}
 
 		$window
-			// 間引き
 			.on('scroll', _.throttle(setStickey, 100))
 			// リサイズが発生したらstickyになる位置を再取得
 			.on('resize', function () {
@@ -514,7 +554,7 @@ function gNavStickey() {
 * スムーススクロール
 */
 $.fn.smoothScroll = function (options) {
-	var hrefData = '',
+	var hrefData  = '',
 		targetPos = 0,
 		targetObj = '';
 

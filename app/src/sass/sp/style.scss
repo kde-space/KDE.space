@@ -32,24 +32,8 @@ body {
 
 /* textTypo jsと併用
 +++++++++++++++++++++++++++++++++++++*/
-.js-textTypo span {
-	@include animation(textTypo_white .1s linear 0s 1);
-	-webkit-animation-play-state: paused;
-	-moz-animation-play-state: paused;
-	animation-play-state: paused;
-}
-
-.mainTxt__portfolio.js-textTypo span {
-	@include animation(textTypo_black .1s steps(1) 0s 1);
-	-webkit-animation-play-state: paused;
-	-moz-animation-play-state: paused;
-	animation-play-state: paused;
-}
-
-.js-textTypo.is-start span {
-	-webkit-animation-play-state: running;
-	-moz-animation-play-state: running;
-	animation-play-state: running;
+.js-typewriter .bar {
+	animation: blink .4s infinite linear;
 }
 
 /* スクロール表示
@@ -317,13 +301,13 @@ body {
 
 .mainTxt__small {
 	line-height: 1;
-	margin: 0 0 percentage(30px/$width-sp) percentage(40px/$width-sp);
+	margin: 0 0 percentage(30px/$width-sp) 2rem;
 	@include fz-rem(15);
 }
 
 .mainTxt__large {
 	line-height: 1.18;
-	margin: 0 0 percentage(50px/$width-sp) percentage(40px/$width-sp);
+	margin: 0 0 percentage(50px/$width-sp) 2rem;
 	@include fz-rem(58);
 }
 
@@ -331,7 +315,7 @@ body {
 	display: inline-block;
 	position: relative;
 	line-height: 1;
-	padding: .3em 1.5em .4em percentage(45px/$width-sp);
+	padding: .3em 1.5em .4em 2rem;
 	@include fz-rem($font-size-base);
 	color: #000;
 
