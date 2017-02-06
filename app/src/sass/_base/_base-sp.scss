@@ -17,9 +17,14 @@ body {
 	width: 100%;
 	height: 100%;
 	line-height: 1.5;
+	overflow: hidden;
 	color: $color-base;
 	font-family: $font-family;
 	@include fz($font-size-base);
+
+	&.is-start {
+		overflow: visible;
+	}
 }
 
 a {

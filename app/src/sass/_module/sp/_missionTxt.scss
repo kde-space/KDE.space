@@ -1,0 +1,26 @@
+/*====================================
+* missionTxt
+* ===================================*/
+.missionTxt {
+	line-height: 2;
+	padding: 0 percentage(40px/$width-sp);
+	text-align: justify;
+}
+
+.missionTxt__head {
+	color: #ccc;
+	@include fz-rem($font-size-xlarge);
+	margin-bottom: 1em;
+}
+
+.missionTxt__body {
+	color: $color-lgrey;
+	@include fz-rem($font-size-small);
+
+	> p:not(:last-child) {
+		margin-bottom: 1.5em;
+	}
+	a {
+		@include linkColor($color-green);
+	}
+}

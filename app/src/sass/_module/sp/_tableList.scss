@@ -1,0 +1,35 @@
+/*====================================
+* tableList
+* ===================================*/
+.tableList {
+	display: table;
+	@include fz-rem($font-size-small);
+	@include fontM;
+	letter-spacing: .05em;
+
+	//modifier
+	&.tableList--case {
+		color: $color-lgrey;
+	}
+}
+
+.tableList__item {
+	display: table-row;
+	line-height: 1.5;
+}
+
+.tableList__head {
+	display: table-cell;
+
+	&#{&}--area {
+		font-family: $font-family;
+	}
+}
+
+.tableList__txt {
+	display: table-cell;
+}
+
+.tableList__txt::before {
+	content: '　-　';
+}

@@ -1,0 +1,116 @@
+/*====================================
+* slider
+* ===================================*/
+.slider {
+	position: relative;
+	width: 100%;
+}
+
+.slider__picBlock {
+	position: relative;
+	width: 100%;
+	margin-bottom: percentage(46px/$width-sp);
+	overflow: hidden;
+}
+
+.slider__picBlockInner {
+	position: relative;
+	width: 100%;
+	//heightはJSで設定
+}
+
+.slider__picList {
+	position: relative;
+	width: 100%;
+}
+
+.slider__picAnchor {
+	pointer-events: none;
+}
+
+.slider__picItem {
+	position: absolute;
+	top: 0;
+	// leftはJSで設定
+	right: 0;
+	margin: auto;
+	@include opacity(.2);
+	transition: .2s;
+
+	// modifier
+	&.is-active {
+		@include opacity(1);
+	}
+}
+
+.slider__pic {
+	width: (520/2) + px;
+}
+
+/*
+* 矢印
+*/
+.slider__arrowItem a {
+	position: absolute;
+	top: (146/2) - 15 + px; // jsで変更
+	width: 25px;
+	height: auto;
+}
+// modifier
+.slider__arrowItem.slider__arrowItem--prev a {
+	left: percentage(2px/$width-sp);
+	transform: rotate(90deg);
+}
+.slider__arrowItem.slider__arrowItem--next a {
+	right: percentage(2px/$width-sp);
+	transform: rotate(-90deg);
+}
+
+/*
+* インジケーター
+*/
+.slider__indicator {
+	position: absolute;
+	top: -20px;
+	right: 30px;
+
+	> li {
+		display: inline-block;
+	}
+	> li:not(:last-child) {
+		margin-right: .5em;
+	}
+	> li a {
+		@include linkColor(#3e3e3e);
+		text-decoration: none;
+	}
+	> li a.is-active {
+		@include linkColor($color-orange);
+	}
+}
+
+/*
+* テキスト
+*/
+.slider__txtList {
+	position: relative;
+	width: percentage(520px/$width-sp);
+	//heightはjsで設定
+	margin: 0 auto;
+}
+
+.slider__txtItem {
+	position: absolute;
+	top: 0;
+	left: 0;
+	@include opacity(0);
+	transform: translateY(-10px);
+	transition: .2s ease-out;
+
+	// modifier
+	&.is-active {
+		z-index: 10;
+		@include opacity(1);
+		transform: translateY(0);
+	}
+}

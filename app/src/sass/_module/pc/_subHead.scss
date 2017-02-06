@@ -1,0 +1,62 @@
+/* subHead
++++++++++++++++++++++++++++++++++++++*/
+.subHead {
+	display: inline-block;
+	position: relative;
+	z-index: 10;
+	line-height: 1;
+	margin-bottom: 50px;
+	padding: .5em 80px .4em .5em;
+	font-weight: bold;
+	@include fz-rem($font-size-large);
+	letter-spacing: .05em;
+	color: transparent;
+	@include transition(color .3s  cubic-bezier(.28,.61,.49,.98) .3s);
+
+	&#{&}--works {
+		margin-bottom: 0;
+	}
+
+	sup {
+		top: 0;
+		margin-left: 1em;
+		vertical-align: super;
+		font-weight: normal;
+		@include fontM;
+		@include fz-rem($font-size-xsmall);
+		letter-spacing: .05em;
+	}
+}
+
+.subHead::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 0;
+	height: 2px;
+	background-color: $color-blue;
+	@include transition(width .3s  cubic-bezier(.28,.61,.49,.98) 0s, height .3s  cubic-bezier(.28,.61,.49,.98) .3s);
+}
+// modifier
+.subHead.subHead--about::before {
+	background-color: $color-blue;
+}
+.subHead.subHead--works::before {
+	background-color: $color-orange;
+}
+.subHead.subHead--contact::before {
+	background-color: $color-green;
+}
+
+// modifier
+.no-js .subHead,
+.subHead.is-start {
+	color: #fff;
+}
+.no-js .subHead::before,
+.subHead.is-start::before {
+	width: 100%;
+	height: 100%;
+}

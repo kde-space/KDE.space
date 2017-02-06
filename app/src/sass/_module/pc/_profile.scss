@@ -1,0 +1,28 @@
+/* profile
++++++++++++++++++++++++++++++++++++++*/
+.profile {
+	float: left;
+	margin-right: 40px;
+	padding: 30px;
+	width: 320px;
+	color: $color-grey;
+	background-color: rgba(#000, .4);
+	@include opacity(0);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
+
+	// modifier
+	.no-js &,
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
+}
+
+.profile__head {
+	line-height: 1.2;
+	@include fontCB;
+	@include fz-rem(54);
+	margin-bottom: 30px;
+	letter-spacing: .01em;
+}

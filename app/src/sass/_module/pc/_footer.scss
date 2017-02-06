@@ -1,0 +1,23 @@
+/*====================================
+* footer
+* ===================================*/
+.footer {
+	min-width: $width-main;
+	height: 303px;
+	margin-top: -100px;
+	padding: 225px 50px 0;
+	color: $color-lgrey;
+	@include fz-rem($font-size-xsmall);
+	@include fontM;
+	letter-spacing: .05em;
+	background: #343434 url(../img/bg_footer.png) center bottom repeat-x;
+	@include clearfix;
+}
+
+.footer__version {
+	float: left;
+}
+.footer__copyright {
+	float: right;
+}
+

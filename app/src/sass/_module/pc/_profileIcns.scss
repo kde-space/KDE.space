@@ -1,0 +1,23 @@
+.profileIcns {
+	font-size: 0;
+	line-height: 1;
+}
+
+.profileIcns__item {
+	display: inline-block;
+	@include fz-rem(22);
+
+	& + & {
+		margin-left: 15px;
+	}
+}
+
+.profileIcns__item 	a {
+	@include linkColor($color-lgrey);
+	text-decoration: none;
+	transition: .2s ease;
+
+	&:hover {
+		color: #efefef;
+	}
+}

@@ -1,0 +1,120 @@
+/* case
++++++++++++++++++++++++++++++++++++++*/
+.case {
+	width: 800px;
+}
+
+.case__pic {
+	position: relative;
+	margin-bottom: 40px;
+	@include transition(.3s ease-out);
+	@include transform(scale(.96));
+
+	// modifier
+	.no-js &,
+	.is-active & {
+		@include transform(scale(1));
+		box-shadow: 0 10px 10px -3px rgba(#000, .3);
+	}
+}
+
+.case__picAnchor {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+
+	&::before {
+		content: '';
+		@include absoluteAll(20px,20px,20px,20px);
+		margin: auto;
+		@include opacity(0);
+		transition: .3s;
+	}
+	&:hover::before {
+		@include absoluteAll(-50px,-50px,-50px,-50px);
+		@include opacity(.7);
+		background-color: rgba(#000, .4);
+		background-image: url(../img/common/bg_noise.png);
+		@include animation(moveNoise2 .2s steps(6, start) infinite);
+
+		// modifier
+		.no-js &,
+		.no-cssanimations & {
+			background-image: none;
+			background-color: rgba(#000, .5);
+		}
+	}
+}
+
+.case__picDetail {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	visibility: hidden;
+	padding: 15px 60px;
+	border: 2px solid;
+	color: #fff;
+	transform: translate(-50%, -50%) scale(.9);
+	@include fontCB;
+	@include fz-rem(40);
+	transition: .3s cubic-bezier(.28,.61,.49,.98) .1s;
+	@include opacity(0);
+
+	.case__picAnchor:hover & {
+		visibility: visible;
+		transform: translate(-50%, -50%) scale(1);
+		@include opacity(1);
+	}
+}
+
+.case__txt {
+	@include opacity(0);
+	@include transform(translateY(-10%));
+	@include transition(.3s ease-out .3s);
+	@include clearfix;
+
+	// modifier
+	.no-js &,
+	.is-active & {
+		@include transform(translateY(0));
+		@include opacity(1);
+	}
+}
+
+.case__caption {
+	float: left;
+	width: 260px;
+	border-top: 1px solid $color-orange;
+}
+
+.case__head {
+	line-height: 1.5;
+	margin: 1.2em 0;
+	color: $color-lgrey;
+	@include fz-rem($font-size-large);
+}
+
+.case__link {
+	@include linkColor($color-orange);
+	@include fz-rem($font-size-small);
+	@include fontM;
+	letter-spacing: .05em;
+
+	> .fa {
+		margin-left: .5em;
+	}
+}
+
+.case__detail {
+	padding-left: 40px;
+	overflow: hidden;
+}
+
+.case__desc {
+	line-height: 1.7;
+	margin-bottom: 20px;
+	color: $color-lgrey;
+	@include fz-rem($font-size-base);
+}

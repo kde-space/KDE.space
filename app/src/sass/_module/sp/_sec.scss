@@ -1,0 +1,96 @@
+/*====================================
+* sec
+* ===================================*/
+.sec {
+	padding-bottom: percentage(100px/$width-sp);
+
+	// modifier
+	&#{&}--about {
+		background: #1e1e1e url(../img/bg_about.png) left bottom no-repeat;
+		background-size: 100%;
+	}
+	&#{&}--works {
+		background-color: #6c6c6c;
+	}
+	&#{&}--mission {
+		padding-bottom: 0;
+		background-color: #343434;
+	}
+}
+
+.sec__headWrap {
+	position: relative;
+	z-index: 10;
+	padding-top: percentage(110px/$width-sp);
+}
+
+.sec__headWrap::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 0; // 非アクティブ時は非表示
+	height: 0;
+	padding-top: percentage(180px/$width-sp);
+	transition: .5s cubic-bezier(.17,.61,.53,.88);
+
+	//modifier セクション別
+	$about :darken($color-blue, 20%);
+	$works :darken($color-orange, 25%);
+	$mission :darken($color-green,.10%);
+	.sec--about & {
+		background-color: rgba($about, .8);
+	}
+	.sec--works & {
+		background-color: rgba($works,.5);
+	}
+	.sec--mission & {
+		background-color: rgba($mission,.3);
+	}
+	//modifier アクティブ時
+	.sec.is-start & {
+		width: 100%;
+	}
+}
+
+.sec__head {
+	position: relative;
+	line-height: 1;
+	margin: 0 0 percentage(50px/$width-sp) percentage(40px/$width-sp);
+	padding-left: 70px;
+	@include fz-rem(65);
+	@include fontCB;
+	letter-spacing: -.02em;
+}
+
+// アイコン
+.sec__head::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60px;
+	height: 60px;
+	@include opacity(0);
+	@include transition(.3s ease-out .2s);
+	@include transform(translateY(25px));
+	background-repeat: no-repeat;
+	background-size: 100%;
+
+	// modifier
+	.sec--about & {
+		background-image: url(../../img/common/icn_a.svg);
+	}
+	.sec--works & {
+		background-image: url(../../img/common/icn_w.svg);
+	}
+	.sec--mission & {
+		background-image: url(../../img/common/icn_m.svg);
+	}
+}
+// modifier
+.sec__head.is-start::before {
+	@include opacity(1);
+	@include transform(translateY(0));
+}

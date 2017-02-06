@@ -1,0 +1,50 @@
+/*====================================
+* case
+* ===================================*/
+.case {
+	width: 100%;
+}
+
+.case__pic {
+	margin-bottom: percentage(50px/520px);
+}
+
+.case__caption {
+	position: relative;
+	margin-bottom: percentage(30px/520px);
+	padding-top: percentage(36px/$width-sp);
+
+	&::before {
+		content: '';
+		@include absoluteTL(0,0);
+		width: percentage(80px/520px);
+		height: 1px;
+		border-top: 1px solid $color-orange;
+	}
+}
+
+.case__head {
+	line-height: 1.5;
+	margin-bottom: .5em;
+	@include fz-rem($font-size-base);
+	color: #ccc;
+	font-weight: bold;
+}
+
+.case__link {
+	@include linkColor($color-orange);
+	@include fontM;
+	letter-spacing: .05em;
+
+	> .fa {
+		margin-left: .5em;
+	}
+}
+
+.case__desc {
+	line-height: 1.82;
+	margin-bottom: 1em;
+	color: #ccc;
+	@include fz-rem($font-size-small);
+	text-align: justify;
+}

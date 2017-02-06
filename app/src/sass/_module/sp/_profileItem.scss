@@ -1,0 +1,45 @@
+.profileItemWrap {
+	position: relative;
+	padding-top: percentage(50px/320px);
+
+	&::before {
+		content: '';
+		@include absoluteTL(0,0);
+		width: 30%;
+		height: 1px;
+		border-top: 1px solid;
+	}
+}
+
+.profileItem {
+	letter-spacing: .05em;
+
+	&:not(:last-child) {
+		margin-bottom: percentage(20px/(320px - 40*2));
+	}
+}
+
+.profileItem__head {
+	line-height: 1;
+	margin-bottom: .2em;
+	@include fz-rem($font-size-small);
+	@include fontB;
+	white-space: nowrap;
+
+	small {
+		margin-left: .5em;
+	}
+
+	// modifier
+	.profileItem--sns & {
+		margin-bottom: .5em;
+	}
+}
+
+.profileItem__body {
+	@include fontM;
+
+	a {
+		@include linkColor($color-blue);
+	}
+}

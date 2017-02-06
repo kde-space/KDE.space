@@ -1,0 +1,40 @@
+/* profileItem
++++++++++++++++++++++++++++++++++++++*/
+.profileItemWrap {
+	display: table;
+	width: 100%;
+}
+
+.profileItem {
+	display: table-row;
+	width: 100%;
+}
+
+.profileItem__head {
+	display: table-cell;
+	line-height: 1.2;
+	padding-bottom: 20px;
+	vertical-align: top;
+	@include fontB;
+	@include fz-rem($font-size-small);
+	letter-spacing: .05em;
+	white-space: nowrap;
+
+	small {
+		@include fz-rem($font-size-xsmall);
+	}
+}
+
+.profileItem__body {
+	display: table-cell;
+	line-height: 1.5;
+	padding: 0 0 20px 20px;
+	@include fontM;
+	@include fz-rem($font-size-small);
+	letter-spacing: .05em;
+	word-wrap: break-word;
+
+	a {
+		@include linkColor($color-blue);
+	}
+}

@@ -1,0 +1,16 @@
+.profileIcns {
+	display: flex;
+	justify-content: flex-start;
+	line-height: 1;
+	@include fz-rem(20);
+}
+
+.profileIcns__item {
+	&:not(:last-child) {
+		margin-right: .8em;
+	}
+	a {
+		@include linkColor($color-lgrey);
+		text-decoration: none;
+	}
+}

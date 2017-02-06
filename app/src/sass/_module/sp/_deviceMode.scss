@@ -1,0 +1,36 @@
+.deviceMode {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	background-color: #222;
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: -30%;
+		left: -30%;
+		width: 150%;
+		height: 150%;
+		background: url(../../img/common/bg_noise.png);
+		@include animation(moveNoise2 .2s steps(6, start) infinite);
+	}
+
+	// modifier
+	&.is-active {
+		display: flex;
+	}
+}
+
+.deviceMode__ja {
+	margin-bottom: .5em;
+	@include fz-rem($font-size-base);
+}

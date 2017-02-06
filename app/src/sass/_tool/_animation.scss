@@ -1,0 +1,24 @@
+/* textTypo jsと併用
+++++++++++++++++++++++++++++++++++++*/
+.js-textTypo span {
+	@include animation(textTypo_white .1s linear 0s 1);
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	animation-play-state: paused;
+}
+/*
+* modifer IE用にアニメーションを分ける
+*/
+.mainTxt__portfolio.js-textTypo span {
+	@include animation(textTypo_black .1s steps(1) 0s 1);
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	animation-play-state: paused;
+}
+
+.js-textTypo.is-start span {
+	-webkit-animation-play-state: running;
+	-moz-animation-play-state: running;
+	animation-play-state: running;
+}
+

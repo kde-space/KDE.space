@@ -1,0 +1,221 @@
+/*====================================
+* gNav
+* ===================================*/
+.gNav {
+	position: absolute;
+	z-index: 20;
+	left: 0;
+	bottom: 0;
+}
+
+.gNav.is-fixed {
+	position: fixed;
+	top: 0;
+	bottom: auto;
+}
+
+.gNav__toTop {
+	display: block;
+	line-height: 30px;
+	overflow: hidden;
+	height: 0;
+	width: 100%;
+	@include fz-rem($font-size-xlarge);
+	@include fontB;
+	@include linkColor(#000);
+	text-align: center;
+	background-color: $color-lgrey;
+	@include transition(.2s ease-out);
+
+	&:hover {
+		background-color: #efefef;
+	}
+
+	// modifier
+	.is-fixed & {
+		height: 30px;
+		top: 0;
+	}
+}
+
+.gNav__toTopTxt {
+	display: inline-block;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: -1.5em;
+		bottom: 0;
+		margin: auto;
+		width: 20px;
+		height: 20px;
+		background: url(../img/common/arrow_black.svg) no-repeat;
+		background-size: 100%;
+	}
+}
+.gNav__toTop:hover .gNav__toTopTxt::after {
+	@include animation(arrowUp 1.2s ease 0s infinite);
+}
+
+.gNav__list {
+	display: table;
+	table-layout: fixed;
+	min-width: $width-main;
+	width: 100%;
+	border-top: 2px solid $color-lgrey;
+	@include fontCB;
+	@include fz-rem(38);
+	background-color: #000;
+
+	// mediaQuery
+	@include mq-custom-max(1300px) {
+		@include fz-rem(30);
+	}
+
+	// modifier
+	.is-fixed & {
+		@include fz-rem(30);
+	}
+}
+
+.gNav__item {
+	display: table-cell;
+	vertical-align: middle;
+	border-right: 1px solid #333;
+
+	//modifier ブログ用
+	&#{&}--blog {
+		border-right: none;
+
+		sup {
+			vertical-align: super;
+			margin-left: 1em;
+			@include fontM;
+			@include fz-rem($font-size-small);
+		}
+	}
+}
+
+.gNav__item a {
+	display: block;
+	position: relative;
+	@include transition(background-color .1s);
+	overflow: hidden;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		background-color: #0e0e0e;
+	}
+}
+
+.gNav__txt {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 90px;
+	padding-left: 105px;
+	@include transition(.2s ease-out);
+
+	// mediaQuery
+	@include mq-custom-max(1300px) {
+		padding-left: 100px;
+	}
+	// mediaQuery
+	@include mq-custom-max(1080px) {
+		padding-left: 80px;
+	}
+	@media screen and (max-height:800px) {
+		line-height: 70px;
+	}
+
+	// modifier
+	.is-fixed & {
+		line-height: 60px;
+		padding-left: 70px;
+	}
+}
+
+/*
+* アイコンの表示
+*/
+.gNav__txt::before {
+	content: '';
+	@include absoluteTBL(0,0,40px);
+	width: 50px;
+	height: 50px;
+	margin: auto;
+	background: url(../img/common/icn_a.svg) no-repeat;
+	@include transition(.2s ease-out);
+
+	// mediaQuery
+	@include mq-custom-max(1300px) {
+		left: 30px;
+	}
+	// mediaQuery
+	@include mq-custom-max(1080px) {
+		width: 50px;
+		height: 50px;
+		left: 20px;
+	}
+
+	//modifier
+	.gNav__item--works & {
+		background: url(../img/common/icn_w.svg) no-repeat;
+	}
+	.gNav__item--mission & {
+		background: url(../img/common/icn_m.svg) no-repeat;
+	}
+	.gNav__item--blog & {
+		background: url(../img/common/icn_b.svg) no-repeat;
+	}
+	// modifier
+	.is-fixed & {
+		width: 35px;
+		height: 35px;
+		left: 20px;
+	}
+}
+
+/*
+* 矢印の表示
+*/
+.gNav__txt::after {
+	content: '';
+	@include absoluteTRB(0,30px,0);
+	width: 40px;
+	height: 43px;
+	margin: auto;
+	background: url(../img/common/arrow_b.svg) no-repeat;
+	@include transition(.2s ease-out);
+
+	.gNav__item a:hover & {
+		@include animation(arrowDown 1.2s ease 0s infinite);
+	}
+	.gNav__item--blog a:hover & {
+		@include animation(arrowRight 1.2s ease 0s infinite);
+	}
+
+	// mediaQuery
+	@include mq-custom-max(1300px) {
+		right: 20px;
+	}
+	// mediaQuery
+	@include mq-custom-max(1080px) {
+		width: 30px;
+		height: 33px;
+	}
+
+	// modifier
+	.gNav__item--blog & {
+		transform: rotate(-90deg);
+	}
+	// modifier
+	.is-fixed & {
+		width: 30px;
+		height: 33px;
+	}
+}

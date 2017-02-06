@@ -1,0 +1,17 @@
+/*====================================
+* profile
+* ===================================*/
+.profile {
+	width: 50%;
+	margin-left: percentage(40px/$width-sp);
+	padding: percentage(40px/$width-sp) percentage(30px/$width-sp);
+	color: $color-grey;
+	background-color: rgba(#000, .4);
+}
+
+.profile__head {
+	margin-bottom: percentage(50px/320px);
+	@include fz-rem(30);
+	@include fontCB;
+	letter-spacing: .01em;
+}

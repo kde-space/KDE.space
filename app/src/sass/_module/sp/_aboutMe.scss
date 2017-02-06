@@ -1,0 +1,11 @@
+/*====================================
+* aboutMe
+* ===================================*/
+.aboutMe__desc {
+	line-height: 2;
+	margin-bottom: percentage(80px/$width-sp);
+	padding: 0 percentage(40px/$width-sp);
+	color: $color-lgrey;
+	@include fz-rem($font-size-small);
+	text-align: justify;
+}

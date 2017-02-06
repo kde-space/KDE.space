@@ -1,0 +1,23 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding-top: percentage(40px/$width-sp);
+	@include opacity(0);
+	transform: translateY(-20px);
+	transition: .5s cubic-bezier(0,0,.14,.98);
+
+	// modifier
+	&.is-start {
+		@include opacity(1);
+		transform: translateY(0);
+	}
+}
+
+.header__logo {
+	width: percentage(140px/$width-sp);
+	margin-left: percentage(40px/$width-sp);
+}
+
+.header__sns {
+	margin-right: percentage(40px/$width-sp);
+}

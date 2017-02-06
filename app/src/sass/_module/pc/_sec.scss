@@ -1,0 +1,104 @@
+/*====================================
+* sec
+* ===================================*/
+.sec {
+	min-width: $width-main;
+	padding-bottom: 100px;
+
+	@include comment1(modifier);
+	//modifier
+	&#{&}--about {
+		background: #1e1e1e url(../img/bg_about.png) center bottom no-repeat/* fixed*/;
+	}
+	&#{&}--works {
+		background-color: #6c6c6c;
+	}
+	&#{&}--mission {
+		padding-bottom: 0;
+		background-color: #343434;
+	}
+}
+
+/* sec__head
++++++++++++++++++++++++++++++++++++++*/
+.sec__headWrap {
+	position: relative;
+	z-index: 1;
+	padding-top: 90px;
+}
+
+.sec__headWrap::before {
+	content: '';
+	@include absoluteTL(0,0);
+	z-index: -1;
+	width: 0; // 非アクティブ時は非表示
+	height: 175px;
+	transition: .5s cubic-bezier(.17,.61,.53,.88);
+
+	//modifier セクション別
+	$hoge :darken($color-blue, 20%);
+	$fuga :darken($color-orange, 25%);
+	$piyo :darken($color-green,.10%);
+
+	.sec--about & {
+		background-color: rgba($hoge, .8);
+	}
+	.sec--works & {
+		background-color: rgba($fuga,.5);
+	}
+	.sec--mission & {
+		background-color: rgba($piyo,.3);
+	}
+
+	//modifier アクティブ時
+	.no-js &,
+	.sec.is-start & {
+		width: 100%;
+	}
+}
+
+.sec__head {
+	position: relative;
+	width: $width-main;
+	line-height: 1;
+	margin: 0 auto;
+	padding-left: 180px;
+	@include fontCB;
+	@include fz-rem(160);
+	letter-spacing: -.02em;
+}
+
+// アイコン
+.sec__head::before {
+	content: '';
+	@include absoluteTBL(0,0,0);
+	width: 148px;
+	height: 148px;
+	margin: auto;
+	background: url(../img/common/icn_a.svg) no-repeat;
+	@include opacity(0);
+	@include transition(.3s ease-out .2s);
+	@include transform(translateY(25px));
+
+	//modifier
+	.sec--works & {
+		background-image: url(../img/common/icn_w.svg);
+	}
+	.sec--mission & {
+		background-image: url(../img/common/icn_m.svg);
+	}
+}
+// modifier
+.no-js .sec__head::before,
+.sec__head.is-start::before {
+	@include opacity(1);
+	@include transform(translateY(0));
+}
+
+/* sec__body
++++++++++++++++++++++++++++++++++++++*/
+.sec__body {
+	width: $width-main - 40;
+	margin: 0 auto;
+	padding-top: 40px;
+}

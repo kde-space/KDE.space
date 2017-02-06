@@ -1,0 +1,26 @@
+/*====================================
+* header
+* ===================================*/
+.header {
+	margin-bottom: 75px;
+	padding: 40px 50px 0;
+	@include clearfix;
+	@include opacity(0);
+	transform: translateY(-30px);
+	transition: .5s cubic-bezier(0,0,.14,.98);
+
+	// modifier
+	.no-js &,
+	&.is-start {
+		@include opacity(1);
+		transform: translateY(0);
+	}
+}
+
+.header__logo {
+	float: left;
+}
+
+.header__sns {
+	float: right;
+}

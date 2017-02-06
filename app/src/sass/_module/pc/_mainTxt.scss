@@ -1,0 +1,80 @@
+/* mainTxt
++++++++++++++++++++++++++++++++++++++*/
+.mainTxt {
+	display: none;
+	@include absoluteTL(50%,0);
+	width: 100%;
+	@include transform(translateY(-50%));
+	@include fontCB;
+
+	// modifier
+	.no-js &,
+	&.is-start, {
+		display: block;
+	}
+	// mediaQuery
+	@media screen and (max-height:700px) {
+		top: 45%;
+	}
+}
+
+.mainTxt__small {
+	margin-bottom: 30px;
+	padding-left: percentage(190px/1920px);
+	@include fz-rem(30);
+
+	// mediaQuery
+	@media screen and (max-height:700px) {
+		margin-bottom: 20px;
+	}
+}
+
+.mainTxt__large {
+	margin-bottom: 50px;
+	padding-left: percentage(190px/1920px);
+	@include fz-rem(160);
+	margin-left: -.05em;
+
+	// mediaQuery
+	@include mq-custom-max(1400px) {
+		@include fz-rem(140);
+	}
+	@media screen and (max-height:800px) {
+		margin-bottom: 30px;
+		@include fz-rem(120);
+	}
+	@media screen and (max-width:1200px) {
+		@include fz-rem(100);
+	}
+}
+
+.mainTxt__portfolio {
+	display: inline-block;
+	position: relative;
+	padding: .2em 80px .2em percentage(190px/1920px);
+	color: #000;
+	@include fz-rem(24);
+
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: $color-gold;
+		@include transition(width .2s  cubic-bezier(.28,.61,.49,.98), height .2s  cubic-bezier(.28,.61,.49,.98) .3s);
+
+		// no-cssanimations
+		.no-js &,
+		.no-cssanimations & {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&.is-start::before {
+		width: 100%;
+		height: 100%;
+	}
+}

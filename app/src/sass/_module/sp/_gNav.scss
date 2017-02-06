@@ -1,0 +1,128 @@
+/*====================================
+* gNav
+* ===================================*/
+.gNav {
+	position: absolute;
+	z-index: 20;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	// modifier
+	&.is-fixed {
+		position: fixed;
+		top: 0;
+		bottom: auto;
+	}
+}
+
+.gNav__toTop {
+	display: block;
+	height: 0;
+	@include fz-rem($font-size-small);
+	@include linkColor(#000);
+	@include fontB;
+	text-align: center;
+	text-decoration: none;
+	background-color: #ccc;
+	transition: .2s ease-out;
+
+	// modifier
+	.is-fixed & {
+		height: 22px;
+	}
+}
+
+.gNav__toTopTxt {
+	display: block;
+	width: 15px;
+	margin: 0 auto;
+	padding: 3px 0;
+}
+
+.gNav__list {
+	display: flex;
+	justify-content: space-between;
+	border-top: 2px solid #ccc;
+	@include fontCB;
+	@include fz-rem($font-size-small);
+	background-color: #000;
+}
+
+.gNav__item {
+	position: relative;
+	width: 25%;
+	&:not(:last-child) {
+		border-right: 1px solid #333;
+	}
+	a {
+		display: block;
+		text-decoration: none;
+		@include linkColor(#fff);
+	}
+}
+
+.gNav__txt {
+	display: block;
+	position: relative;
+	padding: 45px 0 10px;
+	text-align: center;
+	letter-spacing: .02em;
+	transition: .2s ease-out;
+
+	i {
+		margin-left: .3em;
+	}
+
+	// modifier
+	.is-fixed & {
+		padding: 35px 0 5px;
+	}
+}
+
+// アイコン
+.gNav__txt::before {
+	content: '';
+	position: absolute;
+	top: 10px;
+	right: 0;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	margin: auto;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	transition: .2s ease-out;
+
+	// modifier
+	.gNav__item--about & {
+		background-image: url(../../img/common/icn_a.svg);
+	}
+	.gNav__item--works & {
+		background-image: url(../../img/common/icn_w.svg);
+	}
+	.gNav__item--mission & {
+		background-image: url(../../img/common/icn_m.svg);
+	}
+	.gNav__item--blog & {
+		background-image: url(../../img/common/icn_b.svg);
+	}
+	.is-fixed & {
+		top: 8px;
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.gNav__comingSoon {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	transform: translateY(-50%);
+	color: $color-lgrey;
+	@include fz-rem($font-size-small - 1);
+	@include fontM;
+	text-align: center;
+	letter-spacing: .02em;
+}

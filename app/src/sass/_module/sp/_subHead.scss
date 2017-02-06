@@ -1,0 +1,52 @@
+/*====================================
+* subHead
+* ===================================*/
+.subHead {
+	display: inline-block;
+	position: relative;
+	z-index: 10;
+	line-height: 1;
+	margin: 0 0 percentage(60px/$width-sp) percentage(40px/$width-sp);
+	padding: .3em 40px .3em .5em;
+	@include fz-rem($font-size-base);
+	font-weight: bold;
+	letter-spacing: .05em;
+	color: transparent;
+	@include transition(color .3s  cubic-bezier(.28,.61,.49,.98) .3s);
+
+	sup {
+		@include fz-rem($font-size-xsmall);
+		@include fontM;
+		margin-left: 1em;
+	}
+}
+
+.subHead::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 0;
+	height: 1px;
+	background-color: $color-blue;
+	@include transition(width .2s  cubic-bezier(.28,.61,.49,.98) 0s, height .2s  cubic-bezier(.28,.61,.49,.98) .2s);
+}
+// modifier
+.subHead.subHead--about::before {
+	background-color: $color-blue;
+}
+.subHead.subHead--works::before {
+	background-color: $color-orange;
+}
+.subHead.subHead--mission::before {
+	background-color: $color-green;
+}
+
+.subHead.is-start {
+	color: #fff;
+}
+.subHead.is-start::before {
+	width: 100%;
+	height: 100%;
+}

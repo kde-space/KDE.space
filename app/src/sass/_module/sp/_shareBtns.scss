@@ -1,0 +1,15 @@
+.shareBtns {
+	@include fontM;
+	@include fz-rem($font-size-xsmall);
+	text-align: right;
+}
+
+.shareBtns__btn {
+	&:not(:last-child) {
+		margin-bottom: 1em;
+	}
+	a {
+		color: #ddd;
+		letter-spacing: .1em;
+	}
+}

@@ -1,0 +1,25 @@
+/* shareBtns
++++++++++++++++++++++++++++++++++++++*/
+.shareBtns {
+	font-size: 0;
+	@include fontM;
+}
+
+.shareBtns__btn {
+	display: inline-block;
+	text-align: right;
+	vertical-align: middle;
+	@include fz-rem($font-size-small);
+	letter-spacing: .05em;
+
+	&:not(:last-child) {
+		margin-right: 1em;
+		&::after {
+			content: '　/';
+		}
+	}
+	a {
+		color: #ddd;
+		letter-spacing: .1em;
+	}
+}

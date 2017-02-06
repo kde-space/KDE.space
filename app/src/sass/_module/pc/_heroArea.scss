@@ -1,0 +1,42 @@
+/*====================================
+* heroArea
+* ====================================*/
+.heroArea {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	min-width: $width-main;
+	width: 100%;
+	min-height: 750px;
+	height: 100%;
+
+	// modifier
+	&.is-start {
+		display: block;
+	}
+}
+
+.heroArea__video {
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	width: auto;
+	min-height: 100%;
+	height: auto;
+	@include opacity(.3);
+}
+
+//背景ノイズ
+.heroArea::after {
+	content: '';
+	@include absoluteTL(-20%,-20%);
+	z-index: -1;
+	width: 120%;
+	height: 120%;
+	background-image: url(../img/common/bg_noise.png);
+	@include animation(moveNoise2 .2s steps(6, start) infinite);
+}

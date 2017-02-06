@@ -1,0 +1,20 @@
+/*====================================
+* footer
+* ===================================*/
+.footer {
+	margin-top: percentage(-100px/$width-sp);
+	padding: percentage(200px/$width-sp) percentage(40px/$width-sp) percentage(40px/$width-sp);
+	color: $color-lgrey;
+	text-align: center;
+	background: url(../img/bg_footer.png) no-repeat;
+	background-size: 100%;
+}
+
+.footer__version {
+	display: inline-block;
+}
+
+.footer__copyright {
+	@extend .footer__version;
+	margin-left: 1em;
+}

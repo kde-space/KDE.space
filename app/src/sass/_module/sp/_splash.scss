@@ -1,0 +1,55 @@
+/*====================================
+* splash
+* ===================================*/
+.splash {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.splash__cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+.splash__bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	// modifier
+	&#{&}--1 {
+		background-color: #000;
+	}
+	&#{&}--2 {
+		background-color: #fff;
+	}
+}
+
+.splash__txt {
+	position: absolute;
+	width: 200px;
+	transform: translate(-50%, -50%);
+
+	// modifier
+	&#{&}--1 {
+		svg {
+			fill: #fff;
+		}
+	}
+	&#{&}--2 {
+		svg {
+			fill: #000;
+		}
+	}
+}

@@ -1,0 +1,15 @@
+#l-wrapper {
+	min-width: $width-main;
+	height: 100%;
+	background-color: #1f1f1f;
+}
+
+.l-container {
+	position: absolute;
+	z-index: 10;
+	top: 100%;
+	width: 100%;
+	background-color: #343434;
+	-webkit-backface-visibility: hidden; //チラつき防止
+	backface-visibility: hidden;
+}

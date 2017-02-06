@@ -18,9 +18,15 @@ html {
 body {
 	height: 100%;
 	line-height: 1;
+	overflow: hidden;
 	color: $color-base;
 	font-family: $font-family;
 	@include fz-rem(10);
+
+	.no-js &,
+	&.is-start {
+		overflow: visible;
+	}
 }
 
 a {

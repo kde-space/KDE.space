@@ -1,0 +1,33 @@
+/* aboutMe
++++++++++++++++++++++++++++++++++++++*/
+.aboutMe {
+	position: relative;
+}
+
+.aboutMe__inner {
+	@include clearfix;
+}
+
+.aboutMe__desc {
+	float: left;
+	width: 320px;
+	line-height: 2;
+	margin-bottom: 60px;
+	color: $color-lgrey;
+	@include fz-rem($font-size-base);
+	text-align: justify;
+	@include opacity(0);
+	@include transform(translateY(30px));
+	@include transition(.5s ease-out .3s);
+
+	// modifier
+	.no-js &,
+	&.is-start {
+		@include opacity(1);
+		@include transform(translateY(0));
+	}
+
+	> p + p {
+		margin-top: 1.2em;
+	}
+}
