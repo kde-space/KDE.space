@@ -42,4 +42,9 @@
 		width: 100%;
 		height: 100%;
 	}
+	// modifier
+	&.is-end::before {
+		box-sizing: content-box;
+		padding-right: .5em;
+	}
 }

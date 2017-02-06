@@ -31,7 +31,7 @@ a {
 	@include linkColor($color-link);
 }
 
-#wrapper {
+#l-wrapper {
 	position: relative;
 	max-width: $width-sp;
 	min-width: 320px;
@@ -41,7 +41,7 @@ a {
 	background-color: #1f1f1f;
 }
 
-#wrapper img {
+#l-wrapper img {
 	display: block;
 	width: 100%;
 	height: auto;

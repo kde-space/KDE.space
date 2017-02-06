@@ -192,7 +192,7 @@ function typingText() {
 			typingAnim(ary[nowCount], itemTxt[nowCount]);
 			nowCount++;
 		} else {
-			//コールバック必要あればここに記入
+			$('.mainTxt__portfolio').addClass('is-end');
 		}
 	}
 
