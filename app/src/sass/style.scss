@@ -32,7 +32,7 @@ body {
 * /////////////////////////////////////////*/
 
 /* textTypo jsと併用
-+++++++++++++++++++++++++++++++++++++*/
+++++++++++++++++++++++++++++++++++++*/
 .js-textTypo span {
 	@include animation(textTypo_white .1s linear 0s 1);
 	-webkit-animation-play-state: paused;
