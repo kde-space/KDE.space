@@ -361,7 +361,6 @@ function gNavStickey() {
 $.fn.smoothScroll = function (options) {
 	var hrefData  = '',
 		targetPos = 0,
-		targetObj = '';
 
 	var defaults = {
 		easing      : 'swing',
@@ -371,17 +370,12 @@ $.fn.smoothScroll = function (options) {
 	};
 	var setting = $.extend(defaults, options);
 
-	if (navigator.userAgent.match(/webkit/i)) {
-		targetObj = 'body';
-	} else {
-		targetObj = 'html';
-	}
 	$(this).on('click', function (event) {
 		hrefData = $(this).attr('href');
 		if (hrefData.indexOf('#') !== 0 || $(hrefData).length === 0) { return; }
 		event.preventDefault();
 		targetPos = $(hrefData).offset().top + setting.positioning;
-		$(targetObj).animate({
+		$('body, html').animate({
 			scrollTop : targetPos
 		}, setting.duration, setting.easing, setting.callback);
 	});
