@@ -360,7 +360,7 @@ function gNavStickey() {
 */
 $.fn.smoothScroll = function (options) {
 	var hrefData  = '',
-		targetPos = 0,
+		targetPos = 0;
 
 	var defaults = {
 		easing      : 'swing',
